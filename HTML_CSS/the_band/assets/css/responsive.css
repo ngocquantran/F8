@@ -1,0 +1,55 @@
+@media (min-width: 1024px) {
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+@media (max-width: 740px) {
+  .nav > li {
+    display: block;
+  }
+  .header {
+    overflow: hidden;
+  }
+
+  .header .search-btn {
+    display: none;
+  }
+
+  .header .mobile-menu-btn {
+    display: block;
+  }
+
+  .slider .text-content {
+    display: none;
+  }
+
+  .content .member-item {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .place-list {
+    display: block;
+  }
+
+  .place-list .col-3 {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .contact-info {
+    margin-bottom: 15px;
+  }
+
+  .contact-form .row,
+  .contact-content {
+    display: block;
+  }
+
+  .contact-content .col-2 {
+    width: 100%;
+  }
+}

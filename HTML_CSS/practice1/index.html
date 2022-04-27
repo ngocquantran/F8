@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- 1. h1 - heading
+    2. p - paragraph
+    3. img - image
+    4. a - anchor
+    5. ul, li - unordered list, ordered list
+    6. table
+
+
+-->
+<html>
+    <head>
+        <title>F8 - Shop</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            html{
+                font-size:100% ;
+            }
+            .box{
+                width: calc(50%+30%);
+                height: 100px;
+                background-color: red;
+            }
+            h1{
+                font-size: 1rem;
+            }
+            h1:hover{
+                color: green;
+            }
+
+            .box:active{
+                background-color: gray;
+            }
+
+            .box::after{
+                content: attr(data-title);
+            }
+
+            a::after{
+                content: " (" attr(href)")";
+            }
+
+            li:first-child{
+                color: red;
+            }
+            li:last-child{
+                color: green;
+                font-size: 50px;
+            }
+
+            .box::before{
+                content: "";
+                display: block;
+                width: 50px;
+                height: 50px;
+                background-color: aliceblue;
+            }
+            .box::after{
+                 content: "Xin chào";
+                 color: blue;
+                display: block;
+                width: 50px;
+                height: 50px;
+                background-color: rgb(40, 136, 72);
+            }
+
+            .first-title::first-letter{
+                font-size: 50px;
+            }
+
+            .first-title::selection{
+                background-color: yellow;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="box" data-title="Đây là box màu hồng">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <a href="https://fullstack.edu.com.vn">Học lập trình </a>
+        <div >
+            <h1>CSS units?</h1>
+        </div>
+
+        
+        <ul>
+            <li>:root</li>
+            <li>:hover</li>
+            <li>:active</li>
+            <li>:first-child</li>
+            <li>:last-child</li>
+        </ul>
+
+        <h1 class="first-title">CSS pseudo-elements</h1>
+        <ul>
+            <li>::root</li>
+            <li>::hover</li>
+            <li>::active</li>
+            <li>::first-child</li>
+            <li>::last-child</li>
+        </ul>
+        
+
+    </body>
+</html>

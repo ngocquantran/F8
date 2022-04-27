@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    padding: 100px 0;
+    
+}
+
+.container {
+    text-align: center;
+}
+
+.my-column {
+    background-color: orange;
+}
+
