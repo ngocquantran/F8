@@ -1,0 +1,166 @@
+:root {
+    --text-black-color:rgb(40, 40, 40);
+    --text-grey-color:#686868;
+    --text-light-grey-color:#999;
+    --background-color:#fff;
+}
+
+* {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Jost', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.active {
+    display: block !important;
+}
+
+/* Underline hover effect */
+.underline-hover {
+    position: relative;
+    cursor: pointer;
+}
+.underline-hover::after{
+    content: "";
+    width: 0;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background-color: var(--text-black-color);
+    height: 2px;
+    transition: width linear 0.2s;
+}
+
+.underline-hover:hover::after{
+    width: 100%;
+}
+
+/* Animation  -----------------------------------------------------------------------------------*/
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        right: var(--firstRight);
+    }
+    to {
+        right: var(--lastRight);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        left: var(--firstLeft);
+    }
+    to {
+         left: var(--lastLeft);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        top: var(--firstTop);
+    }
+    to {
+        top: var(--lastTop);
+    }
+}
+
+
+@keyframes growth {
+    from {
+        opacity: var(--start-opacity);
+        transform: scale(var(--growth-from));
+    }
+    to{
+        opacity: var(--end-opacity);
+        transform: scale(var(--growth-to));
+    }
+}
+
+/* Modal------------------------------------------------- */
+.noscroll {
+    overflow: hidden;
+}
+
+.modal {
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    animation: fadeIn linear 0.3s;
+}
+
+.modal__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+    z-index: 2001;
+    width: 100%;
+    height: 100%;
+    position: relative; 
+    overflow: hidden;
+}
+
+/* Exit button -------------------------------------- */
+.exit-btn {
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.exit-btn::before {
+    content: "";
+    width: 60%;
+    background-color: #777;
+    height: 1px;
+    transform: rotate(45deg);
+    position: absolute;
+    transition: transform linear 0.1s;
+}
+.exit-btn::after {
+    content: "";
+    width: 60%;
+    background-color: #777;
+    height: 1px;
+    transform: rotate(135deg);
+    position: absolute;
+    transition: transform linear 0.15s;
+}
+
+.exit-btn:hover::before  {
+    transform: rotate(0deg);
+}
+.exit-btn:hover::after {
+    transform: rotate(180deg);
+}
+
