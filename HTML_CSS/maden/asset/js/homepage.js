@@ -22,11 +22,14 @@ $(function () {
   $(".modal__authen-form-exit").on("click", exitAuthenForm);
 
   // Quick Menu action
-  $(".header-nav__collection-quick-menu").on('click', openQuickMenu);
-  $(".quick-menu-exit-btn").on('click',exitQuickMenu);
+  $(".header-nav__collection-quick-menu").on("click", openQuickMenu);
+  $(".quick-menu-exit-btn").on("click", exitQuickMenu);
 
   // Slider range Price
   priceSlider();
+
+  // Product showcase galerry
+  productGalery();
 });
 
 //Homepage slider-----------------------------------------------------------
@@ -198,38 +201,60 @@ function openQuickMenu() {
 }
 
 function exitQuickMenu() {
-  $(".quick-menu").animate({ left: '-600' }, 300);
+  $(".quick-menu").animate({ left: "-600" }, 300);
   setTimeout(function () {
     $(".modal").addClass("hidden");
     $("body").removeClass("noscroll");
   }, 300);
 }
 
-
 // Price range slider-----------------------------------------------------------
-function priceSlider() {
-  const $rangeInput = $('.range-input input');
-const $progress = $(".price-slider .progress");
 
-  $rangeInput.each(function (index,input) {
-    $(input).change(function () {
-      let minVal = parseInt($('.range-min').val());
-      let maxVal = parseInt($('.range-max').val());
-      let percentLeft =
-        (minVal -
-          $(".range-min").attr("min")) /
-            ($(".range-min").attr("max") - $(".range-min").attr("min")) *
-        100;
-      let percentRight =
-        ($(".range-max").attr("max")-maxVal) /
-          ($(".range-max").attr("max") - $(".range-max").attr("min")) *
-        100;
-      $progress.css({
-        left:percentLeft+"%",
-      })
-      $progress.css({
-        right: percentRight + "%",
-      });
+function priceSlider() {
+  const rangeInput = document.querySelectorAll(".range-input input");
+  const progress = document.querySelector('.price-slider .progress');
+  const minResult = document.querySelector(".min-price-tag");
+  const maxResult = document.querySelector(".max-price-tag");
+  let priceGap = 100;
+
+  rangeInput.forEach(function (input) {
+    input.addEventListener("input", e => {
+      let minVal = parseInt(rangeInput[0].value);
+      let maxVal = parseInt(rangeInput[1].value);
+
+      if (maxVal - minVal < priceGap) {
+        if (e.target.className === "range-min") {
+          rangeInput[0].value = maxVal - priceGap;
+        } else {
+          rangeInput[1].value = minVal + priceGap; 
+        }
+      } else {
+        minResult.innerText = minVal;
+        maxResult.innerText = maxVal;
+        progress.style.left =
+          ((minVal - $(".range-min").attr("min")) /
+            ($(".range-min").attr("max") - $(".range-min").attr("min"))) *
+          100 + "%";
+        progress.style.right =
+          (($(".range-max").attr("max") - maxVal) /
+            ($(".range-max").attr("max") - $(".range-max").attr("min"))) *
+          100+"%"
+      }
     })
   })
+}
+
+// Product showcase gallery
+function productGalery() {
+  $(".container-product__gallery .vertical").lightSlider({
+    gallery: true,
+    loop:true,
+    item: 1,
+    vertical: true,
+    verticalHeight: 945,
+    vThumbWidth: 50,
+    thumbItem: 5,
+    thumbMargin: 4,
+    slideMargin: 0,
+  });
 }
