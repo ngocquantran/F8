@@ -33,6 +33,8 @@
   line-height: 1.7;
 }
 
+/* Filter range ---------------------------------------------------------- */
+
 .container__collection-filter {
 }
 
@@ -202,3 +204,75 @@ margin: 0 10px 5px 0;
     border-radius: 50%;
     
 }
+
+.filter-by-price-content {
+
+}
+
+.price-slider {
+  height: 5px;
+  background-color: #ddd;
+  position: relative;
+
+}
+
+.price-slider .progress {
+  height: 5px;
+  left: 25%;
+  right: 25%;
+  position: absolute;
+  background-color: var(--text-black-color);
+
+}
+
+.price-limit {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+font-size: 1.6rem;
+color: var(--text-grey-color);
+line-height: 1.7;
+}
+
+.min-price {
+  margin-right: 20px;
+}
+.price-limit span {
+  color: var(--text-black-color);
+}
+
+.range-input{
+  position: relative;
+  width: 100%;
+}
+.range-input input {
+  height: 5px;
+  position: absolute;
+  top: -5px;
+  width: 100%;
+  background: none;
+  -webkit-appearance: none;
+  pointer-events: none;
+}
+
+.range-input input[type="range"]::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 3px solid var(--text-black-color);
+}
+
+.range-input input[type="range"]::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  border: 3px solid var(--text-black-color);
+  
+}
+

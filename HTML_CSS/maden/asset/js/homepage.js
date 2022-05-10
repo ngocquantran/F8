@@ -25,6 +25,8 @@ $(function () {
   $(".header-nav__collection-quick-menu").on('click', openQuickMenu);
   $(".quick-menu-exit-btn").on('click',exitQuickMenu);
 
+  // Slider range Price
+  priceSlider();
 });
 
 //Homepage slider-----------------------------------------------------------
@@ -201,4 +203,33 @@ function exitQuickMenu() {
     $(".modal").addClass("hidden");
     $("body").removeClass("noscroll");
   }, 300);
+}
+
+
+// Price range slider-----------------------------------------------------------
+function priceSlider() {
+  const $rangeInput = $('.range-input input');
+const $progress = $(".price-slider .progress");
+
+  $rangeInput.each(function (index,input) {
+    $(input).change(function () {
+      let minVal = parseInt($('.range-min').val());
+      let maxVal = parseInt($('.range-max').val());
+      let percentLeft =
+        (minVal -
+          $(".range-min").attr("min")) /
+            ($(".range-min").attr("max") - $(".range-min").attr("min")) *
+        100;
+      let percentRight =
+        ($(".range-max").attr("max")-maxVal) /
+          ($(".range-max").attr("max") - $(".range-max").attr("min")) *
+        100;
+      $progress.css({
+        left:percentLeft+"%",
+      })
+      $progress.css({
+        right: percentRight + "%",
+      });
+    })
+  })
 }
