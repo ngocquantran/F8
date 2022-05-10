@@ -196,7 +196,7 @@ function openQuickMenu() {
 }
 
 function exitQuickMenu() {
-  $(".quick-menu").animate({ left: '-30%' }, 300);
+  $(".quick-menu").animate({ left: '-600' }, 300);
   setTimeout(function () {
     $(".modal").addClass("hidden");
     $("body").removeClass("noscroll");

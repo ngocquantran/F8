@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font Jost -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="asset/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/asset/font/Fontawesome_pro_v6/css/all.css" />
+
+    <!-- Jquery SLider -->
+    <link
+      rel="stylesheet"
+      href="asset/library/lightslider-master/dist/css/lightslider.css"
+    />
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="asset/css/base.css" />
+    <link rel="stylesheet" href="asset/css/grid.css" />
+    <link rel="stylesheet" href="asset/css/main.css" />
+    <link rel="stylesheet" href="/asset/css/collectionpage.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- Javascript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+    <script src="asset/js/homepage.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <!-- Phần Header trên-------------------------- -->
+        <div class="header-social">
+          <div class="grid-wide header-social-nav">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href=""> <i class="fa-brands fa-pinterest"></i></a>
+          </div>
+        </div>
+
+        <!-- Phần Header dưới--------------------------------- -->
+        <div class="header-nav">
+          <div class="grid-wide">
+            <div class="header-nav-content">
+              <div class="header-nav__collection">
+                <div class="header-nav__collection-quick-menu">
+                  <i class="fas fa-bars"></i>
+                </div>
+
+                <ul class="header-nav__collection-item">
+                  <li class="active-collection underline-hover">
+                    <a href="">Retro</a>
+                  </li>
+                  <li class="underline-hover"><a href="">Casual</a></li>
+                  <li class="underline-hover"><a href="">Plimsolls</a></li>
+                  <li class="underline-hover"><a href="">Workwear</a></li>
+                </ul>
+              </div>
+
+              <div class="header-nav__logo">
+                <a href=""
+                  ><img src="asset/img/homepage/header/brand_logo.png" alt=""
+                /></a>
+              </div>
+
+              <div class="header-nav__action">
+                <div class="header-nav__action-login">Login</div>
+                <ul class="header-nav__action-logo">
+                  <li class="header-nav__action-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </li>
+                  <li class="header-nav__action-fav">
+                    <i class="fa-regular fa-heart"></i>
+                  </li>
+                  <li class="header-nav__action-cart">
+                    <i class="fas fa-cart-shopping"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="container__collection">
+          <div class="grid-wide">
+            <div class="container__collection-intro">
+              <div class="container__collection-intro__header">
+                Retro Sneakers Collection
+              </div>
+              <div class="container__collection-intro__desc">
+                <p>
+                  Vintage is everlasting; thus, Maden has been reviving it with
+                  sporty new casual designs. Offering a versatile, stylish, and
+                  functional Retro Sneakers Collection.
+                </p>
+                <p>
+                  A level of attention to details and craftsmanship that is
+                  phenomenal. Give your whole look a more contemporary vibe.
+                </p>
+              </div>
+            </div>
+
+            <div class="container__collection-filter">
+              <div class="container__collection-filter__nav">
+                <div class="container__collection-directory">
+                  <a href="" class="container__collection-directory__home"
+                    >Home</a
+                  >
+                  /
+                  <span class="container__collection-directory__current"
+                    >Retro Sneakers Collection</span
+                  >
+                </div>
+                <div class="container__collection-filter-area">
+                  <div class="container__collection-filter-box">
+                    <span class="container__collection-filter-box-icon active"
+                      ><i class="fa-solid fa-sliders"></i
+                    ></span>
+                    <span
+                      class="container__collection-filter-box-icon-close exit-btn hidden"
+                    ></span>
+                    Filters
+                    <span class="container__collection-filter-option-number"
+                      >2</span
+                    >
+                  </div>
+                  <form class="container__collection-sort-box">
+                    <select
+                      name="orderby"
+                      class="orderby"
+                      aria-label="Shop order"
+                    >
+                      <option value="menu_order" selected>
+                        Default sorting
+                      </option>
+                      <option value="popularity">Sort by popularity</option>
+                      <option value="rating">Sort by average rating</option>
+                      <option value="date">Sort by latest</option>
+                      <option value="price">Sort by price: low to high</option>
+                      <option value="price-desc">
+                        Sort by price: high to low
+                      </option>
+                    </select>
+                  </form>
+                </div>
+              </div>
+              <div class="container__collection-filter__content">
+                <div class="container__collection-filter__content-chosed">
+                  <div class="chosed-option chosed-order">
+                    Order By: <span>latest</span>
+                    <div class="exit-btn"></div>
+                  </div>
+                  <div class="chosed-option chosed-color">
+                    Color: <span>Yellow</span>
+                    <div class="exit-btn"></div>
+                  </div>
+                  <div class="chosed-option chosed-price">
+                    Max Price: <span>9955</span>
+                    <div class="exit-btn"></div>
+                  </div>
+                  <div class="chosed-option chosed-remove">
+                    Remove All
+                    <div class="exit-btn"></div>
+                  </div>
+                </div>
+                <div class="container__collection-filter__content-option">
+                  <div class="filter-by filter-by-color">
+                    <div class="filter-by-header">FILTER BY COLOR</div>
+                    <div class="filter-by-color-option">
+                      <ul class="filter-by-color-list">
+                        <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                        <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                        <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                        <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                         <li class="filter-by-color-item tooltip">
+                            <img
+                              src="/asset/img/homepage/quick_cart/item1.jpg"
+                              alt=""
+                            />
+                          <span class="tooltiptext">san pham</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="filter-by filter-by-price">
+                    <div class="filter-by-header">FILTER BY PRICE</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col l-4">
+                <div class="container__collection-item">
+                  <div class="container__collection-item-img">
+                    <img
+                      src="asset/img/homepage/container/collections/collection1.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="container__collection-item-choose">
+                    <span>Choose Yours</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col l-4">
+                <div class="container__collection-item">
+                  <div class="container__collection-item-img">
+                    <img
+                      src="asset/img/homepage/container/collections/collection2.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="container__collection-item-choose">
+                    <span>Choose Yours</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col l-4">
+                <div class="container__collection-item">
+                  <div class="container__collection-item-img">
+                    <img
+                      src="asset/img/homepage/container/collections/collection3.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="container__collection-item-choose">
+                    <span>Choose Yours</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col l-4">
+                <div class="container__collection-item">
+                  <div class="container__collection-item-img">
+                    <img
+                      src="asset/img/homepage/container/collections/collection4.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="container__collection-item-choose">
+                    <span>Choose Yours</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col l-4">
+                <div class="container__collection-item">
+                  <div class="container__collection-item-img">
+                    <img
+                      src="asset/img/homepage/container/collections/collection5.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="container__collection-item-choose">
+                    <span>Choose Yours</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col l-4">
+                <div class="container__collection-item">
+                  <div class="container__collection-item-img">
+                    <img
+                      src="asset/img/homepage/container/collections/collection6.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="container__collection-item-choose">
+                    <span>Choose Yours</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="grid-wide">
+          <div class="row">
+            <div class="col l-4">
+              <div class="footer-section">
+                <div class="footer-section-heading">COMPANY</div>
+                <ul class="footer-section-list">
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">About Maiden</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Contact Maiden</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Social Networks</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Careers</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col l-4">
+              <div class="footer-section">
+                <div class="footer-section-heading">HELP</div>
+                <ul class="footer-section-list">
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Order Tracking</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">FAQ's</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Privacy Policy</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Terms & Conditions</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col l-4">
+              <div class="footer-section">
+                <div class="footer-section-heading">STORE</div>
+                <ul class="footer-section-list">
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover"
+                      >Retro Sneakers Collection</a
+                    >
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover"
+                      >Casual Sneaders Collection</a
+                    >
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Plimsolls Collection</a>
+                  </li>
+                  <li class="footer-section-item">
+                    <a href="" class="underline-hover">Workwear Collection</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Modal overlay -->
+      <div class="modal hidden">
+        <div class="modal__overlay"></div>
+
+        <div class="modal__body">
+          <!-- Login/Register -->
+          <form action="">
+            <div class="modal__authen-form login-form hidden">
+              <span class="modal__authen-form-exit exit-btn"></span>
+              <h3 class="modal__authen-form__heading">Login</h3>
+
+              <div class="modal__authen-form__info">
+                <input id="login-email" type="email" required />
+                <label for="login-email">Email address <span>*</span></label>
+              </div>
+              <div class="modal__authen-form__info">
+                <input id="login-pw" type="password" required />
+                <label for="login-pw">Password <span>*</span></label>
+              </div>
+              <div class="modal__authen-form__help">
+                <div class="modal__authen-form__help-remember">
+                  <input type="checkbox" name="" id="remember-me" />
+                  <label for="remember-me">Remember me</label>
+                </div>
+                <div class="modal__authen-form__help-password underline-hover">
+                  Lost your passwords?
+                </div>
+              </div>
+
+              <button type="submit" class="modal__authen-form__handle-btn">
+                Login
+              </button>
+
+              <div class="modal__authen-form__switch-note">
+                <span>Not a member?</span>
+                <span class="modal__authen-form__switch-btn underline-hover"
+                  >Register</span
+                >
+              </div>
+            </div>
+          </form>
+          <form action="">
+            <div class="modal__authen-form signup-form hidden">
+              <span class="modal__authen-form-exit exit-btn"></span>
+              <h3 class="modal__authen-form__heading">Register</h3>
+
+              <div class="modal__authen-form__info">
+                <input id="user-email" type="email" required />
+                <label for="user-email">Email address <span>*</span></label>
+              </div>
+              <div class="modal__authen-form__info">
+                <input id="user-pw" type="password" required />
+                <label for="user-pw">Password <span>*</span></label>
+              </div>
+              <div class="modal__authen-form__info">
+                <input id="user-pw-confirm" type="password" required />
+                <label for="user-pw-confirm">
+                  Confirm Password <span>*</span></label
+                >
+              </div>
+
+              <div class="modal__authen-form__alert">
+                Your personal data will be used to support your experience
+                throughout this website, to manage access to your account, and
+                for other purposes described in our
+                <span class="underline-hover">privacy policy</span> .
+              </div>
+
+              <button type="submit" class="modal__authen-form__handle-btn">
+                Register
+              </button>
+
+              <div class="modal__authen-form__switch-note">
+                <span>Already a member?</span>
+                <span class="modal__authen-form__switch-btn underline-hover"
+                  >Login</span
+                >
+              </div>
+            </div>
+          </form>
+
+          <!-- Cart -->
+          <div class="quick-cart">
+            <div class="quick-cart__header">
+              <div class="quick-cart__header-title">
+                <span>Cart</span>
+                <span class="cart-quantity">11</span>
+              </div>
+              <div class="exit-btn quick-cart__header-exit-btn"></div>
+            </div>
+            <div class="quick-cart__container">
+              <ul class="quick-cart__list">
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="quick-cart__item">
+                  <div class="quick-cart__item-thumb">
+                    <a href=""
+                      ><img
+                        src="asset/img/homepage/quick_cart/item1.jpg"
+                        alt=""
+                    /></a>
+                  </div>
+                  <div class="quick-cart__item-info">
+                    <div class="quick-cart__item-name">
+                      <a href=""> Boro - Shell Toe</a>
+                      <span class="exit-btn quick-cart__item-clear"></span>
+                    </div>
+                    <div class="quick-cart__item-feature">
+                      <div class="quick-cart__item-feature-size">
+                        Shoe size: <span>41</span>
+                      </div>
+                      <div class="quick-cart__item-feature-color">
+                        Color: <span>Boro White Blue</span>
+                      </div>
+                    </div>
+
+                    <div class="quick-cart_item-order">
+                      <div class="quick-cart_item-order-quantity">
+                        <div
+                          class="quick-cart_item-order-quantity-change increase"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </div>
+                        <span>2</span>
+                        <div
+                          class="quick-cart_item-order-quantity-change decrease"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </div>
+                      </div>
+                      <div class="quick-cart_item-order-amount">
+                        VND <span>18,980.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <div class="quick-cart__footer">
+                <div class="quick-cart__footer-amount">
+                  <p>Subtotal</p>
+                  <div>VND<span>90,390.00</span></div>
+                </div>
+                <a href="" class="quick-cart__footer-view-full-btn"
+                  >View cart</a
+                >
+                <a href="" class="quick-cart__footer-checkout-btn">Checkout</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search -->
+          <div class="search-box">
+            <div class="search-box__container">
+              <div class="search-box-exit-btn exit-btn"></div>
+              <div class="search-form">
+                <input type="text" placeholder="Search products..." />
+              </div>
+              <div class="search-result">
+                <ul class="search-result__list">
+                  <li class="search-result__item">
+                    <a href="">
+                      <div class="search-result__item-thumb">
+                        <img
+                          src="asset/img/homepage/search_box/search_result1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="search-result__item-name">
+                        Bumper Sneakers - 70s Retro Style
+                      </div>
+                      <div class="search-result__item-price">
+                        VND <span>9,490.00</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="search-result__item">
+                    <a href="">
+                      <div class="search-result__item-thumb">
+                        <img
+                          src="asset/img/homepage/search_box/search_result1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="search-result__item-name">
+                        Bumper Sneakers - 70s Retro Style
+                      </div>
+                      <div class="search-result__item-price">
+                        VND <span>9,490.00</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="search-result__item">
+                    <a href="">
+                      <div class="search-result__item-thumb">
+                        <img
+                          src="asset/img/homepage/search_box/search_result1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="search-result__item-name">
+                        Bumper Sneakers - 70s Retro Style
+                      </div>
+                      <div class="search-result__item-price">
+                        VND <span>9,490.00</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="search-result__item">
+                    <a href="">
+                      <div class="search-result__item-thumb">
+                        <img
+                          src="asset/img/homepage/search_box/search_result1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="search-result__item-name">
+                        Bumper Sneakers - 70s Retro Style
+                      </div>
+                      <div class="search-result__item-price">
+                        VND <span>9,490.00</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="search-result__item">
+                    <a href="">
+                      <div class="search-result__item-thumb">
+                        <img
+                          src="asset/img/homepage/search_box/search_result1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="search-result__item-name">
+                        Bumper Sneakers - 70s Retro Style
+                      </div>
+                      <div class="search-result__item-price">
+                        VND <span>9,490.00</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+                <div class="search-result-none-alert hidden">No results</div>
+                <button class="search-result_view-all-btn">View All</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick header menu -->
+          <div class="quick-menu">
+            <div class="quick-menu__header">
+              <span class="exit-btn quick-menu-exit-btn"></span>
+              <a href="" class="quick-menu__header-personal"
+                ><i class="fa-regular fa-user"></i
+              ></a>
+              <a href="" class="quick-menu__header-wishlist">
+                <i class="fa-regular fa-heart"></i
+              ></a>
+            </div>
+            <div class="quick-menu__container">
+              <div class="quick-menu__container__menu">
+                <ul>
+                  <li class="quick-menu__container__item container-category">
+                    <a href=""
+                      ><span class="underline-hover">STORE CATEGORY</span>
+                    </a>
+                    <span></span>
+                    <ul class="container__item-category__list">
+                      <li class="container__item-category__item">
+                        <a href=""
+                          ><span class="underline-hover"
+                            >Retro Sneakers Collection</span
+                          ></a
+                        >
+                      </li>
+                      <li class="container__item-category__item">
+                        <a href=""
+                          ><span class="underline-hover"
+                            >Casual Sneaders Collection</span
+                          ></a
+                        >
+                      </li>
+                      <li class="container__item-category__item">
+                        <a href=""
+                          ><span class="underline-hover"
+                            >Plimsolls Collection</span
+                          ></a
+                        >
+                      </li>
+                      <li class="container__item-category__item">
+                        <a href=""
+                          ><span class="underline-hover"
+                            >Workwear Collection</span
+                          ></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="quick-menu__container__item">
+                    <a href=""><span class="underline-hover">WISHLIST</span></a>
+                  </li>
+                  <li class="quick-menu__container__item">
+                    <a href=""
+                      ><span class="underline-hover">ABOUT MAISON</span></a
+                    >
+                  </li>
+                  <li class="quick-menu__container__item">
+                    <a href=""
+                      ><span class="underline-hover">CONTACT MAISON</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

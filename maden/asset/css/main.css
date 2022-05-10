@@ -955,11 +955,12 @@
 
 /* Quick menu */
 .quick-menu {
-  width: 30%;
+  width: 600px;
   height: 100%;
   display: flex;
   position: absolute;
   z-index: 10;
+  left: -600px;
 }
 
 .quick-menu__header {
@@ -1086,3 +1087,9 @@ display: block;
 
 .quick-menu__container-content {
 }
+
+
+
+
+
+  
