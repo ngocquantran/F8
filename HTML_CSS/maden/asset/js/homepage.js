@@ -30,6 +30,17 @@ $(function () {
 
   // Product showcase galerry
   productGalery();
+
+  // Product detail handle 
+  updateChosedsize();
+  updateChosedColor();
+  removeCurrentChoice();
+  updateQuantity();
+  addToCart();
+
+  // Size guide window
+  $(".container-product__info-size-guide").on('click',openSizeGuide);
+  $(".size-guide-exit").on('click', exitSizeGuide);
 });
 
 //Homepage slider-----------------------------------------------------------
@@ -98,22 +109,46 @@ function headerAppearance() {
   const $headerNav = $(".header-nav");
   $(window).scroll(function () {
     if ($(document).scrollTop() > 40) {
-      $headerNav.css({
-        "background-color": "#fff",
-        height: "70px",
-        top: 0,
-        "box-shadow": "0px 1px 5px #999",
+      $headerNav.addClass('fixed')
+      $('.header-nav::after').css({
+        'display': 'none',
       });
+      $(".header-nav-spacer").css({
+        display: "block",
+      });
+
     } else {
-      $headerNav.css({
-        "background-color": "transparent",
-        height: 90,
-        top: 40,
-        "box-shadow": "none",
+      $headerNav.removeClass('fixed');
+      $(".header-nav::after").css({
+        display: "block",
+      });
+      $(".header-nav-spacer").css({
+        display: "none",
       });
     }
   });
 }
+
+// function headerAppearance() {
+//   const $headerNav = $(".header-nav");
+//   $(window).scroll(function () {
+//     if ($(document).scrollTop() > 40) {
+//       $headerNav.css({
+//         "background-color": "#fff",
+//         height: "70px",
+//         top: 0,
+//         "box-shadow": "0px 1px 5px #999",
+//       });
+//     } else {
+//       $headerNav.css({
+//         "background-color": "transparent",
+//         height: 90,
+//         top: 40,
+//         "box-shadow": "none",
+//       });
+//     }
+//   });
+// }
 
 // Search Form Action-------------------------------------------------------
 function openSearchForm() {
@@ -208,6 +243,19 @@ function exitQuickMenu() {
   }, 300);
 }
 
+// Size-guide action-------------------------------------------------------
+function openSizeGuide() {
+  $(".modal").removeClass("hidden");
+  $(".size-guide").removeClass("hidden");
+  $("body").addClass("noscroll");
+}
+
+function exitSizeGuide() {
+  $(".size-guide").addClass("hidden");
+  $(".modal").addClass("hidden");
+  $("body").removeClass("noscroll");
+}
+
 // Price range slider-----------------------------------------------------------
 
 function priceSlider() {
@@ -250,11 +298,84 @@ function productGalery() {
     gallery: true,
     loop:true,
     item: 1,
-    vertical: true,
+    
     verticalHeight: 945,
     vThumbWidth: 50,
-    thumbItem: 5,
+    // thumbItem: 5,
     thumbMargin: 4,
     slideMargin: 0,
   });
 }
+
+// Product detail select----------------------------------------------------
+function updateChosedsize() {
+  const $shoeSizes = $(".container-product__info-size-item label");
+  const $chosedSize = $(".container-product__info-size-chosed span");
+ 
+  $shoeSizes.each(function (index, size) {
+    $(size).on('click', function () {
+      $chosedSize.text($(size).prev().val());
+    })
+  })
+}
+
+function updateChosedColor() {
+  const $shoeColors = $(".container-product__info-color-item");
+  const $chosedColor = $(".container-product__info-color-chosed span");
+
+  $shoeColors.each(function (index, color) {
+    $(color).on("click", function () {
+      $chosedColor.text($(color).find('input').val());
+    });
+  });
+}
+
+function removeCurrentChoice() {
+  const $removeChoice = $(".container-product__info-choice-remove");
+  $removeChoice.on('click', function () {
+    const $checkedSize = $("input[name=size-option]:checked");
+    const $checkedColor = $("input[name=color-option]:checked");
+    $checkedColor.prop("checked", false);
+    $checkedSize.prop("checked", false);
+
+    $(".container-product__info-size-chosed span").text("");
+     $(".container-product__info-color-chosed span").text("");
+  })
+}
+
+function updateQuantity() {
+  const $plus = $(".container-product__info-handle-qty-plus");
+  const $minus = $(".container-product__info-handle-qty-minus");
+
+  $minus.on("click", function () {
+    const $curQty = $(".container-product__info-handle-qty span");
+    let qty = parseInt($curQty.text());
+    if (qty > 1) {
+      qty--;
+    }
+    $curQty.text(qty);
+  });
+
+  $plus.on("click", function () {
+    const $curQty = $(".container-product__info-handle-qty span");
+    let qty = parseInt($curQty.text());
+    qty++;
+    $curQty.text(qty);
+  });
+}
+
+function addToCart() {
+  const $addToCart = $(".container-product__info-handle-addcart");
+  $addToCart.on('click', function () {
+    const $curSize = $(".container-product__info-size-chosed span");
+    const $curColor = $(".container-product__info-color-chosed span");
+    if ($curColor.text() === "" && $curSize.text() === "") {
+      alert(
+        "Please select some product options before adding this product to your cart."
+      );
+    } else {
+      openQuickCart();
+    }
+  })
+}
+

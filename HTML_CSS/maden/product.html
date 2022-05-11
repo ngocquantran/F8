@@ -37,8 +37,8 @@
     <!-- Style css -->
     <link rel="stylesheet" href="asset/css/base.css" />
     <link rel="stylesheet" href="asset/css/grid.css" />
-    <link rel="stylesheet" href="asset/css/main.css" />
-    <link rel="stylesheet" href="/asset/css/product.css" />
+    <link rel="stylesheet" href="asset/css/common.css" />
+    <link rel="stylesheet" href="asset/css/product.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
 
     <!-- Javascript -->
@@ -60,7 +60,7 @@
             <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href=""> <i class="fa-brands fa-pinterest"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
           </div>
         </div>
 
@@ -75,16 +75,22 @@
 
                 <ul class="header-nav__collection-item">
                   <li class="active-collection underline-hover">
-                    <a href="">Retro</a>
+                    <a href="collection.html">Retro</a>
                   </li>
-                  <li class="underline-hover"><a href="">Casual</a></li>
-                  <li class="underline-hover"><a href="">Plimsolls</a></li>
-                  <li class="underline-hover"><a href="">Workwear</a></li>
+                  <li class="underline-hover">
+                    <a href="collection.html">Casual</a>
+                  </li>
+                  <li class="underline-hover">
+                    <a href="collection.html">Plimsolls</a>
+                  </li>
+                  <li class="underline-hover">
+                    <a href="collection.html">Workwear</a>
+                  </li>
                 </ul>
               </div>
 
               <div class="header-nav__logo">
-                <a href=""
+                <a href="index.html"
                   ><img src="asset/img/homepage/header/brand_logo.png" alt=""
                 /></a>
               </div>
@@ -108,44 +114,316 @@
         </div>
       </header>
 
+      <div class="header-nav-spacer"></div>
+
       <div class="container">
-          <div class="container-product__showcase">
-              <div class="grid-wide">
-                  <div class="row">
-                      <div class="col l-7">
-                          <div class="container-product__gallery">
-                              <ul class="vertical container-product__gallery-img">
-                                  <li data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G1-150x150.jpg">
-                                      <img src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G1.jpg.webp" alt="">
-                                  </li>
-                                   <li data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G2-150x150.jpg">
-                                      <img src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G2.jpg" alt="">
-                                  </li>
-                                   <li data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G3-150x150.jpg">
-                                      <img src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G3.jpg" alt="">
-                                  </li>
-                                   <li data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G4-150x150.jpg">
-                                      <img src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G4.jpg" alt="">
-                                  </li>
-                                   <li data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G5-150x150.jpg">
-                                      <img src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G5.jpg.webp" alt="">
-                                  </li>
-                              </ul>
-                          </div>
-
-                      </div>
-                      <div class="col l-5">
-
-                      </div>
+        <div class="container-product__showcase">
+          <div class="grid-wide">
+            <div class="row">
+              <div class="col l-7">
+                <div class="container-product__gallery">
+                  <ul class="vertical container-product__gallery-img">
+                    <li
+                      data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G1-150x150.jpg"
+                    >
+                      <img
+                        src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G1.jpg.webp"
+                        alt=""
+                      />
+                    </li>
+                    <li
+                      data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G2-150x150.jpg"
+                    >
+                      <img
+                        src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G2.jpg"
+                        alt=""
+                      />
+                    </li>
+                    <li
+                      data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G3-150x150.jpg"
+                    >
+                      <img
+                        src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G3.jpg"
+                        alt=""
+                      />
+                    </li>
+                    <li
+                      data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G4-150x150.jpg"
+                    >
+                      <img
+                        src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G4.jpg"
+                        alt=""
+                      />
+                    </li>
+                    <li
+                      data-thumb="asset/img/product/dissolve_shock-vulcanized/showcase/thumb/Dissolve-Shock_G5-150x150.jpg"
+                    >
+                      <img
+                        src="asset/img/product/dissolve_shock-vulcanized/showcase/img/Dissolve-Shock_G5.jpg.webp"
+                        alt=""
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col l-5">
+                <div class="container-product__info">
+                  <div class="container-product__info-directory">
+                    <a href="">Home</a>
+                    <span> / </span>
+                    <a href="">Casual Sneakers Collection</a>
+                    <span> / </span>
+                    <span class="container-product__info-directory_name"
+                      >Dissolve Shock – Vulcanized</span
+                    >
+                  </div>
+                  <div class="container-product__info-top">
+                    <h1 class="container-product__info-title">
+                      Dissolve Shock – Vulcanized hehehe
+                    </h1>
+                    <p class="container-product__info-price">
+                      VND <span>7,490.00</span>
+                    </p>
+                    <div class="container-product__info-short-desc">
+                      Inventive, singular design, which combines classic
+                      basketball footwear design with techniques often reserved
+                      for bespoke shoe-making. A truly unique take on vintage
+                      sports footwear.
+                    </div>
                   </div>
 
+                  <div class="container-product__info-size-guide">
+                    <span class="underline-hover">--> Size Guide</span>
+                  </div>
+                  <div class="container-product__info-choose-area">
+                    <form action="">
+                      <div class="container-product__info-size-chosed">
+                        Shoe Size : <span></span>
+                      </div>
+                      <div class="container-product__info-size-list">
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-38"
+                            name="size-option"
+                            value="38"
+                          />
+                          <label for="size-38" data-tooltip="38">38</label>
+                        </div>
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-39"
+                            name="size-option"
+                            value="39"
+                          />
+                          <label for="size-39" data-tooltip="39">39</label>
+                        </div>
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-40"
+                            name="size-option"
+                            value="40"
+                          />
+                          <label for="size-40" data-tooltip="40">40</label>
+                        </div>
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-41"
+                            name="size-option"
+                            value="41"
+                          />
+                          <label for="size-41" data-tooltip="41">41</label>
+                        </div>
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-42"
+                            name="size-option"
+                            value="42"
+                          />
+                          <label for="size-42" data-tooltip="42">42</label>
+                        </div>
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-43"
+                            name="size-option"
+                            value="43"
+                          />
+                          <label for="size-43" data-tooltip="43">43</label>
+                        </div>
+                        <div class="container-product__info-size-item">
+                          <input
+                            type="radio"
+                            id="size-44"
+                            name="size-option"
+                            value="44"
+                          />
+                          <label for="size-44" data-tooltip="44">44</label>
+                        </div>
+                      </div>
+                      <div class="sticky-bar"></div>
+                      <div class="container-product__info-color-chosed">
+                        Color : <span></span>
+                      </div>
+                      <div class="container-product__info-color-list">
+                        <div class="container-product__info-color-item" data-tooltip="Dissolve Black">
+                          <label>
+                            <input
+                              type="radio"
+                              name="color-option"
+                              value="Dissolve Black"
+                              
+                            />
+                            <img
+                              src="asset/img/product/dissolve_shock-vulcanized/showcase/color/Dissolve-Shock-Vulcanized_Classic-Black-150x150.jpg"
+                              alt=""
+                            />
+                          </label>
+                        </div>
+                        <div class="container-product__info-color-item" data-tooltip="Khaiki Green">
+                          <label >
+                            <input
+                              type="radio"
+                              name="color-option"
+                              value="Khaiki Green"
+                            />
+                            <img
+                              src="asset/img/product/dissolve_shock-vulcanized/showcase/color/Dissolve-Shock_Vulcanized_Khaki-Green-150x150.jpg"
+                              alt="" />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="container-product__info-choice-remove">
+                        <span class="exit-btn"></span>Clear
+                      </div>
+
+                      <div class="container-product__info-handle">
+                        <div class="container-product__info-handle-qty">
+                          <div class="container-product__info-handle-qty-minus">
+                            <i class="fas fa-minus"></i>
+                          </div>
+                          <span>1</span>
+                          <div class="container-product__info-handle-qty-plus">
+                            <i class="fas fa-plus"></i>
+                          </div>
+                        </div>
+                        <div class="container-product__info-handle-submit">
+                          <div
+                            class="container-product__info-handle-addcart"
+                          >
+                            Add to cart
+                        </div>
+                          <div class="container-product__info-handle-add-wish">
+                            <i class="fa-regular fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                            <span>Browse wishlist</span>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="sticky-bar"></div>
+
+                  <div class="container-product__info-meta">
+                    <div class="container-product__info-meta-code">
+                      SKU: <span>MD2101040</span>
+                    </div>
+                    <div class="container-product__info-meta-categ">
+                      Cateogry:
+                      <span class="underline-hover">Plimsolls Collection</span>
+                    </div>
+                  </div>
+
+                  <div class="sticky-bar"></div>
+
+                  <div class="container-product__info-share">
+                    <span>Share</span>
+                    <span><i class="fa-brands fa-facebook-f"></i></span>
+                    <span><i class="fa-brands fa-instagram"></i></span>
+                    <span><i class="fa-brands fa-twitter"></i></span>
+                    <span><i class="fa-brands fa-pinterest"></i></span>
+                  </div>
+                </div>
               </div>
-              
+            </div>
+          </div>
         </div>
 
-       
-      </div>
+        <div class="sticky-bar"></div>
 
+        <div class="container-product__detail">
+          <div class="grid-wide">
+            <div class="container-product__detail-tab">
+              <div class="container-product__detail-tab-item underline-hover">
+                Description
+              </div>
+              <div class="container-product__detail-tab-item underline-hover">
+                Additional information
+              </div>
+              <div class="container-product__detail-tab-item underline-hover">
+                Reviews
+              </div>
+            </div>
+
+            <div class="container-product__detail-add-info hidden">
+              <table>
+                <tbody>
+                  <tr class="container-product__detail-add-info-size">
+                    <th>SHOE SIZE</th>
+                    <td>38, 39, 40, 41, 42, 43, 44</td>
+                  </tr>
+                  <tr class="container-product__detail-add-info-color">
+                    <th>COLOR</th>
+                    <td>Black, Blue, Green, Transparent, Yellow</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="container-product__detail-review hidden">
+              <div class="container-product__detail-review-alert">
+                There are no reviews yet
+              </div>
+              
+
+            </div>
+            <div class="container-product__detail-desc">
+              <div class="container-product__detail-desc-header">
+                <p>
+                  A classic upgrade from 70s classic version. Introducing
+                  all-new “Translucent Jelly Sole”
+                </p>
+                <p>Please scroll down for further details and lookbook.</p>
+              </div>
+              <div class="container-product__detail-desc-galery">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B1.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B2.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B3.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B4.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B5.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B6.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B7.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B8.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B9.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B10.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B11.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B12.jpg" alt="">
+                <img src="/asset/img/product/dissolve_shock-vulcanized/detail_desc/The-Varial_Low-Tops_B13.jpg" alt="">
+        
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sticky-bar"></div>
       <footer class="footer">
         <div class="grid-wide">
           <div class="row">
@@ -819,6 +1097,20 @@
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+
+          <!-- Size guide -->
+          <div class="size-guide hidden">
+            <div class="size-guide-exit exit-btn">
+
+            </div>
+            <div class="size-guide-header">
+              <h3>Size Guide</h3>
+              <p>Find your correct size in the size guide chart below</p>
+            </div>
+            <div class="size-guide-container">
+              <img src="asset/img/size_guide/Size-Guide-Modified-603x1024.jpg.webp" alt="">
             </div>
           </div>
         </div>
