@@ -257,18 +257,7 @@
   text-align: center;
 }
 
-.container-product__info-handle-qty-plus,
-.container-product__info-handle-qty-minus {
-  font-size: 1.6rem;
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: var(--text-light-grey-color);
-}
+
 
 .container-product__info-handle-qty-plus:hover,
 .container-product__info-handle-qty-minus:hover {
