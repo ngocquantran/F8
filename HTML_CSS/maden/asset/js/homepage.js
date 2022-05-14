@@ -408,11 +408,18 @@ function showUpdateAddressForm() {
 function stuckCartSummaryTable() {
   const $cartSummary = $(".container-cart__summary");
   let originalTop = $cartSummary.position().top - 100;
+  let originalBottom = $(".container-cart-product__list").position().bottom;
   let originalWidth = $cartSummary.width();
   const $cartSummaryInner = $(".container-cart__summary-wrapper");
 
   $(window).scroll(function () {
-    if ($(document).scrollTop() > originalTop) {
+    if ($(document).scrollTop() > originalBottom) {
+      $cartSummaryInner.css({
+        position: "absolute",
+        bottom: 0,
+        width: originalWidth,
+      });
+    } else if ($(document).scrollTop() > originalTop) {
       $cartSummaryInner.css({
         position: "fixed",
         top: "100px",

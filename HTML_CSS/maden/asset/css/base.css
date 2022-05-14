@@ -17,6 +17,7 @@ html {
   line-height: 1.6rem;
   font-family: "Jost", sans-serif;
   scroll-behavior: smooth;
+  position: relative;
 }
 
 .hidden {
