@@ -155,14 +155,15 @@
 }
 
 .container-cart__summary {
-  height: 100%;
+  max-height: 100%;
+  height: auto;
   padding-bottom: 125px;
   position: relative;
 }
 
 .container-cart__summary-wrapper {
   border: 1px solid var(--text-black-color);
-  padding: 40px;
+  padding: 40px 40px 20px 40px;
 }
 
 .container-cart__summary-header {
@@ -418,4 +419,237 @@
 .container-wishlist-share-social span {
   color: var(--text-black-color);
   margin: 0 10px;
+}
+
+/* Billing checkout--------------------------------------------------------------------------- */
+.container-bill__info {
+  margin: 50px 0;
+  padding-right: 40px;
+}
+
+.container-bill__info-header {
+  margin-bottom: 50px;
+  font-size: 3rem;
+  color: var(--text-black-color);
+}
+
+.container-bill__info-input > div {
+  margin: 20px 0;
+}
+
+.container-bill__info-input-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container-bill__info-input-name > div {
+  width: 45%;
+}
+
+.container-bill__info-input-name input {
+  width: 100%;
+}
+
+.container-bill__info-input-note {
+  min-height: 80px;
+  height: auto;
+}
+
+.container-bill__info-input-note {
+  position: relative;
+}
+
+.container-bill__info-input-note textarea {
+  width: 100%;
+  min-height: 80px;
+  height: auto;
+  font-size: 1.6rem;
+  padding: 15px;
+  border: 1px solid #ddd;
+  /* outline: 1px solid var(--text-black-color); */
+}
+
+.container-bill__info-input-note p {
+  position: absolute;
+  font-size: 1.6rem;
+  top: 0;
+  height: 1.6rem;
+  background-color: var(--background-color);
+  padding: 0 5px;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--text-light-grey-color);
+}
+
+.input-moving-lable input.focused {
+  border: 1px solid var(--text-black-color);
+}
+
+.input-moving-lable input.focused + label {
+  top: 0;
+  height: 1.6rem;
+  background-color: var(--background-color);
+  padding: 0 5px;
+}
+
+.container-bill__detail {
+  margin: 50px 0;
+}
+
+.container-bill__detail-product-list {
+  list-style-type: none;
+}
+
+.container-bill__detail-product-item {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.container-bill__detail-product-item-thumb {
+  width: 60px;
+  height: 80px;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.container-bill__detail-product-item-thumb img {
+  width: 100%;
+  height: auto;
+}
+
+.container-bill__detail-product-item-info {
+  color: var(--text-grey-color);
+  flex: 1;
+}
+
+.container-bill__detail-product-item-title {
+  font-size: 1.6rem;
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.container-bill__detail-product-item-title > div {
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  margin-left: 15px;
+  border-radius: 50px;
+  font-size: 1.4rem;
+}
+
+.container-bill__detail-product-item-feature {
+  font-size: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container-bill__detail-product-item-size {
+  margin-right: 20px;
+  position: relative;
+}
+
+.container-bill__detail-product-item-size ::after {
+  position: absolute;
+    content: "";
+    width: 1px;
+    height: calc(100% + 2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% + 10px);
+}
+
+
+.container-bill__detail-product-item-color {
+}
+
+.container-bill__detail-product-item-price {
+  font-size: 1.6rem;
+  color: var(--text-black-color);
+}
+
+.container-bill__detail-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  margin: 20px 0;
+}
+
+.container-bill__detail-ship {
+   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  margin: 20px 0;
+}
+
+.container-bill__detail-total {
+   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.container-bill__detail-payment {
+  width: 100%;
+  border: 1px solid var(--text-black-color);
+  padding: 15px;
+  font-size: 1.6rem;
+}
+
+.container-bill__detail-payment>div {
+  padding: 20px 0;
+}
+.payment-method-bank-note {
+  color: var(--text-grey-color);
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.container-bill__detail-alert {
+  margin: 15px 0;
+  color: var(--text-grey-color);
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+.container-bill__detail-alert span {
+  color: var(--text-black-color);
+  
+}
+
+
+.container-bill__detail-confirm-condition {
+  font-size: 1.6rem;
+  color: #f27362;
+}
+
+.container-bill__detail-confirm-condition{
+  
+}
+
+.container-bill__detail-confirm-condition input:checked + label{
+  font-size: 1.6rem;
+  color: var(--text-grey-color);
+}
+
+.container-bill__detail-confirm-condition span {
+  color: var(--text-black-color);
+}
+
+.container-bill__detail-checkout {
+  width: 100%;
+  padding: 15px 0;
+  background-color: var(--text-black-color);
+  font-size: 1.6rem;
+  color: #fff;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
 }

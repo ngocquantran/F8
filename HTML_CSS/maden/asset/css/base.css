@@ -297,7 +297,7 @@ html {
   border: 1px solid #ddd;
   display: block;
 }
-.input-moving-lable label {
+.input-moving-lable label{
   position: absolute;
   font-size: 1.6rem;
   top: 50%;
@@ -306,16 +306,6 @@ html {
   color: var(--text-light-grey-color);
   transition: top linear 0.1s;
 }
-/* .input-moving-lable input:focus {
-  border: 1px solid var(--text-black-color);
-}
-
-.input-moving-lable input:focus + label {
-  top: 0;
-  height: 1.6rem;
-  background-color: var(--background-color);
-  padding: 0 5px;
-} */
 
 .input-moving-lable input.focused {
   border: 1px solid var(--text-black-color);

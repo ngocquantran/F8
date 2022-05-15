@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="asset/css/base.css" />
     <link rel="stylesheet" href="asset/css/grid.css" />
     <link rel="stylesheet" href="asset/css/common.css" />
-    <link rel="stylesheet" href="asset/css/collectionpage.css" />
+    <link rel="stylesheet" href="asset/css/cart.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
 
     <!-- Javascript -->
@@ -118,542 +118,267 @@
       <div class="header-nav-spacer"></div>
 
       <div class="container">
-        <div class="container__product">
-          <div class="grid-wide">
-            <div class="container__product-intro">
-              <div class="container__product-intro__header">
-                Retro Sneakers Collection
-              </div>
-              <div class="container__product-intro__desc">
-                <p>
-                  Vintage is everlasting; thus, Maden has been reviving it with
-                  sporty new casual designs. Offering a versatile, stylish, and
-                  functional Retro Sneakers Collection.
-                </p>
-                <p>
-                  A level of attention to details and craftsmanship that is
-                  phenomenal. Give your whole look a more contemporary vibe.
-                </p>
+        <div class="grid-wide">
+          <div class="row">
+            <div class="col l-8">
+              <div class="container-bill__info">
+                <div class="container-bill__info-header">Billing details</div>
+                <div class="container-bill__info-input">
+                  <div class="container-bill__info-input-name">
+                    <div class="input-moving-lable">
+                      <input
+                        type="text"
+                        id="container-bill__info-input-first-name"
+                        class="container-bill__info-input-first-name"
+                      />
+                      <label for="container-bill__info-input-first-name"
+                        >First name *</label
+                      >
+                    </div>
+                    <div class="input-moving-lable">
+                      <input
+                        type="text"
+                        id="container-bill__info-input-last-name"
+                        class="container-bill__info-input-last-name"
+                      />
+                      <label for="container-bill__info-input-last-name"
+                        >Last name *</label
+                      >
+                    </div>
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="text"
+                      id="container-bill__info-input-country"
+                      class="container-bill__info-input-country"
+                      value="Vietnam"
+                    />
+                    <label for="container-bill__info-input-country"
+                      >Country *</label
+                    >
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="text"
+                      id="container-bill__info-input-city"
+                      class="container-bill__info-input-city"
+                    />
+                    <label for="container-bill__info-input-city"
+                      >City / Province *</label
+                    >
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="text"
+                      id="container-bill__info-input-district"
+                      class="container-bill__info-input-district"
+                    />
+                    <label for="container-bill__info-input-district"
+                      >District *</label
+                    >
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="text"
+                      id="container-bill__info-input-commune"
+                      class="container-bill__info-input-commnue"
+                    />
+                    <label for="container-bill__info-input-commnue"
+                      >Commune *</label
+                    >
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="text"
+                      id="container-bill__info-input-street"
+                      class="container-bill__info-input-street"
+                    />
+                    <label for="container-bill__info-input-street"
+                      >Street address *</label
+                    >
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="tel"
+                      id="container-bill__info-input-phone"
+                      class="container-bill__info-input-phone"
+                    />
+                    <label for="container-bill__info-input-phone"
+                      >Phone *</label
+                    >
+                  </div>
+                  <div class="input-moving-lable">
+                    <input
+                      type="email"
+                      id="container-bill__info-input-email"
+                      class="container-bill__info-input-email"
+                    />
+                    <label for="container-bill__info-input-email"
+                      >Email address *</label
+                    >
+                  </div>
+
+                  <div class="container-bill__info-input-note">
+                    <textarea name="comment" rows="10" cols="50"></textarea>
+                    <p>Order notes (optional)</p>
+                  </div>
+                </div>
               </div>
             </div>
+            <div class="col l-4">
+              <div class="container-bill__detail">
+                <ul class="container-bill__detail-product-list">
+                  <li class="container-bill__detail-product-item">
+                    <div class="container-bill__detail-product-item-thumb">
+                      <img
+                        src="asset/img/collection/product1/ALL-THRU-Shoes_G1-600x800_primary.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="container-bill__detail-product-item-info">
+                      <div class="container-bill__detail-product-item-title">
+                        <p>Coffe - Vintage</p>
+                        <div>x <span>1</span></div>
+                      </div>
+                      <div class="container-bill__detail-product-item-feature">
+                        <div class="container-bill__detail-product-item-size">
+                          Shoe size: <span>41</span>
+                        </div>
+                        <div class="container-bill__detail-product-item-color">
+                          Color: <span>Deep Coffe</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container-bill__detail-product-item-price">
+                      VND <span>8,490.00</span>
+                    </div>
+                  </li>
+                  <li class="container-bill__detail-product-item">
+                    <div class="container-bill__detail-product-item-thumb">
+                      <img
+                        src="asset/img/collection/product1/ALL-THRU-Shoes_G1-600x800_primary.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="container-bill__detail-product-item-info">
+                      <div class="container-bill__detail-product-item-title">
+                        <p>Coffe - Vintage</p>
+                        <div>x <span>1</span></div>
+                      </div>
+                      <div class="container-bill__detail-product-item-feature">
+                        <div class="container-bill__detail-product-item-size">
+                          Shoe size: <span>41</span>
+                        </div>
+                        <div class="container-bill__detail-product-item-color">
+                          Color: <span>Deep Coffe</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container-bill__detail-product-item-price">
+                      VND <span>8,490.00</span>
+                    </div>
+                  </li>
+                  <li class="container-bill__detail-product-item">
+                    <div class="container-bill__detail-product-item-thumb">
+                      <img
+                        src="asset/img/collection/product1/ALL-THRU-Shoes_G1-600x800_primary.jpg"
+                        alt=""
+                      />
+                    </div>
+                    <div class="container-bill__detail-product-item-info">
+                      <div class="container-bill__detail-product-item-title">
+                        <p>Coffe - Vintage</p>
+                        <div>x <span>1</span></div>
+                      </div>
+                      <div class="container-bill__detail-product-item-feature">
+                        <div class="container-bill__detail-product-item-size">
+                          Shoe size: <span>41</span>
+                        </div>
+                        <div class="container-bill__detail-product-item-color">
+                          Color: <span>Deep Coffe</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="container-bill__detail-product-item-price">
+                      VND <span>8,490.00</span>
+                    </div>
+                  </li>
+                </ul>
 
-            <div class="container__product-filter">
-              <div class="container__product-filter__nav">
-                <div class="container__product-directory">
-                  <a href="" class="container__product-directory__home">Home</a>
-                  /
-                  <span class="container__product-directory__current"
-                    >Retro Sneakers Collection</span
+                <div class="sticky-bar"></div>
+
+                <div class="container-bill__detail-amount">
+                  <p>SUBTOTAL</p>
+                  <div>VND <span>25,740.00</span></div>
+                </div>
+
+                <div class="sticky-bar"></div>
+
+                <div class="container-bill__detail-ship">
+                  <p>SHIPPING</p>
+                  <div>VND <span>30,000.00</span></div>
+                </div>
+
+                <div class="sticky-bar"></div>
+
+                <div class="container-bill__detail-total">
+                  <p>TOTAL</p>
+                  <div>VND <span>30,000.00</span></div>
+                </div>
+
+                <div class="container-bill__detail-payment">
+                  <div>
+                    <input
+                      type="radio"
+                      id="payment-method-debit"
+                      name="payment-method"
+                      value="debit-card"
+                      disabled
+                    />
+                    <label for="payment-method-debit">Debit/Credit Card</label>
+                  </div>
+
+                  <p class="sticky-bar"></p>
+
+                  <div>
+                    <input
+                      type="radio"
+                      id="payment-method-bank"
+                      name="payment-method"
+                      value="bank-tranfer"
+                      checked
+                    />
+                    <label for="payment-method-bank"
+                      >Direct bank transfer</label
+                    >
+                  </div>
+
+                  <p class="payment-method-bank-note">
+                    Make your payment directly into our bank account. Please use
+                    your Order ID as the payment reference. Your order will not
+                    be shipped until the funds have cleared in our account.
+                  </p>
+                </div>
+
+                <div class="container-bill__detail-alert">
+                  Your personal data will be used to process your order, support
+                  your experience throughout this website, and for other
+                  purposes described in our
+                  <span class="underline-hover">privacy policy</span> .
+                </div>
+
+                <div class="container-bill__detail-confirm-condition">
+                  <input type="checkbox" id="term-agreement" />
+                  <label for="term-agreement"
+                    >I have read and agree the website
+                    <span class="underline-hover">terms and conditions</span>
+                    *</label
                   >
                 </div>
-                <div class="container__product-filter-area">
-                  <div class="container__product-filter-box">
-                    <span class="container__product-filter-box-icon active"
-                      ><i class="fa-solid fa-sliders"></i
-                    ></span>
-                    <span
-                      class="container__product-filter-box-icon-close exit-btn hidden"
-                    ></span>
-                    Filters
-                    <span class="container__product-filter-option-number"
-                      >2</span
-                    >
-                  </div>
-                  <form class="container__product-sort-box">
-                    <select
-                      name="orderby"
-                      class="orderby"
-                      aria-label="Shop order"
-                    >
-                      <option value="menu_order" selected>
-                        Default sorting
-                      </option>
-                      <option value="popularity">Sort by popularity</option>
-                      <option value="rating">Sort by average rating</option>
-                      <option value="date">Sort by latest</option>
-                      <option value="price">Sort by price: low to high</option>
-                      <option value="price-desc">
-                        Sort by price: high to low
-                      </option>
-                    </select>
-                  </form>
-                </div>
-              </div>
-              <div class="container__product-filter__content">
-                <div class="container__product-filter__content-chosed">
-                  <div class="chosed-option chosed-order">
-                    Order By: <span>latest</span>
-                    <div class="exit-btn"></div>
-                  </div>
-                  <div class="chosed-option chosed-color">
-                    Color: <span>Yellow</span>
-                    <div class="exit-btn"></div>
-                  </div>
-                  <div class="chosed-option chosed-price">
-                    Max Price: <span>9955</span>
-                    <div class="exit-btn"></div>
-                  </div>
-                  <div class="chosed-option chosed-remove">
-                    Remove All
-                    <div class="exit-btn"></div>
-                  </div>
-                </div>
-                <div class="container__product-filter__content-option">
-                  <div class="filter-by filter-by-color">
-                    <div class="filter-by-header">FILTER BY COLOR</div>
-                    <div class="filter-by-color-option">
-                      <ul class="filter-by-color-list">
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                        <li class="filter-by-color-item" data-tooltip="yellow">
-                          <img
-                            src="asset/img/homepage/quick_cart/item1.jpg"
-                            alt=""
-                          />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="filter-by filter-by-price">
-                    <div class="filter-by-header">FILTER BY PRICE</div>
-                    <div class="filter-by-price-content">
-                      <div class="price-slider">
-                        <div class="progress"></div>
-                      </div>
-                      <div class="range-input">
-                        <input
-                          type="range"
-                          class="range-min"
-                          min="1000"
-                          max="2000"
-                          value="1000"
-                        />
-                        <input
-                          type="range"
-                          class="range-max"
-                          min="1000"
-                          max="2000"
-                          value="2000"
-                        />
-                      </div>
-                      <div class="price-limit">
-                        <div class="min-price">
-                          Min Price: VND
-                          <div class="min-price-tag">hehehe</div>
-                        </div>
-                        <div class="max-price">
-                          Max Price: VND
-                          <div class="max-price-tag">455555555556</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="container__product-list">
-              <div class="row">
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 1">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product1/ALL-THRU-Shoes_G1-600x800_primary.jpg"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product1/ALL-THRU-Shoes_G4-600x800.jpg"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 2">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product2/Artisan_G1-600x800_primary.webp"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product2/Artisan_G2-600x800.jpg.webp"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 3">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product3/Boro-Shell-Toe_G1-600x800_primary.webp"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product3/Boro-Shell-Toe_G2-600x800.webp"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 4">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product4/Chelsea-Boots-Classic-600x814_primary.webp"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product4/Chelsea-Boots-D2-600x800.jpg.webp"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 1">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product1/ALL-THRU-Shoes_G1-600x800_primary.jpg"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product1/ALL-THRU-Shoes_G4-600x800.jpg"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 2">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product2/Artisan_G1-600x800_primary.webp"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product2/Artisan_G2-600x800.jpg.webp"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 3">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product3/Boro-Shell-Toe_G1-600x800_primary.webp"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product3/Boro-Shell-Toe_G2-600x800.webp"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col l-3">
-                  <div class="container__product-item" title="sản phẩm 4">
-                    <a href="product.html" class="container__product-item-link">
-                      <div class="container__product-item-img">
-                        <img
-                          src="asset/img/collection_casual/product4/Chelsea-Boots-Classic-600x814_primary.webp"
-                          alt=""
-                        />
-                        <img
-                          src="asset/img/collection_casual/product4/Chelsea-Boots-D2-600x800.jpg.webp"
-                          alt=""
-                        />
-                      </div>
-                    </a>
-                    <div class="container__product-item-caption">
-                      <div class="container__product-item-title">
-                        <a href="" class="container__product-item-link">
-                          <p>All Thru - Translucent Green</p>
-                        </a>
-                        <div class="add-to-wish">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fas fa-heart"></i>
-                        </div>
-                      </div>
-                      <a href="" class="container__product-item-link">
-                        <div class="container__product-item-price">
-                          <div class="container__product-item-price-tag">
-                            VND <span>8,490.00</span>
-                          </div>
-                          <div
-                            class="container__product-item-price-after-action"
-                          >
-                            Select options
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <button class="container-bill__detail-checkout">
+                  Place order
+                </button>
               </div>
             </div>
           </div>
@@ -1155,7 +880,7 @@
                   <p>Subtotal</p>
                   <div>VND<span>90,390.00</span></div>
                 </div>
-                <a href="cart.html" class="quick-cart__footer-view-full-btn"
+                <a href="" class="quick-cart__footer-view-full-btn"
                   >View cart</a
                 >
                 <a href="checkout.html" class="quick-cart__footer-checkout-btn"

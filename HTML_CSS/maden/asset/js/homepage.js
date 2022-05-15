@@ -1,4 +1,6 @@
 $(function () {
+  // COMMON ACTION-------------------------------------------------
+
   // Header slider
   slideFunction();
   changeSlideByDot();
@@ -8,9 +10,6 @@ $(function () {
   // Search box action
   $(".header-nav__action-search").on("click", openSearchForm);
   $(".search-box-exit-btn").on("click", exitSearchForm);
-
-  // Slide Testimonial
-  lightSliderComment();
 
   // Quick cart action
   $(".header-nav__action-cart").on("click", openQuickCart);
@@ -24,6 +23,16 @@ $(function () {
   // Quick Menu action
   $(".header-nav__collection-quick-menu").on("click", openQuickMenu);
   $(".quick-menu-exit-btn").on("click", exitQuickMenu);
+
+  // Moving lable for input when focused and filled
+  movingInputLabel();
+
+  // HOMEPAGE ACTION----------------------------------------------
+
+  // Slide Testimonial
+  lightSliderComment();
+
+  // PRODUCT PAGE ACTION--------------------------------------------
 
   // Slider range Price
   priceSlider();
@@ -42,13 +51,16 @@ $(function () {
   $(".container-product__info-size-guide").on("click", openSizeGuide);
   $(".size-guide-exit").on("click", exitSizeGuide);
 
-  // Moving lable for input when focused and filled
-  movingInputLabel();
+  // CART PAGE ACTION--------------------------------------------
 
   // Cart Page: change address
-
   showUpdateAddressForm();
-  stuckCartSummaryTable();
+  // stuckCartSummaryTable();
+
+  // COLLECTION PAGE ACTION--------------------------------------------
+
+  // slide up product when scroll to
+  slideUpProduct();
 });
 
 // COMMON ACTION----------------------------------------------------------------------------------------
@@ -243,14 +255,18 @@ function movingInputLabel() {
   const $input = $(".input-moving-lable input");
   const $label = $(".input-moving-lable input + label");
   $input.each(function (index, input) {
-    $(input).focus(function () {
+    if ($(input).val()) {
       $(input).addClass("focused");
-    });
-    $(input).focusout(function () {
-      if (!$(input).val()) {
-        $(input).removeClass("focused");
-      }
-    });
+    } else {
+      $(input).focus(function () {
+        $(input).addClass("focused");
+      });
+      $(input).focusout(function () {
+        if (!$(input).val()) {
+          $(input).removeClass("focused");
+        }
+      });
+    }
   });
 }
 
@@ -405,30 +421,54 @@ function showUpdateAddressForm() {
 }
 
 // Fix Cart Summary when scroll---------------
-function stuckCartSummaryTable() {
-  const $cartSummary = $(".container-cart__summary");
-  let originalTop = $cartSummary.position().top - 100;
-  let originalBottom = $(".container-cart-product__list").position().bottom;
-  let originalWidth = $cartSummary.width();
-  const $cartSummaryInner = $(".container-cart__summary-wrapper");
+// function stuckCartSummaryTable() {
+//   const $cartSummary = $(".container-cart__summary");
+//   const originalTop = $cartSummary.position().top - 100;
+//   const originalBottom =
+//     $cartSummary.position().top + $cartSummary.height() - 105;
+//   const originalWidth = $cartSummary.width();
+//   const $cartSummaryInner = $(".container-cart__summary-wrapper");
 
-  $(window).scroll(function () {
-    if ($(document).scrollTop() > originalBottom) {
-      $cartSummaryInner.css({
-        position: "absolute",
-        bottom: 0,
-        width: originalWidth,
-      });
-    } else if ($(document).scrollTop() > originalTop) {
-      $cartSummaryInner.css({
-        position: "fixed",
-        top: "100px",
-        width: originalWidth,
-      });
+//   $(window).scroll(function () {
+//     const originalHeight = $cartSummaryInner.height();
+//     // if ($(document).scrollTop() >= originalBottom - originalHeight) {
+//     //   $cartSummaryInner.css({
+//     //     position: "absolute",
+//     //     bottom: "105px",
+//     //     top: "auto",
+//     //     width: originalWidth,
+//     //   });
+//     // } else
+//     if ($(document).scrollTop() > originalTop) {
+//       $cartSummaryInner.css({
+//         position: "fixed",
+//         top: "100px",
+//         bottom:'auto',
+//         width: originalWidth,
+//       });
+//     } else {
+//       $cartSummaryInner.css({
+//         position: "relative",
+//         top: "0",
+//       });
+//     }
+//   });
+// }
+
+// COLLECTION PAGE ACTION-------------------------------------------------------------------------------------
+function slideUpProduct() {
+  const $product = $(".container__product-item");
+  const $windowHeight = $(window).height();
+
+  $product.each(function (index, product) {
+    const $productTop = $(product).position().top;
+    if ($windowHeight > $productTop + 20) {
+      $(product).addClass("product-slide-up");
     } else {
-      $cartSummaryInner.css({
-        position: "relative",
-        top: "0",
+      $(window).scroll(function () {
+        if ($(document).scrollTop() + $windowHeight > $productTop + 20) {
+          $(product).addClass("product-slide-up");
+        }
       });
     }
   });
