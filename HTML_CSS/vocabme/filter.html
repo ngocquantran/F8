@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font Balootamma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="asset/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+
+    <!-- Jquery SLider -->
+    <link
+      rel="stylesheet"
+      href="asset/library/lightslider-master/dist/css/lightslider.css"
+    />
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="asset/css/base.css" />
+    <link rel="stylesheet" href="asset/css/grid.css" />
+    <link rel="stylesheet" href="asset/css/common.css" />
+    <link rel="stylesheet" href="asset/css/filter.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- Javascript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+    <script src="asset/js/main.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <div class="header-menu">
+          <div class="header-menu-item menu-item-back">
+            <a href="">
+              <i class="fa-solid fa-xmark"></i>
+              <span>PLACE AROUND TOWN</span>
+            </a>
+          </div>
+          <div class="header-menu-item menu-item-type">
+            <a href="">Sàng lọc</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="filter-into hidden">
+          <div class="filter-intro-content">
+            <div class="filter-intro-left">
+              <div class="intro-left-content">
+                <img src="asset/img/common/learning-intro.png" alt="" />
+              </div>
+            </div>
+
+            <div class="filter-intro-right">
+              <div class="intro-right-content">
+                <h1>Quy trình học từ vựng tiếng Anh với VOCA</h1>
+                <h6>Quy trình gồm 3 bước:</h6>
+                <div class="intro-content">
+                  <div class="intro-item item-filter">
+                    <div class="item-left">
+                      <span></span>
+                    </div>
+                    <div class="item-right">
+                      <h4>Bước 1: Sàng lọc</h4>
+                      <p>
+                        Giúp xác định rõ mục tiêu cần học, tránh lãng phí thời
+                        gian với những từ đã biết.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="intro-item item-learning">
+                    <div class="item-left">
+                      <span></span>
+                    </div>
+                    <div class="item-right">
+                      <h4>Bước 2: Học từ vựng</h4>
+                      <p>
+                        Ứng dụng phương pháp flashcard 3 mặt giúp kích thích tư
+                        duy và ghi nhớ từ vựng nhanh hơn.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="intro-item item-testing">
+                    <div class="item-left">
+                      <span></span>
+                    </div>
+                    <div class="item-right">
+                      <h4>Bước 3: Kiểm tra</h4>
+                      <p>
+                        Bài kiểm tra sẽ giúp bạn đánh giá sự tiến bộ của bạn
+                        trước và sau khi học một cách rõ ràng nhất.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-ready-group">
+            <div class="button-ready-content">
+              <a href="javascript:void(0)" class="ui-button-long button-start"
+                >Bắt đầu ngay</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-content">
+          <div class="filter-word-body">
+            <div class="filter-word-progress">
+              <div class="filter-word-progress-title">
+                <strong>01</strong>/<span>10</span>
+              </div>
+              <div class="filter-word-progress-range">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="filter-word-content">
+              <div class="filter-word-layer layer right">
+                <div class="filter-word-layer-viewport">
+                  <p class="filter-word-item-name">abide by</p>
+                  <p class="filter-word-item-type">(phrasal verb)</p>
+                  <div class="filter-word-item-sound play-sound">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <audio src="asset/mp3/word_pronunciation/abide-by.mp3"></audio>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="filter-word-layer layer right">
+                <div class="filter-word-layer-viewport">
+                  <p class="filter-word-item-name">resolve</p>
+                  <p class="filter-word-item-type">(v)</p>
+                  <div class="filter-word-item-sound play-sound">
+                     <i class="fa-solid fa-volume-high"></i>
+                    <audio src="asset/mp3/word_pronunciation/resolve.mp3"></audio>
+                   
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-word-layer layer right">
+                <div class="filter-word-layer-viewport">
+                  <p class="filter-word-item-name">provision</p>
+                  <p class="filter-word-item-type">(n)</p>
+                  <div class="filter-word-item-sound play-sound">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <audio src="asset/mp3/word_pronunciation/provision.mp3"></audio>
+                    
+                  </div>
+                </div>
+              </div>
+
+              <div class="filter-word-layer layer right">
+                <div class="filter-word-layer-viewport">
+                  <p class="filter-word-item-name">determine</p>
+                  <p class="filter-word-item-type">(v)</p>
+                  <div class="filter-word-item-sound play-sound">
+                     <i class="fa-solid fa-volume-high"></i>
+                    <audio src="asset/mp3/word_pronunciation/determine.mp3"></audio>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-word-bottom">
+            <p class="filter-word-bottom-heading">
+              Bạn biết từ vựng này hay không?
+            </p>
+            <div class="filter-word-bottom-option">
+              <div class="filter-word-bottom-btn btn-no">Không biết</div>
+              <div class="filter-word-bottom-btn btn-yes">Biết</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="footer">
+        <div class="footer-cover">
+          <ul>
+            <li>
+              <a href="">VỀ MYVOCAB</a>
+            </li>
+            <li>
+              <a href="">KHÓA HỌC</a>
+            </li>
+            <li>
+              <a href="">PREMIUM</a>
+            </li>
+            <li>
+              <a href="">BLOG</a>
+            </li>
+            <li>
+              <a href="">LIÊN HỆ</a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+
+      <div class="modal hidden">
+        <div class="modal-body">
+          <div class="trial-alert hidden">
+            <div class="trial-alert-content">
+              <div class="trial-left">
+                <img src="asset/img/common/trial-expired.svg" alt="" />
+              </div>
+
+              <div class="trial-middle">
+                <div class="trial-middle-title">Bài học hiện tạm khoá</div>
+                <div class="trial-middle-content">
+                  Đây là khoá học có tính phí. Hãy nâng cấp lên Premium để học
+                  tiếp bạn nhé!
+                </div>
+              </div>
+
+              <div class="trial-right">
+                <a href="" class="btn-trial-remain">KHÔNG CẢM ƠN</a>
+                <a href="" class="btn-trial-upgrade">NÂNG CẤP PREMIUM</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

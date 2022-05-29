@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font Balootamma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="asset/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+
+    <!-- Jquery SLider -->
+    <link
+      rel="stylesheet"
+      href="asset/library/lightslider-master/dist/css/lightslider.css"
+    />
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="asset/css/base.css" />
+    <link rel="stylesheet" href="asset/css/grid.css" />
+    <link rel="stylesheet" href="asset/css/common.css" />
+    <link rel="stylesheet" href="asset/css/filter.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- Javascript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="asset/js/main.js"></script>
+
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <div class="header-menu">
+          <div class="header-menu-item menu-item-back">
+            <a href="">
+              <i class="fa-solid fa-xmark"></i>
+              <span>PLACE AROUND TOWN</span>
+            </a>
+          </div>
+          <div class="header-menu-item menu-item-type">
+            <a href="">Sàng lọc</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="filter-result">
+          <div class="filter-result-content">
+            <div class="filter-result-left">
+              <div class="filter-result-left-img">
+                <img src="asset/img/common/filter-result.png" alt="" />
+              </div>
+              <div class="filter-result-left-content">
+                <h3>
+                  Bạn vừa hoàn thành bước
+                  <strong>Sàng lọc</strong>
+                </h3>
+                <h4>Bây giờ hãy chuyển sang bước học từ vựng thôi nào</h4>
+              </div>
+            </div>
+
+            <div class="filter-result-right">
+              <div class="filter-result-right-content">
+                <h2>Kết quả sàng lọc</h2>
+                <div class="filter-result-right-circle">
+                  <canvas
+                    id="filter-result-right-circle-chart"
+                    style="width: 160px; height: 160px;"
+                  ></canvas>
+                  <script>
+                    var xValues = ["Biết", "Không biết"];
+                    var yValues = [12, 8];
+                    var barColors = ["#58CC02", "rgb(255, 1, 78)"];
+
+                    new Chart("filter-result-right-circle-chart", {
+                      type: "doughnut",
+                      data: {
+                        labels: xValues,
+                        datasets: [
+                          {
+                            backgroundColor: barColors,
+                            data: yValues,
+                          },
+                        ],
+                      },
+                      options: {
+                        plugins: {
+                          legend: {
+                            display: false,
+                          },
+                        },
+                      },
+                    });
+                  </script>
+                </div>
+                <div class="filter-result-right-text">
+                  <div class="filter-result-right-know">
+                    <span>12</span> đã biết
+                  </div>
+                  <div class="filter-result-right-un-know">
+                    <span>8</span> chưa biết
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-ready-group">
+            <div class="button-ready-content">
+              <a
+                href="javascript:void(0)"
+                class="ui-button-long button-start-study"
+                >Bắt đầu học</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal hidden">
+        <div class="modal-body">
+          <div class="trial-alert hidden">
+            <div class="trial-alert-content">
+              <div class="trial-left">
+                <img src="asset/img/common/trial-expired.svg" alt="" />
+              </div>
+
+              <div class="trial-middle">
+                <div class="trial-middle-title">Bài học hiện tạm khoá</div>
+                <div class="trial-middle-content">
+                  Đây là khoá học có tính phí. Hãy nâng cấp lên Premium để học
+                  tiếp bạn nhé!
+                </div>
+              </div>
+
+              <div class="trial-right">
+                <a href="" class="btn-trial-remain">KHÔNG CẢM ƠN</a>
+                <a href="" class="btn-trial-upgrade">NÂNG CẤP PREMIUM</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="choose-study-word hidden">
+            <div class="choose-study-word-content">
+              <div class="choose-study-word-content-header">
+                <h3>Chọn từ bạn muốn học</h3>
+                <div class="choose-study-word-content-header-btn">
+                  <div class="choose-study-word-btn all-word">Học tất cả
+                  </div>
+                  <div class="choose-study-word-btn unknown-word">Học từ chưa biết
+                  </div>
+                </div>
+              </div>
+              <form action=""></form>
+                <div class="choose-study-word-content-body">
+                  <div class="row">
+                    <div class="col l-6">
+                      <div class="choose-study-word-item">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item item-unknown">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item  item-unknown">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item  item-unknown">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+
+                     <div class="col l-6">
+                      <div class="choose-study-word-item">
+                        <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                      
+                      
+                        <label>
+                          <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                          <input type="checkbox" name="" id="" value="abide-by">
+                          <span class="custom-checkbox">
+                            <span class="icon-all"></span>
+                          </span>
+                        </label>
+                        </div>
+                      
+                    </div>
+
+                    
+                  </div>
+                  
+    
+
+                
+                </div>
+                <div class="choose-study-word-content-footer">
+                  <button type="submit" class="choose-word-btn">
+                    Bắt đầu học
+                  </button>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
