@@ -70,7 +70,7 @@
       </div>
 
       <div class="container">
-        <div class="test-intro hidden">
+        <div class="test-intro">
           <div class="test-intro-content">
             <div class="test-intro-left">
               <div class="intro-left-content">
@@ -133,7 +133,7 @@
           </div>
         </div>
 
-        <div class="test-container">
+        <div class="test-container hidden">
           <div class="test-container-wrapper">
             <div class="test-progress">
               <div class="progress-title">
@@ -150,12 +150,12 @@
             <div class="test-body">
               <div class="test-body-wrapper">
                 <div
-                  class="test-exercise  exercise-current"
+                  class="test-exercise exercise-current"
                   index="0"
                   typequestion="1"
                   typeanswer="choose"
                   answer="city"
-                  answer-value="3"
+                  answer-index="3"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -231,7 +231,7 @@
                   typequestion="2"
                   typeanswer="choose"
                   answer="age"
-                  answer-value="1"
+                  answer-index="1"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -300,7 +300,7 @@
                   typequestion="3"
                   typeanswer="choose"
                   answer="student"
-                  answer-value="2"
+                  answer-index="2"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -377,7 +377,7 @@
                   typequestion="4"
                   typeanswer="choose"
                   answer="job"
-                  answer-value="1"
+                  answer-index="1"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -447,7 +447,7 @@
                   typequestion="5"
                   typeanswer="choose"
                   answer="college"
-                  answer-value="4"
+                  answer-index="4"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -519,7 +519,7 @@
                   typequestion="6"
                   typeanswer="choose"
                   answer="family"
-                  answer-value="2"
+                  answer-index="2"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -582,7 +582,7 @@
                   typequestion="7"
                   typeanswer="choose"
                   answer="bank"
-                  answer-value="2"
+                  answer-index="2"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -852,7 +852,7 @@
                 </div>
 
                 <div
-                  class="test-exercise"
+                  class="test-exercise  "
                   index="10"
                   typequestion="3"
                   typeanswer="write"
@@ -1018,11 +1018,19 @@
         </div>
       </div>
 
-      <audio src="asset/mp3/common/answer_right.mp3" class="answer-right-sound"></audio>
-      <audio src="asset/mp3/common/answer_wrong.mp3" class="answer-wrong-sound"></audio>
-      <audio src="asset/mp3/common/second_tick.mp3" class="clock-sound">
-      </audio>
-      <audio src="asset/mp3/common/clock_tick.mp3" class="urgent-clock-sound"></audio>
+      <audio
+        src="asset/mp3/common/answer_right.mp3"
+        class="answer-right-sound"
+      ></audio>
+      <audio
+        src="asset/mp3/common/test_wrong_answer.mp3"
+        class="answer-wrong-sound"
+      ></audio>
+      <audio src="asset/mp3/common/second_tick.mp3" class="clock-sound"></audio>
+      <audio
+        src="asset/mp3/common/clock_tick.mp3"
+        class="urgent-clock-sound"
+      ></audio>
     </div>
   </body>
 </html>

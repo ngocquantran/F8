@@ -1,6 +1,5 @@
 $(function () {
-
-  learningCheckBtn();
+  learningCheckBtn1();
   learningViewportSlideBox();
   inputGuessWord();
 
@@ -13,27 +12,51 @@ $(function () {
   );
 });
 
-
-
 // Learning page------------------------------------------------------------------------------------------------
 
-function learningCheckBtn() {
+function learningCheckBtn1() {
   const $inputArea = $(".learning-word-fill");
 
   $inputArea.each(function (index, area) {
     const $input = $(area).find("input");
-    const $btn = $(area).find("button");
-    $input.on("input", function () {
-      $(area).find("input.show-answer-right").removeClass("show-answer-right");
-      $(area).find("input.show-answer-wrong").removeClass("show-answer-wrong");
-      if ($(this).val() != "") {
-        $btn.addClass("btn-active");
+    $input.on("keyup", function (e) {
+      if (e.keyCode == 13) {
+        $(this).blur();
+        $(this).next("button").trigger("click");
       } else {
-        $btn.removeClass("btn-active");
+        $(area)
+          .find("input.show-answer-right")
+          .removeClass("show-answer-right");
+        $(area)
+          .find("input.show-answer-wrong")
+          .removeClass("show-answer-wrong");
+        if ($(this).val().length > 0) {
+          $(this).next("button").addClass("btn-active");
+        } else {
+          $(this).next("button").removeClass("btn-active");
+        }
       }
     });
   });
 }
+
+// function learningCheckBtn() {
+//   const $inputArea = $(".learning-word-fill");
+
+//   $inputArea.each(function (index, area) {
+//     const $input = $(area).find("input");
+//     const $btn = $(area).find("button");
+//     $input.on("input", function () {
+//       $(area).find("input.show-answer-right").removeClass("show-answer-right");
+//       $(area).find("input.show-answer-wrong").removeClass("show-answer-wrong");
+//       if ($(this).val().length>0) {
+//         $btn.addClass("btn-active");
+//       } else {
+//         $btn.removeClass("btn-active");
+//       }
+//     });
+//   });
+// }
 
 function learningViewportSlideBox() {
   const $card = $(".learning-word-viewport-container");
@@ -51,26 +74,24 @@ function learningViewportSlideBox() {
 
 function inputGuessWord() {
   const $learningLayer = $(".learning-word-layer");
-  const soundRight = document.querySelector(".sound-answer-right");
-  const soundWrong = document.querySelector(".sound-answer-wrong");
-
   $learningLayer.each(function (index, layer) {
     let word = $(layer).attr("words");
     const $input = $(layer).find(".learning-word-fill input");
     const $checkBtn = $(layer).find(".learning-word-fill button");
     $checkBtn.on("click", function () {
-      if ($input.val() !== "") {
+      if ($input.val().length > 0) {
         if ($input.val().toLowerCase().trim() == word) {
-          soundRight.play();
+          playSoundRight();
           $input.addClass("show-answer-right");
         } else {
-          soundWrong.play();
+          playSoundWrong();
           $input.addClass("show-answer-wrong");
         }
         $checkBtn.removeClass("btn-active");
       }
     });
-  });
+  })
+  
 }
 
 function learningWords() {
@@ -144,4 +165,18 @@ function updateLearningVocabProgress(
     width: ((curIndex + 1) / totalLength) * 100 + "%",
   });
   $progressValueText.text(curIndex + 1);
+}
+
+function playSoundRight() {
+  $(".sound-answer-right")[0].load();
+  $(".sound-answer-right")[0].onloadeddata = function () {
+    $(".sound-answer-right")[0].play();
+  };
+}
+
+function playSoundWrong() {
+  $(".sound-answer-wrong")[0].load();
+  $(".sound-answer-wrong")[0].onloadeddata = function () {
+    $(".sound-answer-wrong")[0].play();
+  };
 }

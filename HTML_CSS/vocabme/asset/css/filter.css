@@ -1124,6 +1124,7 @@
   font-size: 15px;
   font-weight: 500;
   border-radius: 10px;
+  pointer-events: none;
 }
 
 .learning-word-layer .learning-word-fill button.btn-active {
@@ -1131,6 +1132,7 @@
   color: var(--color-white);
   background: var(--color-green);
   cursor: pointer;
+  pointer-events: all;
 }
 
 .learning-word-bottom {

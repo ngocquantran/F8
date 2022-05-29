@@ -305,6 +305,7 @@
   display: none;
   z-index: 4;
   border-radius: 7px;
+
 }
 
 .test-exercise.exercise-current {
@@ -314,7 +315,22 @@
   left: auto;
   display: block;
   transition: all 0.3s linear;
+  animation: exerciseFadeIn 0.5s forwards ease-out ;
 }
+
+@keyframes exerciseFadeIn{
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+
+
 
 .test-exercise-question {
   border-radius: 7px;
@@ -329,26 +345,27 @@
 .test-exercise-question-viewport {
   transform-style: preserve-3d;
   position: relative;
-  transition: 2s;
+  transition: 1s;
   width: 100%;
   height: 100%;
+   animation: all 1s  linear;
   /*  animation: rotate 1s  linear;
  transform: rotateX(-180deg); */
 }
 
-.test-exercise-question-viewport.rotate {
-  animation: rotate 1s  linear;
+.test-exercise-question-viewport.show-answer {
+
  transform: rotateX(-180deg);
 }
 
-@keyframes rotate {
+/* @keyframes rotate {
   from {
     transform: rotateX(0deg);
   }
   to {
     transform: rotateX(-360deg);
   }
-}
+} */
 
 .test-exercise-question-view-front {
   height: 100%;
@@ -620,6 +637,24 @@
   cursor: pointer;
 }
 
+
+.answer-choice.choose-right {
+   background: #BFF199;
+    border-color: var(--color-border-green);
+    transition: all 0.3s linear;
+    opacity: 1;
+    color: var(--color-green);
+}
+
+.answer-choice.choose-wrong {
+  background: #FF9797;
+    border-color: var(--color-red);
+    transition: all 0.3s linear;
+    opacity: 1;
+    color: var(--color-red);
+}
+
+
 .answer-choice:hover span {
   color: var(--color-blue);
 }
@@ -645,6 +680,18 @@
   resize: none;
 }
 
+.test-exercise-answer.answer-write .answer-cover input.show-answer-right {
+ background: #BFF199;
+    color: var(--color-green);
+    border-color: var(--color-border-green);
+}
+
+.test-exercise-answer.answer-write .answer-cover input.show-answer-wrong {
+ background: #FF9797;
+    color: var(--color-red);
+    border-color: var(--color-red);
+}
+
 .test-exercise-answer.answer-write .answer-cover .answer-check {
   display: inline-block;
     width: 123px;
@@ -663,3 +710,14 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+.test-exercise-answer.answer-write .answer-cover .answer-check.active-btn {
+   border-color: var(--color-border-green);
+  color: var(--color-white);
+  background: var(--color-green);
+  cursor: pointer;
+}
+
+
+
+
