@@ -40,36 +40,64 @@ function learningCheckBtn1() {
   });
 }
 
-// function learningCheckBtn() {
-//   const $inputArea = $(".learning-word-fill");
-
-//   $inputArea.each(function (index, area) {
-//     const $input = $(area).find("input");
-//     const $btn = $(area).find("button");
-//     $input.on("input", function () {
-//       $(area).find("input.show-answer-right").removeClass("show-answer-right");
-//       $(area).find("input.show-answer-wrong").removeClass("show-answer-wrong");
-//       if ($(this).val().length>0) {
-//         $btn.addClass("btn-active");
-//       } else {
-//         $btn.removeClass("btn-active");
-//       }
-//     });
-//   });
-// }
-
 function learningViewportSlideBox() {
-  const $card = $(".learning-word-viewport-container");
-  $card.each(function (index, card) {
+  const $cards = $(".learning-word-viewport-container");
+  $cards.each(function (index, card) {
     const $btn = $(card).find(".card-turn");
-    let pos = 0;
+    const $word = $(card).find(".learning-word-viewport-slide.slide2 audio");
+    const $sentence = $(card).find(
+      ".learning-word-viewport-slide.slide3 audio"
+    );
+    // let pos = 0;
+    let pos = parseInt($(card).attr("rotate-data"));
+    let cur = 1;
     $btn.on("click", function () {
       pos -= 120;
+      $(card).attr("rotate-data", `${pos}`);
+      cur++;
+      if (cur > 3) {
+        cur = 1;
+      }
       $(card).css({
         transform: `rotateX(${pos}deg)`,
       });
+      $(card).find(".learning-word-viewport-slide").removeClass("on");
+      if (cur == 2) {
+        playASound($word);
+        $(card).find(".learning-word-viewport-slide.slide2").addClass("on");
+      } else if (cur == 3) {
+        playASound($sentence);
+        $(card).find(".learning-word-viewport-slide.slide3").addClass("on");
+      } else {
+        $(card).find(".learning-word-viewport-slide.slide1").addClass("on");
+      }
     });
   });
+}
+
+function showAnswer($currentCard) {
+  const $viewPort = $currentCard.find(".learning-word-viewport-container");
+  const $word = $currentCard.find(".learning-word-viewport-slide.slide2 audio");
+  let curRotation = parseInt($viewPort.attr("rotate-data"));
+
+  const $layer1 = $viewPort.find(".learning-word-viewport-slide.slide1.on");
+  const $layer3 = $viewPort.find(".learning-word-viewport-slide.slide3.on");
+  if ($layer1.length > 0) {
+    curRotation -= 120;
+    $viewPort.css({
+      transform: `rotateX(${curRotation}deg)`,
+    });
+    $viewPort.attr("rotate-data", `${curRotation}`);
+  } else if ($layer3.length > 0) {
+    console.log("huhuhu");
+    curRotation += 120;
+    $viewPort.css({
+      transform: `rotateX(${curRotation}deg)`,
+    });
+    $viewPort.attr("rotate-data", `${curRotation}`);
+  }
+
+  playASound($word);
 }
 
 function inputGuessWord() {
@@ -83,6 +111,7 @@ function inputGuessWord() {
         if ($input.val().toLowerCase().trim() == word) {
           playSoundRight();
           $input.addClass("show-answer-right");
+          showAnswer($(layer));
         } else {
           playSoundWrong();
           $input.addClass("show-answer-wrong");
@@ -90,8 +119,7 @@ function inputGuessWord() {
         $checkBtn.removeClass("btn-active");
       }
     });
-  })
-  
+  });
 }
 
 function learningWords() {
@@ -178,5 +206,12 @@ function playSoundWrong() {
   $(".sound-answer-wrong")[0].load();
   $(".sound-answer-wrong")[0].onloadeddata = function () {
     $(".sound-answer-wrong")[0].play();
+  };
+}
+
+function playASound($sound) {
+  $sound[0].load();
+  $sound[0].onloadeddata = function () {
+    $sound[0].play();
   };
 }

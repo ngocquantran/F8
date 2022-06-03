@@ -85,6 +85,7 @@
   background: var(--color-white);
   padding: 0px;
   border: 1px solid var(--color-border-gray-light);
+  
 }
 
 .header-nav-item-sub-menu::before {
@@ -125,8 +126,16 @@
   background-color: var(--color-background-grey);
 }
 
+.header-nav-item-sub-item:first-child {
+ 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 .header-nav-item-sub-item:last-child {
   border-bottom: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .header-nav-item-sub-item a {

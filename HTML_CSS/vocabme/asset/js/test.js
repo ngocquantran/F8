@@ -10,7 +10,6 @@ $(function () {
 let timeCount;
 
 function countdown(time) {
-  console.log("chạy đồng hồ");
   const $time = $(".test-countdown-number");
   $time.text(`${time}`);
   timeCount = setInterval(function () {
@@ -33,7 +32,7 @@ function countdown(time) {
 }
 
 function stopCountDown() {
-  console.log("dừng đồng hồ");
+
   window.clearInterval(timeCount);
 }
 
@@ -61,6 +60,7 @@ function showAnswer() {
 }
 
 function runTest() {
+  getReadyToRun($(".test-exercise.exercise-current"));
   countdown(15);
   updateTestProgress();
   checkAnswerGuessing();
@@ -71,12 +71,22 @@ function runTest() {
 function nextQuestion() {
   const $cur = $(".test-exercise.exercise-current");
   const $next = $cur.next();
+  
   if (!$next.length == 0) {
     setTimeout(function () {
       $cur.removeClass("exercise-current");
       $next.addClass("exercise-current");
       runTest();
     }, 3000);
+  }
+}
+
+function getReadyToRun($currentExercise) {
+  const $input = $currentExercise.find(".test-exercise-answer.answer-write input");
+  $input.focus();
+  const $audio = $currentExercise.find(".test-exercise-question-view-front audio");
+  if ($audio.length > 0) {
+    playASound($audio);
   }
 }
 

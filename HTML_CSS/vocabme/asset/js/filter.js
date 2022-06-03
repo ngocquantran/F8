@@ -1,12 +1,12 @@
 $(function () {
   courseInfoSlide();
   courseTopicBtn();
-  topicProgress();
   filterVocab();
+  topicProgress();
   playWordSound();
   // resultFilterChart();
+  goToChooseWord();
   chooseWords();
- 
 });
 
 function courseInfoSlide() {
@@ -101,6 +101,8 @@ function filterVocab() {
   let index = 0;
   const $cards = $(".filter-word-layer.right");
   setCurrentFilterCart($cards.eq(0));
+
+  
   const n = $cards.length;
 
   $(".filter-word-progress-title span").text(`${n}`);
@@ -134,7 +136,7 @@ function filterVocab() {
       );
 
       setCurrentFilterCart($cards.eq(index));
-      $cards.eq(index).find(".filter-word-item-sound audio").get(0).play();
+      // $cards.eq(index).find(".filter-word-item-sound audio").get(0).play();
     }
   });
 }
@@ -142,7 +144,8 @@ function filterVocab() {
 function setCurrentFilterCart($card) {
   $card.addClass("show");
   $card.addClass("layer-current");
-  // $card.find(".filter-word-item-sound audio").get(0).play();
+  const $sound = $card.find(".filter-word-item-sound audio");
+  playASound($sound);
 }
 
 function updateFilterVocabProgress(
@@ -168,34 +171,48 @@ function playWordSound() {
   });
 }
 
+function playASound($sound) {
+  $sound[0].load();
+  $sound[0].onloadeddata = function () {
+    $sound[0].play();
+  };
+}
+
 // Result filter circle--------------------------------------------
 
-function resultFilterChart() {
-  var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-  var yValues = [55, 49, 44, 24, 15];
-  var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
+// function resultFilterChart() {
+//   var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+//   var yValues = [55, 49, 44, 24, 15];
+//   var barColors = ["#b91d47", "#00aba9", "#2b5797", "#e8c3b9", "#1e7145"];
 
-  new Chart("myChart", {
-    type: "doughnut",
-    data: {
-      labels: xValues,
-      datasets: [
-        {
-          backgroundColor: barColors,
-          data: yValues,
-        },
-      ],
-    },
-    options: {
-      title: {
-        display: true,
-        text: "World Wide Wine Production 2018",
-      },
-    },
+//   new Chart("myChart", {
+//     type: "doughnut",
+//     data: {
+//       labels: xValues,
+//       datasets: [
+//         {
+//           backgroundColor: barColors,
+//           data: yValues,
+//         },
+//       ],
+//     },
+//     options: {
+//       title: {
+//         display: true,
+//         text: "World Wide Wine Production 2018",
+//       },
+//     },
+//   });
+// }
+
+// Choose word to study after filter----------------------------
+function goToChooseWord() {
+  $(".button-ready-group .button-start-study").on("click", function () {
+    $(".modal").removeClass("hidden");
+    $(".choose-study-word").removeClass("hidden");
   });
 }
 
-// Choose word to study after filter----------------------------
 function chooseWords() {
   const $btnAllWords = $(".choose-study-word-btn.all-word");
   const $btnUnKnownWords = $(".choose-study-word-btn.unknown-word");
@@ -251,4 +268,3 @@ function updateStudyBtn() {
     $inactiveBtn.addClass("btn-choose-active");
   }
 }
-
