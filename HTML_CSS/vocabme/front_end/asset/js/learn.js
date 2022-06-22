@@ -87,7 +87,7 @@ function learningCheckBtn1() {
   $inputArea.each(function (index, area) {
     const $input = $(area).find("input");
     $input.on("keyup", function (e) {
-      if (e.keyCode == 13) {
+      if (e.keyCode == 13 && $(this).val().length > 0) {
         $(this).blur();
         $(this).next("button").trigger("click");
       } else {

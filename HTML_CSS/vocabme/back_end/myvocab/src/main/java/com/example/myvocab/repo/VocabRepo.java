@@ -20,7 +20,7 @@ public class VocabRepo {
         ));
         vocabs.put(3,new Vocab(3,"actress","asset/img/word_thumb/actress.jpg","(n)","asset/mp3/word_pronunciation/actress.mp3","/ˈæktrəs/","a woman who performs on the stage, on television or in films, especially as a profession","nữ diễn viên","She's the highest-paid _actress_ in Hollywood.","Cô ấy là nữ diễn viên được trả cát-xê cao nhất ở Hollywood.","asset/mp3/word_sentence/actress.mp3"
         ));
-        vocabs.put(4,new Vocab(4,"architect ","asset/img/word_thumb/architect.jpg","(n)","asset/mp3/word_pronunciation/architect.mp3","/ˈɑːrkɪtekt/","a person whose job is designing buildings","kiến trúc sư","He is the _architect_ who planned the new shopping centre.","Ông ấy là kiến trúc sư thiết kế ra khu trung tâm thương mại mới.","asset/mp3/word_sentence/architect.mp3"
+        vocabs.put(4,new Vocab(4,"architect","asset/img/word_thumb/architect.jpg","(n)","asset/mp3/word_pronunciation/architect.mp3","/ˈɑːrkɪtekt/","a person whose job is designing buildings","kiến trúc sư","He is the _architect_ who planned the new shopping centre.","Ông ấy là kiến trúc sư thiết kế ra khu trung tâm thương mại mới.","asset/mp3/word_sentence/architect.mp3"
         ));
         vocabs.put(5,new Vocab(5,"artist","asset/img/word_thumb/artist.jpg","(n)","asset/mp3/word_pronunciation/artist.mp3","/ˈɑːrtɪst/","a person who creates works of art, especially paintings or drawings","họa sĩ","Monet is one of my favourite _artists_.","Monet là một trong những họa sĩ yêu thích của tôi.","asset/mp3/word_sentence/artist.mp3"
         ));
@@ -35,7 +35,7 @@ public class VocabRepo {
         ));
         vocabs.put(11,new Vocab(11,"cashier","asset/img/word_thumb/cashier.jpg","(n)","asset/mp3/word_pronunciation/cashier.mp3","/kæˈʃɪr/","a person whose job is to receive and pay out money in a bank, shop, hotel, etc.","nhân viên thu ngân","Service attitude of the _cashier_ is very friendly.","Thái độ phục vụ của nhân viên thu ngân này rất thân thiện.","asset/mp3/word_sentence/cashier.mp3"
         ));
-        vocabs.put(12,new Vocab(12,"chef ","asset/img/word_thumb/chef.jpg","(n)","asset/mp3/word_pronunciation/chef.mp3","/ʃef/","a person whose job is to cook, especially the most senior person in a restaurant, hotel, etc.","đầu bếp, bếp trưởng","He is one of the top _chefs_ in Britain.","Ông ấy là một trong những đầu bếp hàng đầu ở Anh.","asset/mp3/word_sentence/chef.mp3"));
+        vocabs.put(12,new Vocab(12,"chef","asset/img/word_thumb/chef.jpg","(n)","asset/mp3/word_pronunciation/chef.mp3","/ʃef/","a person whose job is to cook, especially the most senior person in a restaurant, hotel, etc.","đầu bếp, bếp trưởng","He is one of the top _chefs_ in Britain.","Ông ấy là một trong những đầu bếp hàng đầu ở Anh.","asset/mp3/word_sentence/chef.mp3"));
     }
 
     public ConcurrentHashMap<Integer, Vocab> getVocabs(){

@@ -2,7 +2,9 @@ package com.example.myvocab.controller;
 
 
 import com.example.myvocab.model.Vocab;
+import com.example.myvocab.model.VocabTest;
 import com.example.myvocab.repo.VocabRepo;
+import com.example.myvocab.service.FileService;
 import com.example.myvocab.service.VocabService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import java.util.List;
 public class VocabController {
     @Autowired private VocabRepo vocabRepo;
     @Autowired private VocabService vocabService;
+    @Autowired private FileService fileService;
 
     @GetMapping("/filter-data/{topicId}")
     public List<Vocab> getTopicVocabs(@PathVariable int topicId){
@@ -29,7 +32,18 @@ public class VocabController {
     }
 
     @GetMapping("/test/{topicId}")
-    public List<Vocab> getTestVocabs(@PathVariable int topicId){
+    public List<VocabTest> getTestVocabs(@PathVariable int topicId){
         return vocabService.getTestVocabs(topicId);
+    }
+
+
+    @GetMapping("/imgs/{name}")
+    public byte[] readFile(@PathVariable String name){
+        return fileService.readFile(name);
+    }
+
+    @GetMapping("/imgs")
+    public List<String> getImages(){
+        return fileService.getFiles();
     }
 }

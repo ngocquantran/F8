@@ -26,7 +26,6 @@
 
 .menu-item-back a {
   display: flex;
-
   align-items: center;
 }
 
@@ -440,7 +439,8 @@
   margin-top: 15px;
 }
 
-.test-exercise-question .question-hint .hint-word {
+.test-exercise-question .question-hint .hint-word,
+.test-exercise-question .question-hint .hint-word-vi {
   font-weight: 400;
   font-size: 2.2rem;
   color: var(--color-text-darker);
@@ -449,7 +449,8 @@
   text-align: center;
 }
 
-.test-exercise-question .question-hint .hint-word span {
+.test-exercise-question .question-hint .hint-word span,
+.test-exercise-question .question-hint .hint-word-vi span {
   color: var(--color-text-light);
   font-weight: 300;
   font-size: 2.2rem;
@@ -485,11 +486,14 @@
 }
 
 .test-exercise-question .question-missing-sentence span {
-  display: inline-block;
+  /* display: inline-block; */
   height: 1px;
-  width: 60px;
-  border-bottom: 1px solid #707070;
+  /* width: 60px; */
+  /* border-bottom: 1px solid #707070; */
 }
+
+
+
 
 .test-exercise-question .question-phonetic {
   font-size: 2.2rem;
@@ -591,7 +595,12 @@
   .result-content-example
   span {
   border-bottom: 1px dashed #afafaf;
-  display: inline-block;
+  /* display: inline-block; */
+}
+.test-exercise-question-view-back
+  .testing-exercise-result-cover
+  .result-content-example span:nth-child(2) {
+  color: #58CC02;
 }
 
 .test-exercise-question-view-back
@@ -622,20 +631,23 @@
 
 .answer-choice {
   width: calc(50% - 20px);
-  height: 53px;
-  line-height: 53px;
+  height: 60px;
+  line-height: 60px;
   border: 1px solid #cfcfcf;
   border-bottom-width: 2px;
   border-radius: 10px;
   margin: 5px 0px 5px;
   outline: 0px;
   transition: 0.2s all ease;
-  vertical-align: bottom;
-  overflow: hidden;
   border-bottom: 3px solid #cfcfcf;
   font-size: 19px;
   cursor: pointer;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 }
+
 
 
 .answer-choice.choose-right {
