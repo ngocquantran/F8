@@ -1,0 +1,259 @@
+/* Header */
+.header {
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  border-bottom: 1px solid var(--color-border-gray-light);
+  z-index: 10;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.header-nav-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.header-nav-left .header-nav-item {
+  margin-right: 30px;
+}
+
+.nav-item-home {
+  width: 35px;
+}
+
+.nav-item-home a {
+  display: block;
+  height: 100%;
+}
+.nav-item-home img {
+  width: 100%;
+  height: auto;
+}
+
+.nav-item-personal a {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-darker);
+}
+
+.nav-item-personal i {
+  margin-right: 10px;
+  display: block;
+  width: 25.9px;
+  height: 27.8px;
+  background: url(https://www.voca.vn/assets/images/menu.svg?n=33) 0px -3340px;
+}
+
+.nav-item-course i {
+  margin-right: 10px;
+  display: block;
+  width: 23.842px;
+  height: 25.549px;
+  background: url(https://www.voca.vn/assets/images/menu.svg?n=33) 0px -2780px;
+}
+
+.header-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.header-nav-item:hover .header-nav-item-sub-menu {
+  display: block;
+}
+
+.header-nav-item-sub-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+  border-radius: 10px;
+  width: 300px;
+  background: var(--color-white);
+  padding: 0px;
+  border: 1px solid var(--color-border-gray-light);
+  
+}
+
+.header-nav-item-sub-menu::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  top: -20px;
+  left: 0;
+}
+
+.header-nav-item-sub-menu::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: calc(50% - 8px);
+  width: 15px;
+  height: 15px;
+  background: var(--color-white);
+  border-right: 2px solid var(--color-border-gray-light);
+  border-bottom: 2px solid var(--color-border-gray-light);
+  -moz-transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  top: -9px;
+}
+
+.header-nav-item-sub-item {
+  height: 47px;
+  line-height: 48px;
+  padding-left: 20px;
+  border-bottom: 1px solid var(--color-border-gray-light);
+  font-size: 1.5rem;
+  color: #1cb0f6;
+  cursor: pointer;
+}
+
+.header-nav-item-sub-item:hover {
+  background-color: var(--color-background-grey);
+}
+
+.header-nav-item-sub-item:first-child {
+ 
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.header-nav-item-sub-item:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.header-nav-item-sub-item a {
+  color: #1cb0f6;
+}
+
+.header-nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav-right .header-nav-item {
+  margin-left: 30px;
+}
+
+.header-nav-item {
+}
+
+.header-nav-item {
+}
+
+.header-nav-item-sub-menu {
+}
+
+.header-nav-item-sub-item {
+}
+
+.header-nav-item-sub-item {
+}
+
+.header-nav-item-sub-item {
+}
+
+.nav-item-user {
+  width: 36px;
+  height: 36px;
+}
+
+.nav-item-user img {
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  margin-top: 120px;
+}
+
+/* Level course tag---------------------------------------------------------------- */
+
+
+.level-tag{
+  display: flex;
+}
+
+.level-tag span{
+  background: #e5e5e5;
+  color: #fff;
+  text-align: center;
+}
+
+.level-tag .a0.active {
+  background: #d17b00;
+}
+.level-tag .a1.active {
+  background: #ce82ff;
+}
+.level-tag .a2.active {
+  background: #00cb7e;
+}
+.level-tag .b1.active {
+  background: #ff014e;
+}
+.level-tag .b2.active {
+  background: #00c5f9;
+}
+.level-tag .c1.active {
+  background: #8ee000;
+}
+.level-tag .c2.active {
+  background: #feb200;
+}
+
+/* FOOTER --------------------------------------- */
+.footer {
+  padding: 0px 15px;
+  background: transparent;
+  max-width: 910px;
+  margin: 50px auto 0px;
+  padding-top: 30px;
+  border-top: 2px solid #e5e5e5;
+  padding-bottom: 20px;
+}
+
+.footer-cover {
+  max-width: 850px;
+  margin: auto;
+}
+
+.footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0px;
+}
+
+.footer ul li {
+  margin: 0 12px 20px;
+  list-style-type: none;
+}
+
+.footer ul li a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+.footer ul li a:hover {
+  color: #1cb0f6;
+}

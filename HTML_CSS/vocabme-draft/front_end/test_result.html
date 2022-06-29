@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font Balootamma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="asset/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+
+    <!-- Jquery SLider -->
+    <link
+      rel="stylesheet"
+      href="asset/library/lightslider-master/dist/css/lightslider.css"
+    />
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="asset/css/base.css" />
+    <link rel="stylesheet" href="asset/css/grid.css" />
+    <link rel="stylesheet" href="asset/css/common.css" />
+
+    <link rel="stylesheet" href="asset/css/test.css" />
+    <link rel="stylesheet" href="asset/css/test_result.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- Javascript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="asset/js/main.js"></script>
+    <script src="asset/js/test_result.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <div class="header-menu">
+          <a href="" class="header-menu-item">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Về bộ từ</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="wide">
+          <div class="result-message">
+            <div class="result-message-content">
+              <div class="result-message-left">
+                <img
+                  src="asset/img/common/testing-pass.png"
+                  alt=""
+                  class="result-message-img pass"
+                />
+                <img
+                  src="asset/img/common/testing-pass.png"
+                  alt=""
+                  class="result-message-img fail hidden"
+                />
+              </div>
+              <div class="result-message-right">
+                <h3 class="result-message-notify pass">
+                  Bạn đã vượt qua chủ đề từ vựng này.
+                </h3>
+                <h3 class="result-message-notify fail hidden">
+                  Bạn đã vượt qua chủ đề từ vựng này.
+                </h3>
+                <h4 class="result-message-desc">
+                  Thành tích lần này của bạn chưa vượt qua thành tích cao nhất
+                  mà bạn đã từng đạt được. Hãy cải thiện để có kết quả cao hơn!
+                </h4>
+                <h4 class="result-message-desc hidden">
+                  Thành tích lần này của bạn chưa vượt qua thành tích cao nhất
+                  mà bạn đã từng đạt được. Hãy cải thiện để có kết quả cao hơn!
+                </h4>
+                <h4 class="result-message-desc hidden">
+                  Thành tích lần này của bạn chưa vượt qua thành tích cao nhất
+                  mà bạn đã từng đạt được. Hãy cải thiện để có kết quả cao hơn!
+                </h4>
+
+                <div class="result-message-button">
+                  <a
+                    href="#"
+                    topic="4363"
+                    is_unknow="0"
+                    is_finish="0"
+                    parent="4362"
+                    class="btn-learning"
+                    >Học lại</a
+                  >
+                  <a href="#" class="btn-testing">Kiểm tra lại</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="result-evaluate">
+            <div class="result-evaluate-header">BẢNG ĐÁNH GIÁ KẾT QUẢ</div>
+
+            <div class="result-evaluate-content">
+              <div class="result-evaluate-circle">
+                <h2 class="result-evaluate-circle-title">Kết quả kiểm tra</h2>
+                <div class="result-evaluate-circle-right">
+                  <div class="result-evaluate-circle-right-wrapper">
+                    <span class="result-evaluate-circle-percent">94%</span>
+                    <canvas
+                      id="result-evaluate-circle-chart"
+                      style="width: 120px; height: 120px"
+                    ></canvas>
+                    <script>
+                      var xValues = ["Thuộc", "Chưa thuộc"];
+                      var yValues = [12, 8];
+                      var barColors = ["#58CC02", "rgb(255, 1, 78)"];
+
+                      new Chart("result-evaluate-circle-chart", {
+                        type: "doughnut",
+                        data: {
+                          labels: xValues,
+                          datasets: [
+                            {
+                              backgroundColor: barColors,
+                              data: yValues,
+                            },
+                          ],
+                        },
+                        options: {
+                          plugins: {
+                            legend: {
+                              display: false,
+                            },
+                          },
+                        },
+                      });
+                    </script>
+                  </div>
+                </div>
+                <div class="result-evaluate-circle-text">
+                  <div class="result-evaluate-circle-desc">
+                    <i class="fa-regular fa-clock"></i>
+                    Thời gian:
+                    <span>63</span>s
+                  </div>
+                  <div class="result-evaluate-circle-classify">
+                    <div class="result-evaluate-circle-know">
+                      <span>12</span> đã thuộc
+                    </div>
+                    <div class="result-evaluate-circle-un-know">
+                      <span>8</span> chưa chưa thuộc
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="result-evaluate-graph">
+                <h2 class="result-evaluate-graph-title">Biểu đồ tiến độ</h2>
+                <div class="result-evaluate-graph-content">
+                  <canvas id="result-evaluate-graph-chart"></canvas>
+                  <script>
+                    var ctx = document
+                      .getElementById("result-evaluate-graph-chart")
+                      .getContext("2d");
+                    var myChart = new Chart(ctx, {
+                      type: "line",
+                      data: {
+                        labels: [
+                          "Trước khi học",
+                          "Tốt nhất",
+                          "Gần đây nhất",
+                          "Hiện tại",
+                        ],
+                        datasets: [
+                          {
+                            label: "Số từ đã thuộc", // Name the series
+                            data: [6, 12, 8, 10], // Specify the data values array
+                            fill: false,
+                            borderColor: "#2196f3", // Add custom color border (Line)
+                            backgroundColor: "#2196f3", // Add custom color background (Points and Fill)
+                            borderWidth: 1, // Specify bar border width
+                          },
+                        ],
+                      },
+                      options: {
+                        responsive: true, // Instruct chart js to respond nicely.
+                        maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height'
+
+                        scales: {
+                          y: { beginAtZero: true, max: 12 },
+                        },
+                      },
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rank-content">
+            <div class="rank-header">BẢNG XẾP HẠNG</div>
+            <div class="rank-wrapper">
+              <div class="user-rank-group">
+                <div class="user-rank-content">
+                  <h5>Thứ hạng của bạn</h5>
+                  <div class="user-rank-item">
+                    <span class="rank">2010</span>
+                    <img
+                      class="avatar"
+                      src="https://home.voca.vn/assets/avatar/default.png"
+                      alt="Quân"
+                    />
+                    <span class="name">Trần Ngọc Quân</span>
+                    <span class="right">17 từ đúng</span>
+                    <span class="time">Thời gian 63s</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rank-group">
+                <div class="rank-left">
+                  <h3>Top 3</h3>
+                  <div class="rank-left-content">
+                    <div class="rank-left-item">
+                      <div class="content-item item-2">
+                        <span class="hat"></span>
+                        <span class="avatar"
+                          ><img
+                            src="https://www.voca.vn/assets/assets-v2/img/avatar/thumbnail/avatar_confidence.png"
+                            alt=""
+                        /></span>
+                        <span class="name">Huyền Trang</span>
+                        <span
+                          class="position"
+                          data-html="true"
+                          data-toggle="tooltip"
+                          data-placement="bottom"
+                          title=""
+                          data-original-title="Từ đúng 18 <br></span> Thời gian 27s"
+                        ></span>
+                      </div>
+                      <div class="content-item item-1">
+                        <span class="hat"></span>
+                        <span class="avatar"
+                          ><img
+                            src="https://www.voca.vn/assets/assets-v2/img/avatar/thumbnail/avatar_hope.png"
+                            alt=""
+                        /></span>
+                        <span class="name">Nam Trần</span>
+                        <span
+                          class="position"
+                          data-html="true"
+                          data-toggle="tooltip"
+                          data-placement="bottom"
+                          title=""
+                          data-original-title="Từ đúng 18 <br></span> Thời gian 18s"
+                        ></span>
+                      </div>
+                      <div class="content-item item-3">
+                        <span class="hat"></span>
+                        <span class="avatar"
+                          ><img
+                            src="https://lh3.googleusercontent.com/a-/AOh14GhSfdvOvP-0QjFrogSe7iGT1BvC593yjPaZQq7B"
+                            alt=""
+                        /></span>
+                        <span class="name">Trương Thanh Tùng</span>
+                        <span
+                          class="position"
+                          data-html="true"
+                          data-toggle="tooltip"
+                          data-placement="bottom"
+                          title=""
+                          data-original-title="Từ đúng 18 <br></span> Thời gian 32s"
+                        ></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="rank-right">
+                  <div class="rank-right-content">
+                    <div class="rank-right-header">
+                      <h3>Top 8</h3>
+                    </div>
+
+                    <div class="rank-right-body">
+                      <div class="rank-item top-4">
+                        <div class="rank">4</div>
+                        <div class="avatar">
+                          <img
+                            src="https://home.voca.vn/assets/avatar/default.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="name">Nguyễn Tuệ Vy</div>
+                        <div class="info">
+                          <span class="right">Từ đúng 18</span>
+                          <span class="time">Thời gian 33s</span>
+                        </div>
+                      </div>
+                      <div class="rank-item top-5">
+                        <div class="rank">5</div>
+                        <div class="avatar">
+                          <img
+                            src="https://home.voca.vn/assets/img/avatar/avatar_passion.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="name">Mai Lê Hùng Anh</div>
+                        <div class="info">
+                          <span class="right">Từ đúng 18</span>
+                          <span class="time">Thời gian 33s</span>
+                        </div>
+                      </div>
+                      <div class="rank-item top-6">
+                        <div class="rank">6</div>
+                        <div class="avatar">
+                          <img
+                            src="https://home.voca.vn/assets/avatar/default.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="name">Nguyễn Diệu Thuần</div>
+                        <div class="info">
+                          <span class="right">Từ đúng 18</span>
+                          <span class="time">Thời gian 35s</span>
+                        </div>
+                      </div>
+                      <div class="rank-item top-7">
+                        <div class="rank">7</div>
+                        <div class="avatar">
+                          <img
+                            src="https://home.voca.vn/assets/avatar/default.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="name">Trần Văn Lý</div>
+                        <div class="info">
+                          <span class="right">Từ đúng 18</span>
+                          <span class="time">Thời gian 36s</span>
+                        </div>
+                      </div>
+                      <div class="rank-item top-8">
+                        <div class="rank">8</div>
+                        <div class="avatar">
+                          <img
+                            src="https://home.voca.vn/assets/avatar/default.png"
+                            alt=""
+                          />
+                        </div>
+                        <div class="name">Lippir Sharie</div>
+                        <div class="info">
+                          <span class="right">Từ đúng 18</span>
+                          <span class="time">Thời gian 36s</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="vocab-summary">
+            <div class="vocab-summary-header">TỔNG HỢP TỪ VỰNG</div>
+            <div class="vocab-group forget">
+              <div class="vocab-group-header">
+                <p>Từ bạn chưa thuộc</p>
+                <span>1</span>
+              </div>
+              <div class="vocab-list">
+                <div class="row">
+                  <div class="col l-2-4">
+                    <div class="vocab-item">
+                      <div class="vocab-item-viewport">
+                        <div class="item-front">
+                          <img
+                            class="item-image"
+                            src="https://www.voca.vn/assets/assets-v2/img/library/age%20%281%29.jpg"
+                            alt="age"
+                          />
+                          <p class="item-text">age</p>
+                          <p class="item-pronounce">/eɪdʒ/</p>
+
+                          <span class="rotate"
+                            ><i class="fa-solid fa-rotate"></i
+                          ></span>
+                        </div>
+                        <div class="item-back">
+                          <div class="item-back-cover">
+                            <audio
+                              src="asset/mp3/word_pronunciation/age.mp3"
+                            ></audio>
+                            <p class="item-type">(n)</p>
+                            <p class="item-text-vi">tuổi</p>
+                            <span class="rotate"
+                              ><i class="fa-solid fa-rotate"></i
+                            ></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="vocab-group remember">
+              <div class="vocab-group-header">
+                <p>Từ bạn chưa thuộc</p>
+                <span>1</span>
+              </div>
+              <div class="vocab-list">
+                <div class="row">
+                  <div class="col l-2-4">
+                    <div class="vocab-item">
+                      <div class="vocab-item-viewport">
+                        <div class="item-front">
+                          <img
+                            class="item-image"
+                            src="https://www.voca.vn/assets/assets-v2/img/library/age%20%281%29.jpg"
+                            alt="age"
+                          />
+                          <p class="item-text">age</p>
+                          <p class="item-pronounce">/eɪdʒ/</p>
+
+                          <span class="rotate"
+                            ><i class="fa-solid fa-rotate"></i
+                          ></span>
+                        </div>
+                        <div class="item-back">
+                          <div class="item-back-cover">
+                            <audio
+                              src="asset/mp3/word_pronunciation/age.mp3"
+                            ></audio>
+                            <p class="item-type">(n)</p>
+                            <p class="item-text-vi">tuổi</p>
+                            <span class="rotate"
+                              ><i class="fa-solid fa-rotate"></i
+                            ></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="discuss">
+            <div class="discuss-header">THẢO LUẬN</div>
+            <div class="input-field comment">
+              <textarea
+                rows="4"
+                placeholder="Viết bình luận của bạn"
+              ></textarea>
+              <button>Gửi</button>
+            </div>
+
+            <div class="discuss-content">
+              <div class="discuss-item">
+                <div class="item-avatar">
+                  <img src="" alt="" />
+                </div>
+                <div class="item-wrapper">
+                  <div class="item-head">
+                    <span class="item-username">Nam Trần</span>
+                    <span class="item-timestamp">3 giờ trước</span>
+                  </div>
+                  <div class="item-discussion">Khóa học này hay quá.</div>
+                  <div class="item-reply">Trả lời</div>
+                </div>
+              </div>
+              <div class="discuss-item level-2">
+                <div class="item-avatar">
+                  <img src="" alt="" />
+                </div>
+                <div class="item-wrapper">
+                  <div class="item-head">
+                    <span class="item-username">Lan Nguyễn</span>
+                    <span class="item-timestamp">3 giờ trước</span>
+                  </div>
+                  <div class="item-discussion">Khóa học thật hữu ích</div>
+                  <div class="item-reply">Trả lời</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal hidden">
+        <div class="modal-body">
+          <div class="trial-alert hidden">
+            <div class="trial-alert-content">
+              <div class="trial-left">
+                <img src="asset/img/common/trial-expired.svg" alt="" />
+              </div>
+
+              <div class="trial-middle">
+                <div class="trial-middle-title">Bài học hiện tạm khoá</div>
+                <div class="trial-middle-content">
+                  Đây là khoá học có tính phí. Hãy nâng cấp lên Premium để học
+                  tiếp bạn nhé!
+                </div>
+              </div>
+
+              <div class="trial-right">
+                <a href="" class="btn-trial-remain">KHÔNG CẢM ƠN</a>
+                <a href="" class="btn-trial-upgrade">NÂNG CẤP PREMIUM</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <audio
+        src="asset/mp3/common/answer_right.mp3"
+        class="answer-right-sound"
+      ></audio>
+      <audio
+        src="asset/mp3/common/test_wrong_answer.mp3"
+        class="answer-wrong-sound"
+      ></audio>
+      <audio src="asset/mp3/common/second_tick.mp3" class="clock-sound"></audio>
+      <audio
+        src="asset/mp3/common/clock_tick.mp3"
+        class="urgent-clock-sound"
+      ></audio>
+    </div>
+  </body>
+</html>

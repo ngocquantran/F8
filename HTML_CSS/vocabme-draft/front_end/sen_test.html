@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font Balootamma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="asset/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+
+    <!-- Jquery SLider -->
+    <link
+      rel="stylesheet"
+      href="asset/library/lightslider-master/dist/css/lightslider.css"
+    />
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="asset/css/base.css" />
+    <link rel="stylesheet" href="asset/css/grid.css" />
+    <link rel="stylesheet" href="asset/css/common.css" />
+    <!-- <link rel="stylesheet" href="asset/css/filter.css" /> -->
+    <link rel="stylesheet" href="asset/css/sen_test.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- Javascript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="asset/js/main.js"></script>
+    <script src="asset/js/sen_test.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <div class="header-menu">
+          <div class="header-menu-item menu-item-back">
+            <a href="">
+              <i class="fa-solid fa-xmark"></i>
+              <span>PLACE AROUND TOWN</span>
+            </a>
+          </div>
+          <div class="header-menu-item menu-item-type">
+            <a href="">Sàng lọc</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="test-intro hidden">
+          <div class="test-intro-content">
+            <div class="test-intro-left">
+              <div class="intro-left-content">
+                <img src="asset/img/common/testing-rule.png" alt="" />
+              </div>
+            </div>
+
+            <div class="test-intro-right">
+              <div class="intro-right-content">
+                <h1>Nội quy phòng thi</h1>
+                <h6>Dưới đây là một số điểm cần lưu ý</h6>
+                <div class="intro-content">
+                  <div class="intro-item item-filter">
+                    <div class="item-left">
+                      <span></span>
+                    </div>
+                    <div class="item-right">
+                      <p>
+                        Bạn cần đạt kết quả kiểm tra tối thiểu 90% để có thể qua
+                        bài học mới.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="intro-item item-learning">
+                    <div class="item-left">
+                      <span></span>
+                    </div>
+                    <div class="item-right">
+                      <p>
+                        Trong lúc làm bài kiểm tra, nếu bạn thoát ra khỏi phòng
+                        thi khi chưa hoàn thành những câu còn lại sẽ được tính
+                        là SAI.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="intro-item item-testing">
+                    <div class="item-left">
+                      <span></span>
+                    </div>
+                    <div class="item-right">
+                      <p>
+                        Bài mới sẽ được mở ngay sau khi bạn đạt kết quả kiểm tra
+                        tối thiểu 90%
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-ready-group">
+            <div class="button-ready-content">
+              <a href="javascript:void(0)" class="ui-button-long button-start"
+                >Bắt đầu ngay</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="test-container">
+          <div class="test-container-wrapper">
+            <div class="test-progress">
+              <div class="progress-title">
+                <strong>01</strong>/<span>18</span>
+              </div>
+              <div class="progress-cover">
+                <span class="test-progress-bar"></span>
+              </div>
+              <div class="test-countdown" id="test-countdown">
+                <span>00:</span><span class="test-countdown-number">15</span>
+              </div>
+            </div>
+
+            <div class="test-body">
+              <div class="test-body-wrapper">
+                <div
+                  class="test-exercise"
+                  index="1"
+                  typequestion="1"
+                  typeanswer="write"
+                  answer="address"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Viết hoàn chỉnh câu văn theo phiên âm sau:
+                      </p>
+                      <p class="question-guide">
+                        (Lưu ý quy tắc viết hoa, chính tả và dấu câu!)
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >aɪv hɜːrd ɡreɪt θɪŋz əˈbaʊt juː</span
+                          >
+
+                          <span class="content-right-answer hidden"
+                            >I've heard great things about you</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer answer-write">
+                    <div class="answer-cover">
+                      <input
+                        class="answer-writing"
+                        placeholder="Gõ đáp án của bạn tại đây"
+                        name=""
+                      />
+                      <div class="answer-check">Kiểm tra</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="test-exercise"
+                  index="2"
+                  typequestion="2"
+                  typeanswer="choose"
+                  answer="address"
+                  answer-index="2"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Chọn câu văn đúng theo gợi ý sau:
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >Tôi đã được nghe nói nhiều về bạn.</span
+                          >
+
+                          <span class="content-right-answer hidden"
+                            >I've heard great things about you</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer">
+                    <div class="answer-wrapper">
+                      <div class="answer-choice" value="1">
+                        <span>But you can call me Eddie</span>
+                      </div>
+                      <div class="answer-choice" value="2">
+                        <span>I've heard great things about you</span>
+                      </div>
+                      <div class="answer-choice" value="3">
+                        <span>I'd like you to meet my friend</span>
+                      </div>
+                      <div class="answer-choice" value="4">
+                        <span>My name is Sarah Carter</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="test-exercise exercise-current"
+                  index="3"
+                  typequestion="3"
+                  typeanswer="shuffle"
+                  answer="address"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Sắp xếp những từ sau thành câu hoàn chỉnh theo gợi ý:
+                      </p>
+                      <p class="question-guide">
+                        (Di chuyển các từ/cụm từ sau theo đúng vị trí để tạo
+                        thành câu hoàn chỉnh)
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >Tôi muốn bạn gặp bạn của tôi.</span
+                          >
+
+                          <span class="content-right-answer hidden"
+                            >I'd like you to meet my friend.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer answer-shuffle">
+                    <div class="answer-cover">
+                      <ul class="shuffle-content">
+                        <li class="ui-state-default">like</li>
+                        <li class="ui-state-default">to meet</li>
+                        <li class="ui-state-default">friend.</li>
+                        <li class="ui-state-default">my</li>
+                        <li class="ui-state-default">I'd</li>
+                        <li class="ui-state-default">you</li>
+                      </ul>
+                      <div class="answer-submit">Kiểm tra</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="test-exercise"
+                  index="4"
+                  typequestion="4"
+                  typeanswer="write"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Nghe và viết lại câu văn hoàn chỉnh với gợi ý:
+                      </p>
+                      <p class="question-guide">
+                        (Lưu ý quy tắc viết hoa, chính tả và dấu câu!)
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >Nhưng bạn có thể gọi tôi là Eddie.</span
+                          >
+
+                          <span class="content-right-answer hidden"
+                            >But you can call me Eddie.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer answer-write">
+                    <div class="answer-cover">
+                      <input
+                        class="answer-writing"
+                        placeholder="Gõ đáp án của bạn tại đây"
+                        name=""
+                      />
+                      <div class="answer-check">Kiểm tra</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="test-exercise"
+                  index="5"
+                  typequestion="5"
+                  typeanswer="choose"
+                  answer="address"
+                  answer-index="3"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Nghe và chọn nghĩa đúng của câu:
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <div class="question-sound play-sound">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <audio
+                              src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                            ></audio>
+                            <span>______________?</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer">
+                    <div class="answer-wrapper">
+                      <div class="answer-choice" value="1">
+                        <span>Nhưng bạn có thể gọi tôi là Eddie.</span>
+                      </div>
+                      <div class="answer-choice" value="2">
+                        <span>Bạn còn nhớ tôi không?</span>
+                      </div>
+                      <div class="answer-choice" value="3">
+                        <span>Tên tôi là Sarah Carter.</span>
+                      </div>
+                      <div class="answer-choice" value="4">
+                        <span>Tôi muốn bạn gặp bạn của tôi</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="test-exercise"
+                  index="6"
+                  typequestion="6"
+                  typeanswer="choose"
+                  answer="address"
+                  answer-index="2"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Chọn câu văn phù hợp với cách dùng sau:
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >Dùng để giúp một người quen đã lâu không gặp gợi
+                            nhớ về mình.</span
+                          >
+
+                          <span class="content-right-answer hidden"
+                            >Do you remember me?</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer">
+                    <div class="answer-wrapper">
+                      <div class="answer-choice" value="1">
+                        <span>But you can call me Eddie</span>
+                      </div>
+                      <div class="answer-choice" value="2">
+                        <span>Do you remember me?</span>
+                      </div>
+                      <div class="answer-choice" value="3">
+                        <span>I'd like you to meet my friend</span>
+                      </div>
+                      <div class="answer-choice" value="4">
+                        <span>My name is Sarah Carter</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="test-exercise"
+                  index="7"
+                  typequestion="7"
+                  typeanswer="choose"
+                  answer="address"
+                  answer-index="2"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Chọn ý nghĩa đúng của câu văn sau:
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="content-left">
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/person-5.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="https://www.voca.vn/assets/images/sentence/fail-5.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
+
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >But you can call me Eddie.</span
+                          >
+
+                          <span class="content-right-answer hidden"
+                            >Nhưng bạn có thể gọi tôi là Eddie.</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer">
+                    <div class="answer-wrapper">
+                      <div class="answer-choice" value="1">
+                        <span>Tên tôi là Sarah Carter</span>
+                      </div>
+                      <div class="answer-choice" value="2">
+                        <span>Nhưng bạn có thể gọi tôi là Eddie</span>
+                      </div>
+                      <div class="answer-choice" value="3">
+                        <span>Tôi muốn bạn gặp bạn của tôi</span>
+                      </div>
+                      <div class="answer-choice" value="4">
+                        <span>Bạn còn nhớ tôi không</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                 <div
+                  class="test-exercise"
+                  index="8"
+                  typequestion="8"
+                  typeanswer="choose"
+                  answer="address"
+                  answer-index="4"
+                >
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        Chọn câu văn còn thiếu trong ngữ cảnh sau:
+                      </p>
+                      <p class="question-guide">
+                        Sara is introducing Peter to Ed for the first time.
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="https://home.voca.vn/assets/sound/sentence/sentence/30a0278be7e8a18383170ef29f712bf8.mp3"
+                        ></audio>
+                      </div>
+
+                      <div class="test-exercise-question-content">
+                        <div class="context-list">
+                          <div class="context-item">
+                            <div class="context-left">
+                              <img
+                                src="https://www.voca.vn/assets/images/sentence/talk-4.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="context-right">
+                              <p>
+                                <strong>Sara</strong>:
+                                <span
+                                  >Let me introduce you. This is my colleague,
+                                  Ed.</span
+                                >
+                              </p>
+                            </div>
+                          </div>
+                          <div class="context-item">
+                            <div class="context-left">
+                              <img
+                                src="https://www.voca.vn/assets/images/sentence/talk-3.png"
+                                alt=""
+                              />
+                            </div>
+                            <div class="context-right">
+                              <p>
+                                <strong>Peter</strong>:
+                                <span
+                                  >Hello, Ed. I'm glad to meet you.
+                                  <span class="sp-blank"></span
+                                ></span>
+                              </p>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="test-exercise-answer">
+                    <div class="answer-wrapper">
+                      <div class="answer-choice" value="1">
+                        <span>But you can call me Eddie</span>
+                      </div>
+                      <div class="answer-choice" value="2">
+                        <span>Do you remember me?</span>
+                      </div>
+                      <div class="answer-choice" value="3">
+                        <span>I'd like you to meet my friend</span>
+                      </div>
+                      <div class="answer-choice" value="4">
+                        <span>I've heard great things about you</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal hidden">
+        <div class="modal-body">
+          <div class="trial-alert hidden">
+            <div class="trial-alert-content">
+              <div class="trial-left">
+                <img src="asset/img/common/trial-expired.svg" alt="" />
+              </div>
+
+              <div class="trial-middle">
+                <div class="trial-middle-title">Bài học hiện tạm khoá</div>
+                <div class="trial-middle-content">
+                  Đây là khoá học có tính phí. Hãy nâng cấp lên Premium để học
+                  tiếp bạn nhé!
+                </div>
+              </div>
+
+              <div class="trial-right">
+                <a href="" class="btn-trial-remain">KHÔNG CẢM ƠN</a>
+                <a href="" class="btn-trial-upgrade">NÂNG CẤP PREMIUM</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <audio
+        src="asset/mp3/common/answer_right.mp3"
+        class="answer-right-sound"
+      ></audio>
+      <audio
+        src="asset/mp3/common/test_wrong_answer.mp3"
+        class="answer-wrong-sound"
+      ></audio>
+      <audio src="asset/mp3/common/second_tick.mp3" class="clock-sound"></audio>
+      <audio
+        src="asset/mp3/common/clock_tick.mp3"
+        class="urgent-clock-sound"
+      ></audio>
+    </div>
+  </body>
+</html>

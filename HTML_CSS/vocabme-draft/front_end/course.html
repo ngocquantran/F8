@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Reset CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- font Balootamma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="asset/font/fontawesome-free-6.1.1-web/css/all.min.css"
+    />
+
+    <!-- Jquery SLider -->
+    <link
+      rel="stylesheet"
+      href="asset/library/lightslider-master/dist/css/lightslider.css"
+    />
+
+    <!-- Style css -->
+    <link rel="stylesheet" href="asset/css/base.css" />
+    <link rel="stylesheet" href="asset/css/grid.css" />
+    <link rel="stylesheet" href="asset/css/common.css" />
+    <link rel="stylesheet" href="asset/css/course.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- Javascript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="asset/js/main.js"></script>
+    <script src="asset/js/course.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <div class="grid-wide">
+          <div class="header-nav">
+            <div class="header-nav-left">
+              <div class="header-nav-item nav-item-home">
+                <a href="">
+                  <img src="asset/img/home/header/logo.jpg" alt="" />
+                </a>
+              </div>
+              <div class="header-nav-item nav-item-personal">
+                <a href="">
+                  <i></i>
+                  <span>CÁ NHÂN</span>
+                </a>
+              </div>
+              <div class="header-nav-item nav-item-course">
+                <i></i>
+                <p class="">KHÓA HỌC</p>
+                <ul class="header-nav-item-sub-menu">
+                  <li class="header-nav-item-sub-item">Khóa học Miễn phí</li>
+                  <li class="header-nav-item-sub-item">
+                    Từ vựng theo chuẩn CEFR
+                  </li>
+                  <li class="header-nav-item-sub-item">
+                    Từ vựng theo Chứng chỉ Quốc tế
+                  </li>
+                  <li class="header-nav-item-sub-item">Từ vựng cho Học sinh</li>
+                  <li class="header-nav-item-sub-item">Từ vựng Giao tiếp</li>
+                  <li class="header-nav-item-sub-item">
+                    Từ vựng Thương mại, Kinh tế
+                  </li>
+                  <li class="header-nav-item-sub-item">Từ vựng Chuyên ngành</li>
+                </ul>
+              </div>
+            </div>
+            <div class="header-nav-right">
+              <div class="header-nav-item">ĐĂNG NHẬP</div>
+              <div class="header-nav-item">
+                <a href="">
+                  <img src="asset/img/home/header/menu-vip-button.svg" alt="" />
+                </a>
+              </div>
+              <div class="header-nav-item nav-item-user">
+                <a href="">
+                  <img src="asset/img/home/header/default_avt.png" alt="" />
+                </a>
+                <ul class="header-nav-item-sub-menu">
+                  <li class="header-nav-item-sub-item">
+                    <a href=""> Trang cá nhân </a>
+                  </li>
+                  <li class="header-nav-item-sub-item">
+                    <a href=""> Cài đặt chung </a>
+                  </li>
+                  <li class="header-nav-item-sub-item">
+                    <a href=""> Đăng xuất </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="course">
+          <h1 class="course__header">
+            1000 ESSENTIAL WORDS in STORIES (Improver)
+          </h1>
+          <div class="course__level-tag level-tag">
+            <span class="a0">A0</span>
+            <span class="a1">A1</span>
+            <span class="a2">A2</span>
+            <span class="b1">B1</span>
+            <span class="b2">B2</span>
+            <span class="c1">C1</span>
+            <span class="c2">C2</span>
+          </div>
+
+          <div class="course__info">
+            <ul class="course__info-list lightSlider">
+              <li class="course__info-item">
+                <div class="course__info-item-progress">
+                  <h4>Tiến độ của bạn</h4>
+                  <div class="course__info-item-progress-content">
+                    <div class="course__info-item-progress-item lesson">
+                      <img
+                        src="asset/img/common/course-progress-star.svg"
+                        alt=""
+                      />
+                      <div class="course__info-item-progress-item-detail">
+                        <div>0</div>
+                        <div>Bài đã học</div>
+                      </div>
+                    </div>
+                    <div class="course__info-item-progress-item learned">
+                      <img
+                        src="asset/img/common/course-progress-learned.svg"
+                        alt=""
+                      />
+                      <div class="course__info-item-progress-item-detail">
+                        <div>0</div>
+                        <div>Từ đã thuộc</div>
+                      </div>
+                    </div>
+                    <div class="course__info-item-progress-item not-learn">
+                      <img
+                        src="asset/img/common/course-progress-not-learn.svg"
+                        alt=""
+                      />
+                      <div class="course__info-item-progress-item-detail">
+                        <div>0</div>
+                        <div>Từ chưa thuộc</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="course__info-item goal">
+                <h5>Mục tiêu đầu ra</h5>
+                <div class="course__info-item-content"></div>
+              </li>
+              <li class="course__info-item content">
+                <h5>Nội dung khóa học</h5>
+                <div class="course__info-item-content"></div>
+              </li>
+              <li class="course__info-item student">
+                <h5>Đối tượng phù hợp</h5>
+                <div class="course__info-item-content"></div>
+              </li>
+            </ul>
+            <div class="course__info-next-btn">
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+
+          <div class="course-content">
+            <h3 class="course-content-header">Bài học <span>29</span></h3>
+            <div class="course-content-list">
+              <div class="row">
+                <div class="col l-3">
+                  <div class="course-content-item item-active">
+                    <a href="">
+                      <div class="course-content-item-thumb">
+                        <img
+                          src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/WHY-MONKEY-HAS-NO-HOME/thumb/WHY-MONKEY-HAS-NO-HOME.jpg"
+                          alt=""
+                        />
+                      </div>
+
+                      <h4 class="course-content-item-name">
+                        WHY MONKEY HAS NO HOME
+                      </h4>
+
+                      <div class="course-content-item-progress">
+                        <div class="course-content-item-progress-range">
+                          <div class="course-content-item-progress-value"></div>
+                          <p><span>18</span>/<span>18</span></p>
+                          <i class="fa-solid fa-star"></i>
+                        </div>
+                      </div>
+
+                      <div class="course-content-item-btn btn-review">
+                        <div class="course-content-item-btn-content">
+                          <h5>WHY MONKEY HAS NO HOME</h5>
+                          <h6>
+                            Từ đã thuộc: <span>19</span> / <span>19</span>
+                          </h6>
+                          <a href="" class="course-btn-longer"> ÔN TẬP LẠI</a>
+                          <a href="" class="course-btn-longer btn-result"
+                            >XEM KẾT QUẢ</a
+                          >
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item item-active">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/MATTHEW-LEARNS-A-LESSON/thumb/MATTHEW-LEARNS-A-LESSON.jpg"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">
+                      MATTHEW LEARNS A LESSON
+                    </h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>13</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn btn-review">
+                      <div class="course-content-item-btn-content">
+                        <h5>MATTHEW LEARNS A LESSON</h5>
+                        <h6>Từ đã thuộc: <span>13</span> / <span>19</span></h6>
+                        <a href="" class="course-btn-longer"> ÔN TẬP LẠI</a>
+                        <a href="" class="course-btn-longer btn-result"
+                          >XEM KẾT QUẢ</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item item-current">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-MAGIC-CUP/thumb/THE-MAGIC-CUP.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">THE MAGIC CUP</h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>0</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn">
+                      <div class="course-content-item-btn-content">
+                        <h5>THE MAGIC CUP</h5>
+                        <h6>Từ đã thuộc: <span>0</span> / <span>19</span></h6>
+                        <a href="" class="course-btn-longer">HỌC NGAY</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>0</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn btn-disabled">
+                      <div class="course-content-item-btn-content">
+                        <p>
+                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
+                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
+                          trình học bạn nhé!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>0</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn btn-disabled">
+                      <div class="course-content-item-btn-content">
+                        <p>
+                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
+                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
+                          trình học bạn nhé!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>0</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn btn-disabled">
+                      <div class="course-content-item-btn-content">
+                        <p>
+                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
+                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
+                          trình học bạn nhé!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>0</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn btn-disabled">
+                      <div class="course-content-item-btn-content">
+                        <p>
+                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
+                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
+                          trình học bạn nhé!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col l-3">
+                  <div class="course-content-item">
+                    <div class="course-content-item-thumb">
+                      <img
+                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
+                        alt=""
+                      />
+                    </div>
+
+                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
+
+                    <div class="course-content-item-progress">
+                      <div class="course-content-item-progress-range">
+                        <div class="course-content-item-progress-value"></div>
+                        <p><span>0</span>/<span>19</span></p>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+
+                    <div class="course-content-item-btn btn-disabled">
+                      <div class="course-content-item-btn-content">
+                        <p>
+                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
+                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
+                          trình học bạn nhé!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-cover">
+          <ul>
+            <li>
+              <a href="">VỀ MYVOCAB</a>
+            </li>
+            <li>
+              <a href="">KHÓA HỌC</a>
+            </li>
+            <li>
+              <a href="">PREMIUM</a>
+            </li>
+            <li>
+              <a href="">BLOG</a>
+            </li>
+            <li>
+              <a href="">LIÊN HỆ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal hidden">
+        <div class="modal-body">
+          <div class="trial-alert hidden">
+            <div class="trial-alert-content">
+              <div class="trial-left">
+                <img src="asset/img/common/trial-expired.svg" alt="" />
+              </div>
+
+              <div class="trial-middle">
+                <div class="trial-middle-title">Bài học hiện tạm khoá</div>
+                <div class="trial-middle-content">
+                  Đây là khoá học có tính phí. Hãy nâng cấp lên Premium để học
+                  tiếp bạn nhé!
+                </div>
+              </div>
+
+              <div class="trial-right">
+                <a href="" class="btn-trial-remain">KHÔNG CẢM ƠN</a>
+                <a href="" class="btn-trial-upgrade">NÂNG CẤP PREMIUM</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
