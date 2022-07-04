@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "sentence")
 public class Sentence {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String content;
     private String img;
     private String phonetic;

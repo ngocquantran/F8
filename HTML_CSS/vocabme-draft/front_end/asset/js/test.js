@@ -1,22 +1,25 @@
 $(function () {
   $(".test-intro .button-ready-content").on("click", async function () {
-    await getTestContent(1);
+    await getTestContent();
     $(".test-intro").addClass("hidden");
     $(".test-container").removeClass("hidden");
     $(".test-exercise").eq(0).addClass("exercise-current");
     // countdown(15);
+    playWordSound();
     runTest();
   });
-
 });
 
-// Get Test data---------------------------------------------------------------------------------------------------
+// RENDER PAGE Test ---------------------------------------------------------------------------------------------------
 let vocabs = [];
-const URL_API = "http://localhost:8080/api/v1";
+const URL_API = "http://localhost:8898/api/v1";
+let params = new URLSearchParams(window.location.search);
+let topicId = params.get("id");
+let answerRequest = [];
 
-async function getTestContent(id) {
+async function getTestContent() {
   try {
-    let res = await axios.get(`${URL_API}/test/${id}`);
+    let res = await axios.get(`${URL_API}/test/${topicId}/vocabs`);
     vocabs = res.data;
     console.log(vocabs);
     renderQuestions2(vocabs);
@@ -43,6 +46,7 @@ function renderQuestions2(arr) {
                   typeanswer="${type <= 7 ? "choose" : "write"}"
                   answer="${question.word}"
                   answer-index="${question.answerIndex}"
+                  word-id="${question.id}"
                 >
                   <div class="test-exercise-question">
                     <div class="test-exercise-question-viewport">
@@ -266,9 +270,7 @@ function renderQuestions2(arr) {
                 </div>`);
   });
   $testContent.append(html);
-
 }
-
 
 // Countdown Timer-------------------------------------------------------------------------------------------------
 let timeCount;
@@ -287,6 +289,7 @@ function countdown(time) {
     }
 
     if (time == 0) {
+      collectAnswerResult(false);
       timeOut();
 
       // clearInterval(timeCount);
@@ -297,6 +300,7 @@ function countdown(time) {
 async function timeOut() {
   await stopCountDown();
   await disableChoosing();
+  playSoundWrong();
   await showAnswer();
   await nextQuestion();
 }
@@ -349,6 +353,10 @@ function nextQuestion() {
       $next.addClass("exercise-current");
       runTest();
     }, 3000);
+  } else {
+    setTimeout(async () => {
+      //  window.location.href = `/test_result.html?id=${topicId}`;
+    }, 3000);
   }
 }
 
@@ -376,6 +384,7 @@ function checkAnswerGuessing() {
 
   $rightChoice.on("click", function () {
     stopCountDown();
+    collectAnswerResult(true);
     $rightChoice.addClass("choose-right");
     playSoundRight();
 
@@ -387,6 +396,8 @@ function checkAnswerGuessing() {
   $wrongChoice.each(function (index, choice) {
     $(choice).on("click", function () {
       stopCountDown();
+      collectAnswerResult(false);
+
       $rightChoice.addClass("choose-right");
       $(choice).addClass("choose-wrong");
       playSoundWrong();
@@ -415,15 +426,33 @@ function checkAnswerWriting() {
     if ($input.val().toLowerCase().trim() == answer) {
       playSoundRight();
       $input.addClass("show-answer-right");
+      collectAnswerResult(true);
     } else {
       playSoundWrong();
       $input.addClass("show-answer-wrong");
+      collectAnswerResult(false);
     }
     stopCountDown();
     showAnswer();
     nextQuestion();
   });
 }
+
+function collectAnswerResult(status) {
+  let id = $(".test-exercise.exercise-current").attr("word-id");
+  let time = 15 - parseInt($(".test-countdown-number").text());
+  answerRequest.push({
+    id: id,
+    status: status,
+    learningStage: null,
+    testTime: time,
+    userTopic: null,
+    vocab: null,
+    learn: null,
+  });
+  console.log(answerRequest);
+}
+
 
 // active submit button when input--------------------------------------------------------------------------------
 
@@ -479,108 +508,13 @@ function playSoundWrong() {
   };
 }
 
-
-
-
-
-// function renderQuestions(arr) {
-//   const $questions = $(".test-exercise");
-//   $questions.each(function (index, question) {
-//     $(question).attr("answer", arr[index].word);
-//     $(question).attr("answer-index", arr[index].answerIndex);
-//     $(question)
-//       .find(".test-exercise-question audio")
-//       .attr("src", arr[index].audio);
-//     $(question)
-//       .find(".test-exercise-question .test-exercise-question-phonetic")
-//       .text(arr[index].phonetic);
-//     $(question)
-//       .find(".test-exercise-question .question-phonetic")
-//       .text(arr[index].phonetic);
-//     $(question)
-//       .find(".test-exercise-question-view-back img")
-//       .attr("src", arr[index].img);
-//     $(question)
-//       .find(".test-exercise-question-view-back .word-content")
-//       .text(arr[index].word);
-//     $(question)
-//       .find(".test-exercise-question-view-back .word-content-type")
-//       .text(arr[index].type);
-//     $(question)
-//       .find(".test-exercise-question-view-back .word-content-phonetic audio")
-//       .text(arr[index].audio);
-//     $(question)
-//       .find(".test-exercise-question-view-back .word-content-phonetic-result")
-//       .text(arr[index].phonetic);
-//     $(question)
-//       .find(".test-exercise-question-view-back .text-definition-vi")
-//       .text(arr[index].vnMeaning);
-//     $(question).find(".test-exercise-question-word").text(arr[index].word);
-//     $(question).find(".test-exercise-question-word span").text(arr[index].type);
-//     $(question).find(".question-hint .hint-image").attr("src", arr[index].img);
-//     $(question).find(".question-hint .hint-word").text(arr[index].vnMeaning);
-//     $(question).find(".question-hint .hint-word span").text(arr[index].type);
-//     $(question)
-//       .find(".test-exercise-question .question-definition")
-//       .text(arr[index].enMeaning);
-//     $(question)
-//       .find(".test-exercise-question .question-word-type")
-//       .text(arr[index].type);
-//     $(question)
-//       .find(".result-content-example-translate")
-//       .text(arr[index].vnSentence);
-//     $(question)
-//       .find(".test-exercise-question .question-vi-sentence")
-//       .text(arr[index].vnSentence.replace("_", ""));
-//     $(question)
-//       .find(".result-content-example-translate")
-//       .text(arr[index].vnSentence);
-
-//     // Tách từ trong câu tiếng anh để render
-//     let enSentence = arr[index].enSentence.split("_");
-//     $(question)
-//       .find(".question-missing-sentence span")
-//       .eq(0)
-//       .text(enSentence[0]);
-//     $(question).find(".question-missing-sentence span").eq(1).text("_ _ _ _ ");
-//     $(question)
-//       .find(".question-missing-sentence span")
-//       .eq(2)
-//       .text(enSentence[2]);
-
-//     $(question).find(".result-content-example span").eq(0).text(enSentence[0]);
-//     $(question).find(".result-content-example span").eq(1).text(enSentence[1]);
-//     $(question).find(".result-content-example span").eq(2).text(enSentence[2]);
-
-//     // Answer render
-
-//     if ($(question).attr("typeanswer") == "choose") {
-//       renderAnswer($(question), $(question).attr("typequestion"), arr[index]);
-//     }
-//   });
-// }
-
-// function renderAnswer($question, typeQuestion, vocab) {
-//   if (
-//     typeQuestion == 1 ||
-//     typeQuestion == 3 ||
-//     typeQuestion == 4 ||
-//     typeQuestion == 6
-//   ) {
-//     assignAnswer($question, vocab.vocabs);
-//   } else if (typeQuestion == 2 || typeQuestion == 5) {
-//     assignAnswer($question, vocab.vnMeanings);
-//   } else {
-//     let arr = vocab.enSentences.map(function (sen) {
-//       return sen.replaceAll("_", "");
-//     });
-//     assignAnswer($question, arr);
-//   }
-// }
-
-// function assignAnswer($question, arrAnswer) {
-//   const $answers = $question.find(".answer-wrapper .answer-choice");
-//   $answers.each(function (index, answer) {
-//     $(answer).text(arrAnswer[index]);
-//   });
-// }
+function playWordSound() {
+  const $sound = $(".play-sound");
+  $sound.each(function (index, sound) {
+    const $btn = $(sound).find("i");
+    const $mp3 = $(sound).find("audio");
+    $btn.on("click", function () {
+      playASound($mp3);
+    });
+  });
+}

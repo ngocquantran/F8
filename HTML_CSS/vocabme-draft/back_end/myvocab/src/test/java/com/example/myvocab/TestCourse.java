@@ -98,7 +98,7 @@ public class TestCourse {
 
     @Test @Transactional
     void getTopicsOfCourse(){
-        Optional<Course> course=courseRepo.findCourseById(1);
+        Optional<Course> course=courseRepo.findCourseById(1L);
         assertThat(course).isPresent();
         assertThat(course.get().getNumberOfTopics()).isEqualTo(7);
         assertThat(course.get().getCategory().getTitle()).isEqualTo("Từ vựng");

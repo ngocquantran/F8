@@ -1,14 +1,14 @@
 package com.example.myvocab.model.enummodel;
 
 public enum TopicState {
-    PENDING(0), PASS(1), NOW(2), LOCK(3);
-    private int code;
+    PENDING("PENDING"), PASS("PASS"), NOW("NOW"), LOCK("LOCK"),WAIT("WAIT");
+    private String code;
 
-    TopicState(int code) {
+    TopicState(String code) {
         this.code = code;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 }

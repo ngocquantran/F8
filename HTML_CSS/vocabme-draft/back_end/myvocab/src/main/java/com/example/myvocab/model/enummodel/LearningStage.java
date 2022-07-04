@@ -2,7 +2,7 @@ package com.example.myvocab.model.enummodel;
 
 
 public enum LearningStage {
-    FIRST("F"),BEST("B"),PREVIOUS("P"),NOW("N");
+    FIRST("FIRST"),BEST("BEST"),PREVIOUS("PREVIOUS"),NOW("NOW");
     private String code;
 
     LearningStage(String code) {

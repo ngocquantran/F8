@@ -17,7 +17,7 @@ import java.util.Objects;
 public class UserTopicSentence {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private LearningStage learningStage;
     private int testTime;
 

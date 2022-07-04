@@ -5,10 +5,10 @@ import javax.persistence.Converter;
 import java.util.stream.Stream;
 
 @Converter(autoApply = true)
-public class UserStateConverter implements AttributeConverter<UserState,Integer> {
+public class UserStateConverter implements AttributeConverter<UserState,String> {
 
     @Override
-    public Integer convertToDatabaseColumn(UserState userState) {
+    public String convertToDatabaseColumn(UserState userState) {
         if (userState==null){
             return null;
         }
@@ -16,11 +16,11 @@ public class UserStateConverter implements AttributeConverter<UserState,Integer>
     }
 
     @Override
-    public UserState convertToEntityAttribute(Integer integer) {
-        if (integer==null){
+    public UserState convertToEntityAttribute(String code) {
+        if (code==null){
             return null;
         }
-        return Stream.of(UserState.values()).filter(u -> u.getCode()==integer.intValue()).findFirst()
+        return Stream.of(UserState.values()).filter(u -> u.getCode().equals(code)).findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 }

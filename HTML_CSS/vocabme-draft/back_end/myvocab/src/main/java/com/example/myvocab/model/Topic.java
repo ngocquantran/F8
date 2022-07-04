@@ -2,8 +2,10 @@ package com.example.myvocab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,7 +19,7 @@ import java.util.Set;
 @Table(name = "topic")
 public class Topic {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
     private String img;
 
@@ -25,6 +27,8 @@ public class Topic {
     @JoinColumn(name = "id_course", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private Course course;
+
+
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
@@ -36,6 +40,7 @@ public class Topic {
             joinColumns = @JoinColumn(name = "id_topic"),
             inverseJoinColumns = @JoinColumn(name = "id_vocab")
     )
+    @JsonIgnore
     private Set<Vocab> vocabs=new HashSet<>();
 
 
@@ -48,6 +53,24 @@ public class Topic {
             joinColumns = @JoinColumn(name = "id_topic"),
             inverseJoinColumns = @JoinColumn(name = "id_sentence")
     )
+    @JsonIgnore
     private Set<Sentence> sentences=new HashSet<>();
+
+    @Transient
+    private int numberOfVocabs;
+
+    @Transient
+    private int numberOfSens;
+
+    public int getNumberOfVocabs() {
+        return vocabs.size();
+    }
+
+    public int getNumberOfSens() {
+        return sentences.size();
+    }
+
+    //    @OneToMany(mappedBy = "topic")
+//    private Set<TopicDiscuss> discusses=new HashSet<>();
 
 }

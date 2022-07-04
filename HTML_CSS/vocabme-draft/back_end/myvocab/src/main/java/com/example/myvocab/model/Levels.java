@@ -20,7 +20,7 @@ import java.util.Set;
 @Table(name = "levels")
 public class Levels {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
 
 

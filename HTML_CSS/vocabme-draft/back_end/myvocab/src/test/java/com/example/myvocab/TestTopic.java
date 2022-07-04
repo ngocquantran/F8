@@ -20,7 +20,7 @@ public class TestTopic {
 
     @Test
     void findTopicByCourseId(){
-        List<Topic> topics=topicRepo.findTopicsByCourse_Id(15);
-        assertThat(topics).extracting(Topic::getCourse).extracting(Course::getId).containsOnly(15);
+        List<Topic> topics=topicRepo.findTopicsByCourse_Id(15L);
+        assertThat(topics).extracting(Topic::getCourse).extracting(Course::getId).containsOnly(15L);
     }
 }

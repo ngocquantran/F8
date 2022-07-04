@@ -18,7 +18,7 @@ import java.util.Objects;
 @Table(name = "course_group")
 public class CourseGroup {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
 
     public CourseGroup(String title) {

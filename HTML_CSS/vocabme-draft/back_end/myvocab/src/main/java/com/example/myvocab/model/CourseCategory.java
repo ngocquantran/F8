@@ -19,7 +19,7 @@ import java.util.Objects;
 public class CourseCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
 
     public CourseCategory(String title) {

@@ -1,15 +1,18 @@
 package com.example.myvocab.model.enummodel;
 
 
-public enum OrderStatus {
-    PENDING(0),ACTIVATED(1);
-    private int code;
+import java.util.stream.Stream;
 
-    OrderStatus(int code) {
+public enum OrderStatus {
+    PENDING("PENDING"), ACTIVATED("ACTIVATED");
+
+    private String code;
+
+    OrderStatus(String code) {
         this.code = code;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 }

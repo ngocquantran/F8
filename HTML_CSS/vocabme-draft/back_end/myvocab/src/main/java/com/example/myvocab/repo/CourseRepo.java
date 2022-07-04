@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CourseRepo extends JpaRepository<Course,Integer> {
+public interface CourseRepo extends JpaRepository<Course, Integer> {
 
     @Query("select c from Course c where upper(c.category.title) = upper(?1)")
     List<Course> findCoursesByCategory_TitleEqualsIgnoreCase(String category);
@@ -22,10 +22,13 @@ public interface CourseRepo extends JpaRepository<Course,Integer> {
 
     List<Course> findCoursesByGroup(CourseGroup group);
 
-    Optional<Course> findCourseById(int id);
+    Optional<Course> findCourseById(Long id);
+
+    @Query("select c from Course c INNER JOIN Topic t ON t.course=c WHERE t.id=:id")
+    Optional<Course> findByTopicId(Long id);
 
 
-@Query("select c.group from Course c where upper(c.category.title) = upper(?1) group by c.group")
+    @Query("select c.group from Course c where upper(c.category.title) = upper(?1) group by c.group")
     List<CourseGroup> getGroupsByCategory(String category);
 
 

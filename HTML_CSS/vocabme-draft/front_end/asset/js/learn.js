@@ -2,7 +2,7 @@ $(function () {
     init();
     
   async function init() {
-    await getStudiedContent(1);
+    await getStudiedContent();
     learningCheckBtn1();
     learningViewportSlideBox();
     inputGuessWord();
@@ -20,15 +20,19 @@ $(function () {
 });
 
 let studiedVocabs = [];
-const URL_API = "http://localhost:8080/api/v1";
+const URL_API = "http://localhost:8898/api/v1";
+let params = new URLSearchParams(window.location.search);
+let topicId = params.get("id");
+let userId = "1";
 
 
 
 
 // Get Learning List Vocabs ------------------------------------------------------------------------------------------------
-async function getStudiedContent(id) {
+async function getStudiedContent() {
   try {
-    let res = await axios.get(`${URL_API}/learning/${id}`);
+    let res = await axios.get(`${URL_API}/learning/vocabs/${topicId}`);
+    console.log(res.data);
     studiedVocabs = res.data;
     renderStudiedVocabs();
   } catch (error) {
@@ -198,6 +202,14 @@ function inputGuessWord() {
 
 // Chuyển từ học tiếp/quay lại------------------------------------------------------------------
 
+function disableLearningBtnForASecond() {
+  const $btn = $(".learning-word-bottom-btn");
+  $btn.css({ "pointer-events": "none" });
+  setTimeout(() => {
+    $btn.css({ "pointer-events": "all" });
+  }, 1500);
+}
+
 function learningWords() {
   const $cards = $(".learning-word-layer");
   const n = $cards.length;
@@ -208,6 +220,9 @@ function learningWords() {
 
   const $btnNext = $(".learning-word-bottom-btn.btn-next");
   $btnNext.on("click", function () {
+
+    disableLearningBtnForASecond();
+  
     $cards.each(function (index, card) {
       $(card).removeClass("left");
       $(card).addClass("right");
@@ -227,11 +242,15 @@ function learningWords() {
       );
 
       setCurrentLearningCart($cards.eq(index));
+    } else {
+      window.location.href = `/test.html?id=${topicId}`;
     }
   });
 
   const $btnBack = $(".learning-word-bottom-btn.btn-back");
   $btnBack.on("click", function () {
+
+     disableLearningBtnForASecond();
     $cards.each(function (index, card) {
       $(card).removeClass("right");
       $(card).addClass("left");

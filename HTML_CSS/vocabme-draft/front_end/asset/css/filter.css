@@ -645,6 +645,8 @@
   display: flex;
   align-items: center;
   position: relative;
+  justify-content: space-between;
+  padding-right: 20px;
 }
 
 .choose-study-word-item label input {
@@ -739,6 +741,7 @@
   border-bottom: 3px solid var(--color-border-gray-light);
   text-transform: uppercase;
   line-height: 46px;
+pointer-events: none;
 }
 
 .choose-study-word-content-footer {
@@ -753,4 +756,5 @@
   border: 1px solid var(--color-border-green);
   border-bottom: 3px solid var(--color-border-green);
   cursor: pointer;
+  pointer-events: all;
 }

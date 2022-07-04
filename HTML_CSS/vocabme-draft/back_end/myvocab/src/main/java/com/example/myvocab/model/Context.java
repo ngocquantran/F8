@@ -15,13 +15,13 @@ import java.util.Objects;
 @Table(name = "context")
 public class Context {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private int personNumber;
     private String name;
     private Gender gender;
     private String enSentence;
     private String vnSentence;
-    private byte isContainKey;
+    private boolean isContainKey;
     private int startTime;
     private int endTime;
 

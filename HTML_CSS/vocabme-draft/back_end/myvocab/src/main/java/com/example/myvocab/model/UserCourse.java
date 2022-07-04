@@ -1,6 +1,8 @@
 package com.example.myvocab.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -13,72 +15,39 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_course")
 public class UserCourse {
-    private long id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_course")
+    @JsonIgnore
+    private Course course;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user")
+    @JsonIgnore
+    private Users user;
+
+    @Formula("(SELECT COUNT(*)\n" +
+            "FROM user_topic ut \n" +
+            "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
+            "WHERE ut.status ='PASS' AND uc.id=id)")
     private Integer finishedTopics;
+
+    @Formula("(SELECT COUNT(*) \n" +
+            "FROM user_topic_vocab utv \n" +
+            "INNER JOIN user_topic ut ON utv.id_user_topic =ut.id \n" +
+            "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
+            "WHERE ut.status ='PASS' AND utv.status =1 AND utv.learningStage ='NOW' AND uc.id=id)")
     private Integer passedElement;
+
+    @Formula("(SELECT COUNT(*) \n" +
+            "FROM user_topic_vocab utv \n" +
+            "INNER JOIN user_topic ut ON utv.id_user_topic =ut.id \n" +
+            "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
+            "WHERE ut.status ='PASS' AND utv.status =0 AND utv.learningStage ='NOW' AND uc.id=id)")
     private Integer failedElement;
-    private Course courseByIdCourse;
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    @Basic
-    @Column(name = "finishedTopics", nullable = true)
-    public Integer getFinishedTopics() {
-        return finishedTopics;
-    }
-
-    public void setFinishedTopics(Integer finishedTopics) {
-        this.finishedTopics = finishedTopics;
-    }
-
-    @Basic
-    @Column(name = "passedElement", nullable = true)
-    public Integer getPassedElement() {
-        return passedElement;
-    }
-
-    public void setPassedElement(Integer passedElement) {
-        this.passedElement = passedElement;
-    }
-
-    @Basic
-    @Column(name = "failedElement", nullable = true)
-    public Integer getFailedElement() {
-        return failedElement;
-    }
-
-    public void setFailedElement(Integer failedElement) {
-        this.failedElement = failedElement;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserCourse that = (UserCourse) o;
-        return id == that.id && Objects.equals(finishedTopics, that.finishedTopics) && Objects.equals(passedElement, that.passedElement) && Objects.equals(failedElement, that.failedElement);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, finishedTopics, passedElement, failedElement);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_course", referencedColumnName = "id", nullable = false)
-    public Course getCourseByIdCourse() {
-        return courseByIdCourse;
-    }
-
-    public void setCourseByIdCourse(Course courseByIdCourse) {
-        this.courseByIdCourse = courseByIdCourse;
-    }
 }

@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_topic_sentence_result")
 public class UserTopicSentenceResult {
-    private long id;
+    private Long id;
     private String questionTilte;
     private String questionContent;
     private String answer;

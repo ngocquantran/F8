@@ -1,14 +1,14 @@
 package com.example.myvocab.model.enummodel;
 
 public enum UserState {
-    PENDING(0),ACTIVE(1),DISABLED(2);
-    private int code;
+    PENDING("PENDING"),ACTIVE("ACTIVE"),DISABLED("DISABLED");
+    private String code;
 
-    UserState(int code) {
+    UserState(String code) {
         this.code = code;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 }

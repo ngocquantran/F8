@@ -1,13 +1,12 @@
 $(function () {
   async function init() {
-    await getTopicVocabs(1);
-    filterVocab();
+    await getTopicVocabs();
+
+    await filterVocab();
     playWordSound();
     // resultFilterChart();
   }
   init();
-
- 
 });
 
 // RENDER PAGE ----------------------------------------------------------
@@ -15,14 +14,14 @@ $(function () {
 const URL_API = "http://localhost:8898/api/v1";
 let params = new URLSearchParams(window.location.search);
 let topicId = params.get("id");
+let userId = "1";
 let topicVocabs = [];
 let filteredVocabs = [];
 
-const getTopicVocabs = async (id) => {
+const getTopicVocabs = async () => {
   try {
-    let res = await axios.get(`${URL_API}/vocab-topic/${id}`);
-    topicVocabs = res.data.vocabs;
-
+    let res = await axios.get(`${URL_API}/topic/${topicId}/vocabs`);
+    topicVocabs = res.data;
     renderTopicVocabs(topicVocabs);
     renderFilterList(topicVocabs);
   } catch (error) {
@@ -30,15 +29,15 @@ const getTopicVocabs = async (id) => {
   }
 };
 
+
+
 function renderFilterList(arr) {
   filteredVocabs = [];
   arr.forEach((element) => {
     filteredVocabs.push({
-      id: element.id,
-      word: element.word,
-      type: element.type,
-      img:element.img,
-      isKnown: false,
+      vocabId: element.id,
+      isKnown: false
+     
     });
   });
 }
@@ -80,13 +79,17 @@ function filterVocab() {
     $(".filter-word-progress-title strong")
   );
 
-
-  const btn = $(".filter-word-bottom-btn");
-  btn.on("click", function () {
+  const $btn = $(".filter-word-bottom-btn");
+  $btn.on("click", function () {
     if ($(this).hasClass("btn-yes")) {
       filteredVocabs[index].isKnown = true;
     }
     console.log(filteredVocabs);
+
+    $btn.css({ "pointer-events": "none" });
+    setTimeout(() => {
+      $btn.css({ "pointer-events": "all" });
+    }, 1000);
 
     if (index < n - 1) {
       $(".filter-word-layer.right.hide").removeClass("hide");
@@ -103,11 +106,20 @@ function filterVocab() {
       );
 
       setCurrentFilterCart($cards.eq(index));
-      
     } else {
-      window.location.href=`/filter_result.html?id=${topicId}`;
+      postFilterResult(filteredVocabs);
     }
   });
+}
+
+// Gửi danh sách lọc từ vựng sau khi lọc
+async function postFilterResult(obj) {
+  try {
+    let res = await axios.post(`${URL_API}/filter-result/${topicId}`, obj);
+    window.location.href = `/filter_result.html?id=${topicId}`;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function setCurrentFilterCart($card) {
@@ -148,5 +160,3 @@ function playASound($sound) {
     $sound[0].play();
   };
 }
-
-

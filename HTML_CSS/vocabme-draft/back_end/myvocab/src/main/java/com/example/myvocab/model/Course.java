@@ -7,9 +7,7 @@ import lombok.*;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 //@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 
@@ -23,7 +21,7 @@ import java.util.Set;
 public class Course {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String title;
     private String description;
     private String content;
@@ -46,6 +44,7 @@ public class Course {
     @JoinColumn(name = "id_category", referencedColumnName = "id", nullable = false)
     private CourseCategory category;
 
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
@@ -60,6 +59,12 @@ public class Course {
 
     @Formula("(SELECT COUNT(*) FROM topic t WHERE t.id_course = id)")
     private int numberOfTopics;
+
+//    @OneToMany(mappedBy = "course", orphanRemoval = true)
+//    private List<Topic> topics = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "course")
+//    private Set<UserCourse> userCourses=new HashSet<>();
 
 
 }

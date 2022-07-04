@@ -5,21 +5,21 @@ import javax.persistence.Converter;
 import java.util.stream.Stream;
 
 @Converter(autoApply = true)
-public class OrderStatusConverter implements AttributeConverter<OrderStatus,Integer> {
+public class OrderStatusConverter implements AttributeConverter<OrderStatus, String> {
     @Override
-    public Integer convertToDatabaseColumn(OrderStatus orderStatus) {
-        if (orderStatus==null){
+    public String convertToDatabaseColumn(OrderStatus orderStatus) {
+        if (orderStatus == null) {
             return null;
         }
         return orderStatus.getCode();
     }
 
     @Override
-    public OrderStatus convertToEntityAttribute(Integer integer) {
-        if (integer==null){
+    public OrderStatus convertToEntityAttribute(final String code) {
+        if (code == null) {
             return null;
         }
-        return Stream.of(OrderStatus.values()).filter(orderStatus -> orderStatus.getCode()==integer.intValue()).findFirst()
+        return Stream.of(OrderStatus.values()).filter(orderStatus -> orderStatus.getCode().equals(code)).findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
 }

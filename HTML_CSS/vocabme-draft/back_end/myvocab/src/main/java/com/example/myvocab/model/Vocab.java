@@ -17,7 +17,7 @@ import java.util.Set;
 @Table(name = "vocab")
 public class Vocab {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String word;
     private String img;
     private String type;
