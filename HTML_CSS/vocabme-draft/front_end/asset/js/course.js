@@ -269,6 +269,37 @@ function renderTopicStatus(userTopicArr) {
                       </div>`;
           break;
 
+        case "CONTINUE":
+          $topic.addClass("item-active");
+          html = `<div class="course-content-item-btn btn-review">
+                        <div class="course-content-item-btn-content">
+                          <h5>${title}</h5>
+                          <h6>
+                            Từ đã thuộc: <span>${
+                              userTopic.passedElement
+                            }</span> / <span>${userTopic.totalElement}</span>
+                          </h6>
+                          <a href="${
+                            courseCategory == 1
+                              ? "/learning.html"
+                              : "/sen_learn.html"
+                          }?id=${
+            userTopic.topic.id
+          }" class="course-btn-longer"> ÔN TẬP LẠI</a>
+                          <a href="${
+                            courseCategory == 1
+                              ? "/test.html"
+                              : "/sen_test.html"
+                          }?id=${
+            userTopic.topic.id
+          }" class="course-btn-longer btn-result"
+                            >XEM KẾT QUẢ</a
+                          >
+                          
+                        </div>
+                      </div>`;
+          break;
+
         case "NOW":
           $topic.addClass("item-current");
           html = `<div class="course-content-item-btn">

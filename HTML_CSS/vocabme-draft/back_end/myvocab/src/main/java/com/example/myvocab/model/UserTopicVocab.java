@@ -1,6 +1,7 @@
 package com.example.myvocab.model;
 
 import com.example.myvocab.model.enummodel.LearningStage;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class UserTopicVocab {
 
     @ManyToOne
     @JoinColumn(name = "id_user_topic", referencedColumnName = "id", nullable = false)
+    @JsonIgnore
     private UserTopic userTopic;
 
     @OneToOne(orphanRemoval = true)

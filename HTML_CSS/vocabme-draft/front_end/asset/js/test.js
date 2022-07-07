@@ -355,8 +355,25 @@ function nextQuestion() {
     }, 3000);
   } else {
     setTimeout(async () => {
-      //  window.location.href = `/test_result.html?id=${topicId}`;
+      try {
+        postTestResult(answerRequest);
+      } catch (error) {
+        console.log(error);
+      }
     }, 3000);
+  }
+}
+
+// Gửi danh sách kết quả kiểm tra từ vựng
+async function postTestResult(obj) {
+  try {
+    let res = await axios.post(
+      `${URL_API}/test/${topicId}/vocabs/test-result`,
+      obj
+    );
+    window.location.href = `/test_result.html?id=${topicId}`;
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -452,7 +469,6 @@ function collectAnswerResult(status) {
   });
   console.log(answerRequest);
 }
-
 
 // active submit button when input--------------------------------------------------------------------------------
 

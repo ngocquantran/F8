@@ -16,6 +16,8 @@ public interface UserTopicRepo extends JpaRepository<UserTopic, Long> {
 
     Optional<UserTopic>  findByTopic_IdAndUserCourse_User_IdAndStatus(Long id, String id1, TopicState status);
 
+    List<UserTopic> findByUserCourse_Id(Long id);
+
 
 
 

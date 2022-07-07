@@ -31,6 +31,10 @@ public interface UserTopicVocabRepo extends JpaRepository<UserTopicVocab, Long> 
             " WHERE utv.userTopic.id=:userTopicId AND utv.learningStage=:stage")
     List<UserTopicVocabDto> getListOfUserTopicVocabDto(Long userTopicId, LearningStage stage);
 
+    long countDistinctByUserTopic_Id(Long id);
+
+
+
 
 
 

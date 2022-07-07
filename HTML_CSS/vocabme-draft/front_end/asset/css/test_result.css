@@ -180,6 +180,7 @@
   height: 40px;
   line-height: 40px;
   font-weight: 700;
+  z-index: -1;
 }
 
 .result-evaluate-circle-title {
@@ -621,6 +622,7 @@
 .vocab-item {
   perspective: 800px;
   perspective-origin: 50%;
+  margin-bottom: 30px;
 }
 
 .vocab-item .vocab-item-viewport {
