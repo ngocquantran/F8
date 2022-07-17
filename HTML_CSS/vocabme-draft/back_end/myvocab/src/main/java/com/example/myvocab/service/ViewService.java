@@ -1,5 +1,7 @@
 package com.example.myvocab.service;
 
+import com.example.myvocab.dto.FilterVocabDto;
+import com.example.myvocab.dto.TopicToCourseDto;
 import com.example.myvocab.exception.NotFoundException;
 import com.example.myvocab.model.*;
 import com.example.myvocab.repo.*;
@@ -18,9 +20,13 @@ public class ViewService {
     @Autowired private UserTopicRepo userTopicRepo;
     @Autowired private VocabRepo vocabRepo;
     @Autowired private SentenceRepo sentenceRepo;
+    @Autowired private LevelsRepo levelsRepo;
+    @Autowired private CourseGroupRepo courseGroupRepo;
+    @Autowired private CourseCategoryRepo categoryRepo;
 
-    public List<Course> getCourseByCategory(String category){
-        return courseRepo.findCoursesByCategory_TitleEqualsIgnoreCase(category);
+
+    public List<Course> getCourseByCategory(Long categoryId){
+        return courseRepo.findByCategory_Id(categoryId);
     }
 
     public List<CourseGroup> getGroupsByCategory(String category){
@@ -35,12 +41,14 @@ public class ViewService {
         return course.get();
     }
 
+
+
     public List<Topic> getTopicByCourseId(Long id){
        return topicRepo.findTopicsByCourse_Id(id);
     }
 
     public Topic getTopicById(Long id){
-        Optional<Topic> topic=topicRepo.findTopicById(id);
+        Optional<Topic> topic=topicRepo.findTopicById(id, Topic.class);
         if(!topic.isPresent()){
             throw new NotFoundException("Không có chủ đề id = "+id);
         }
@@ -57,6 +65,30 @@ public class ViewService {
 
     public List<Sentence> getSentencesByTopic(Long topicId){
         return sentenceRepo.findByTopics_Id(topicId);
+    }
+
+    public List<FilterVocabDto> getTopicVocabsToFilter(Long topicId){
+        return vocabRepo.getVocabsToFilter(topicId);
+    }
+
+    public TopicToCourseDto getCourseFromTopic(Long topicId){
+        Optional<TopicToCourseDto> topic=topicRepo.findTopicById(topicId,TopicToCourseDto.class);
+        if (topic.isEmpty()){
+            throw new NotFoundException("Không tìm thấy topic có id = "+topicId);
+        }
+        return topic.get();
+    }
+
+    public List<Levels> getAllLevels(){
+        return levelsRepo.findAll();
+    }
+
+    public List<CourseCategory> getAllCategory(){
+        return categoryRepo.findAll();
+    }
+
+    public List<CourseGroup> getAllGroupByCourseCategory(Long categoryId){
+        return courseRepo.getGroupByCourseCategory(categoryId);
     }
 
 }

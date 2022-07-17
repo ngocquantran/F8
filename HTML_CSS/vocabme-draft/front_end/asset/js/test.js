@@ -1,6 +1,7 @@
 $(function () {
   $(".test-intro .button-ready-content").on("click", async function () {
     await getTestContent();
+
     $(".test-intro").addClass("hidden");
     $(".test-container").removeClass("hidden");
     $(".test-exercise").eq(0).addClass("exercise-current");
@@ -8,6 +9,7 @@ $(function () {
     playWordSound();
     runTest();
   });
+  getCourseIdFromTopic();
 });
 
 // RENDER PAGE Test ---------------------------------------------------------------------------------------------------
@@ -23,6 +25,22 @@ async function getTestContent() {
     vocabs = res.data;
     console.log(vocabs);
     renderQuestions2(vocabs);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//render back button
+
+async function getCourseIdFromTopic() {
+  try {
+    let res = await axios.get(`${URL_API}/topic/${topicId}/to-course`);
+    console.log(res.data);
+    $(".header-menu-item.menu-item-back a").attr(
+      "href",
+      `course.html?id=${res.data.course.id}`
+    );
+    $(".header-menu-item.menu-item-back a span").text(res.data.title);
   } catch (error) {
     console.log(error);
   }
@@ -459,13 +477,9 @@ function collectAnswerResult(status) {
   let id = $(".test-exercise.exercise-current").attr("word-id");
   let time = 15 - parseInt($(".test-countdown-number").text());
   answerRequest.push({
-    id: id,
+    vocabId: id,
     status: status,
-    learningStage: null,
     testTime: time,
-    userTopic: null,
-    vocab: null,
-    learn: null,
   });
   console.log(answerRequest);
 }

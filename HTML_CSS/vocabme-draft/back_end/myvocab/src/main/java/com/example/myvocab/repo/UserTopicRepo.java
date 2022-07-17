@@ -12,15 +12,11 @@ import java.util.Optional;
 public interface UserTopicRepo extends JpaRepository<UserTopic, Long> {
     List<UserTopic> findByUserCourse_Course_IdAndUserCourse_User_Id(Long id, String id1);
 
-    Optional<UserTopic>  findByTopic_IdAndUserCourse_User_Id(Long id, String id1);
+    <T> Optional<T> findByTopic_IdAndUserCourse_User_Id(Long id, String id1, Class<T> type);
 
     Optional<UserTopic>  findByTopic_IdAndUserCourse_User_IdAndStatus(Long id, String id1, TopicState status);
 
     List<UserTopic> findByUserCourse_Id(Long id);
-
-
-
-
 
 
 }

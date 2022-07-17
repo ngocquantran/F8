@@ -6,9 +6,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -41,7 +39,7 @@ public class Topic {
             inverseJoinColumns = @JoinColumn(name = "id_vocab")
     )
     @JsonIgnore
-    private Set<Vocab> vocabs=new HashSet<>();
+    private List<Vocab> vocabs=new ArrayList<>();
 
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {

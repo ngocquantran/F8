@@ -13,5 +13,3 @@ public interface UserTopicVocabMapper {
     void updateUserTopicVocabFromDto(UserTopicVocabDto dto, @MappingTarget UserTopicVocab entity);
 
 }
-
-

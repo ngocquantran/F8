@@ -22,6 +22,8 @@ public interface CourseRepo extends JpaRepository<Course, Integer> {
 
     List<Course> findCoursesByGroup(CourseGroup group);
 
+    List<Course> findByCategory_Id(Long id);
+
     Optional<Course> findCourseById(Long id);
 
     @Query("select c from Course c INNER JOIN Topic t ON t.course=c WHERE t.id=:id")
@@ -30,6 +32,9 @@ public interface CourseRepo extends JpaRepository<Course, Integer> {
 
     @Query("select c.group from Course c where upper(c.category.title) = upper(?1) group by c.group")
     List<CourseGroup> getGroupsByCategory(String category);
+
+    @Query("select c.group from Course as c where c.category.id=?1 group by c.group")
+    List<CourseGroup> getGroupByCourseCategory(Long categoryId);
 
 
 }

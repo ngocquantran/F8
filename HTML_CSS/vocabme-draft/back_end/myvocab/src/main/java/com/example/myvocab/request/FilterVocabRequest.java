@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 public class FilterVocabRequest {
     private Long vocabId;
     @JsonProperty
-    private boolean isKnown;
+    private boolean status;
 
 }

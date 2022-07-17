@@ -1,276 +1,239 @@
 $(function () {
-  $(".shuffle-content").each(function (index, content) {
-    $(content).sortable({
-      cursor: "move",
-    });
+  $(".test-intro .button-ready-content").on("click", async function () {
+    await getTestContent();
+    await renderContextQuestion();
+    $(".test-intro").addClass("hidden");
+    $(".test-container").removeClass("hidden");
+    $(".test-exercise").eq(0).addClass("exercise-current");
+    // countdown(15);
+    runTest();
   });
-
-  updateTestProgress();
-  checkAnswerGuessing();
-  activeSubmit();
-  checkAnswerWriting();
-  checkAnswerShuffling();
-
-  // $(".test-intro .button-ready-content").on("click", async function () {
-  //   // await getTestContent(1);
-  //   $(".test-intro").addClass("hidden");
-  //   $(".test-container").removeClass("hidden");
-  //   $(".test-exercise").eq(0).addClass("exercise-current");
-  //   // countdown(15);
-  //   runTest();
-  // });
 });
 
 // Get Test data---------------------------------------------------------------------------------------------------
-let vocabs = [];
-const URL_API = "http://localhost:8080/api/v1";
+let sens = [];
+const URL_API = "http://localhost:8898/api/v1";
+let params = new URLSearchParams(window.location.search);
+let topicId = params.get("id");
 
-async function getTestContent(id) {
+async function getTestContent() {
   try {
-    let res = await axios.get(`${URL_API}/test/${id}`);
-    vocabs = res.data;
-    console.log(vocabs);
-    renderQuestions2(vocabs);
+    let res = await axios.get(`${URL_API}/topic/${topicId}/learning/sentence`);
+    sens = res.data;
+    console.log(sens);
+    let list = createQuestionList();
+    console.log(list);
+    renderQuestionList(list);
   } catch (error) {
     console.log(error);
   }
 }
 
-function allowShuffle() {
-  $(".shuffle-content").each(function (index, content) {
-    $(content).sortable();
+function createQuestionList() {
+  let list = [];
+  sens.forEach((sen) => {
+    list.push(sen);
+    list.push(sen);
+    list.push(sen);
   });
+  let listQuestions = [];
+  let questionType = 1;
+  while (listQuestions.length < 15) {
+    if (questionType > 8) {
+      questionType -= 8;
+    }
+    let rd = Math.floor(Math.random() * list.length);
+
+    if (questionType == 1 || questionType == 4) {
+      listQuestions.push({
+        type: questionType,
+        sen: list[rd],
+        answer: "write",
+      });
+    } else if (
+      questionType == 2 ||
+      questionType == 5 ||
+      questionType == 6 ||
+      questionType == 7 ||
+      questionType == 8
+    ) {
+      listQuestions.push({
+        type: questionType,
+        sen: list[rd],
+        answer: "choose",
+      });
+    } else if (questionType == 3) {
+      listQuestions.push({
+        type: questionType,
+        sen: list[rd],
+        answer: "shuffle",
+      });
+    }
+    list.splice(rd, 1);
+    questionType++;
+  }
+  return listQuestions;
 }
 
-// Có tối thiểu 12 loại câu hỏi, nếu số lượng nhiều hơn 12 sẽ load loại câu lại từ type 1
-
-function renderQuestions2(arr) {
-  const $testContent = $(".test-body-wrapper");
-  $testContent.html("");
+function renderQuestionList(qArr) {
+  const $container = $(".test-body-wrapper");
+  $container.html("");
   let html = "";
-  arr.forEach((question, no) => {
-    let type = no < 12 ? no + 1 : no - 12 + 1;
-    // Tách từ trong câu tiếng anh để render
-    let enSentence = question.enSentence.split("_");
-    html +=
-      ` <div
-                  class="test-exercise"
-                  index="${no + 1}"
-                  typequestion="${type}"
-                  typeanswer="${type <= 7 ? "choose" : "write"}"
-                  answer="${question.word}"
-                  answer-index="${question.answerIndex}"
+  qArr.forEach((question) => {
+    html += renderQuestion(question.sen, question.type, question.answer);
+  });
+  $container.append(html);
+}
+
+function renderQuestion(sen, qType, aType) {
+  let answerIndex = 0;
+  let answerChoices = [];
+  let shuffleArr = [];
+  let htmlShuffle = "";
+  let htmlContext = "";
+
+  if (aType == "choose") {
+    answerIndex = Math.floor(Math.random() * 4) + 1;
+    switch (qType) {
+      case 2:
+        answerChoices = createAnswerChoice(answerIndex, sen, "content");
+        break;
+      case 5:
+        answerChoices = createAnswerChoice(answerIndex, sen, "vnSentence");
+        break;
+      case 6:
+        answerChoices = createAnswerChoice(answerIndex, sen, "content");
+        break;
+      case 7:
+        answerChoices = createAnswerChoice(answerIndex, sen, "vnSentence");
+        break;
+      case 8:
+        answerChoices = createAnswerChoice(answerIndex, sen, "content");
+        break;
+    }
+  }
+
+  if (aType == "shuffle") {
+    shuffleArr = sen.content.split("_");
+    while (shuffleArr.length > 0) {
+      let rd = Math.floor(Math.random() * shuffleArr.length);
+      htmlShuffle += ` <li class="ui-state-default">${shuffleArr[rd]}</li>`;
+      shuffleArr.splice(rd, 1);
+    }
+    // shuffleArr.forEach((word) => {
+    //   htmlShuffle += ` <li class="ui-state-default">${word}</li>`;
+    // });
+  }
+
+  let html =
+    `<div class="test-exercise"
+                  typequestion="${qType}"
+                  typeanswer="${aType}"
+                    id-sen="${sen.id}"
                 >
-                  <div class="test-exercise-question">
-                    <div class="test-exercise-question-viewport">
-                      <div class="test-exercise-question-view-front">
-                        <div class="test-exercise-content">
-                          <p class="test-exercise-title">
-                            ${
-                              type == 1 || type == 3
-                                ? "Chọn từ phù hợp theo các gợi ý sau:"
-                                : type == 2
-                                ? "Chọn nghĩa đúng với từ vựng sau:"
-                                : type == 4
-                                ? "Chọn từ đúng với định nghĩa sau:"
-                                : type == 5
-                                ? "Chọn từ đúng với âm thanh sau:"
-                                : type == 6
-                                ? "Chọn từ đúng điền vào câu sau:"
-                                : type == 7
-                                ? "Chọn câu tiếng anh ứng với nội dung sau:"
-                                : type == 8
-                                ? "Gõ từ đúng với phiên âm sau:"
-                                : type == 9 || type == 10
-                                ? "Gõ từ phù hợp theo các gợi ý sau:"
-                                : "Gõ từ đúng với định nghĩa sau:"
-                            }
-                          </p>
-                        </div>` +
-      (type == 1
-        ? `<div class="test-exercise-question">
-                          <div class="play-sound">
-                            <i class="fa-solid fa-volume-high"></i>
-                            <audio
-                              src="${question.audio}"
-                            ></audio>
-                          </div>
-                          <p class="test-exercise-question-phonetic">${question.phonetic}</p>
-                        </div>`
-        : type == 2
-        ? `<div class="test-exercise-question">
-                          <p class="test-exercise-question-word">
-                            ${question.word} <span>${question.phonetic}</span>
-                          </p>
-                        </div>`
-        : type == 3
-        ? `<div class="test-exercise-question">
-                          <div class="question-hint">
-                            <img
-                              class="hint-image"
-                              src="${question.img}"
-                              alt="img"
-                            />
-                            <p class="hint-word">
-                              ${question.vnMeaning}
-                              <span>${question.type}</span>
-                            </p>
-                          </div>
-                        </div>`
-        : type == 4
-        ? `<div class="test-exercise-question">
-                          <p class="question-definition">
-                            ${question.enMeaning}
-                          </p>
-                          <span class="question-word-type">${question.type}</span>
-                        </div>`
-        : type == 5
-        ? `<div class="test-exercise-question">
-                          <div class="test-exercise-question-sound play-sound">
-                            <i class="fa-solid fa-volume-high"></i>
-                            <audio
-                              src="${question.audio}"
-                            ></audio>
-                          </div>
-                        </div>`
-        : type == 6
-        ? `<div class="test-exercise-question">
-                          <p class="question-missing-sentence">
-                            <span>${enSentence[0]}</span>
-                            <span>_ _ _ _ _</span>
-                            <span>${enSentence[2]}</span>
-                          </p>
-                        </div>`
-        : type == 7
-        ? `<div class="test-exercise-question">
-                          <p class="question-vi-sentence">
-                            ${question.vnSentence}
-                          </p>
-                        </div>`
-        : type == 8
-        ? `<div class="test-exercise-question">
-                          <div class="test-exercise-question-sound play-sound">
-                            <i class="fa-solid fa-volume-high"></i>
-                            <audio
-                              src="${question.audio}"
-                            ></audio>
-                          </div>
-                          <p class="question-phonetic">${question.phonetic}</p>
-                        </div>`
-        : type == 9 || type == 10
-        ? `<div class="test-exercise-question">
-                          <div class="question-hint">
-                            <img
-                              class="hint-image"
-                              src="${question.img}"
-                              alt="img"
-                            />
-                            <p class="hint-word">
-                             ${question.vnMeaning}
-                              <span>${question.type}</span>
-                            </p>
-                          </div>
-                        </div>`
-        : `<div class="test-exercise-question">
-                          <p class="question-definition">
-                            ${question.enMeaning}
-                          </p>
-                          <span class="question-word-type">${question.type}</span>
-                        </div>`) +
-      `
+                  <div class="test-exercise-question-viewport">
+                    <div class="test-exercise-content">
+                      <p class="question-title">
+                        ${
+                          qType == 1
+                            ? "Viết hoàn chỉnh câu văn theo phiên âm sau:"
+                            : qType == 2
+                            ? "Chọn câu văn đúng theo gợi ý sau:"
+                            : qType == 3
+                            ? "Sắp xếp những từ sau thành câu hoàn chỉnh theo gợi ý:"
+                            : qType == 4
+                            ? "Nghe và viết lại câu văn hoàn chỉnh với gợi ý:"
+                            : qType == 5
+                            ? "Nghe và chọn nghĩa đúng của câu:"
+                            : qType == 6
+                            ? "Chọn câu văn phù hợp với cách dùng sau:"
+                            : qType == 7
+                            ? "Chọn ý nghĩa đúng của câu văn sau:"
+                            : qType == 8
+                            ? "Chọn câu văn còn thiếu trong ngữ cảnh sau:"
+                            : ""
+                        }
+                      </p>
+                      <p class="question-guide">
+                      ${
+                        qType == 1
+                          ? "(Lưu ý quy tắc viết hoa, chính tả và dấu câu!)"
+                          : qType == 3
+                          ? "(Di chuyển các từ/cụm từ sau theo đúng vị trí để tạo thành câu hoàn chỉnh)"
+                          : qType == 4
+                          ? " (Lưu ý quy tắc viết hoa, chính tả và dấu câu!)"
+                          : qType == 8
+                          ? sen.enContextDesc
+                          : ""
+                      }
                         
+                      </p>
+                    </div>
+                    <div class="test-exercise-question">
+                      <div class="test-exercise-question-sound play-sound">
+                        <!-- <i class="fa-solid fa-volume-high"></i> -->
+                        <audio
+                          src="${sen.senAudio}"
+                        ></audio>
                       </div>
 
-                      <div class="test-exercise-question-view-back">` +
-      (type < 6 || type > 7
-        ? `<div class="test-exercise-question-view-back-img">
-                            <img
-                              src="${question.img}"
-                              alt=""
-                            />
-                          </div>
+                      <div class="test-exercise-question-content">` +
+    (qType == 8
+      ? ` <div class="context-list">
+                         `
+      : `
+                        <div class="content-left">
+                          <img
+                            src="asset/img/common/person-${qType}.png"
+                            alt=""
+                            class="img-person"
+                          />
+                          <img
+                            src="asset/img/common/person-${qType}.gif"
+                            alt=""
+                            class="img-success hidden"
+                          />
+                          <img
+                            src="asset/img/common/fail-${qType}.gif"
+                            alt=""
+                            class="img-fail hidden"
+                          />
+                        </div>
 
-                          <div class="test-exercise-question-view-back-content">
-                            <p class="word-content">
-                              ${question.word} <span class="word-content-type">${question.type}</span>
-                            </p>
-
-                            <p class="word-content-phonetic">
-                              <span class="play-sound">
-                                <i class="fa-solid fa-volume-high"></i>
-                                <audio
-                                  src="${question.audio}"
-                                ></audio>
-                              </span>
-                              <span class="word-content-phonetic-result"
-                                >${question.phonetic}</span
-                              >
-                            </p>
-
-                            <div class="text-definition-vi">${question.vnMeaning}</div>
-                          </div>`
-        : `<div class="testing-exercise-result-cover">
-                          <div class="play-sound">
+                        <div class="content-right">
+                          <span class="content-right-question"
+                            >${
+                              qType == 1
+                                ? sen.phonetic.replaceAll("_", " ")
+                                : qType == 2 || qType == 3 || qType == 4
+                                ? sen.vnSentence
+                                : qType == 6
+                                ? sen.apply
+                                : qType == 7
+                                ? sen.content.replaceAll("_", " ")
+                                : ""
+                            }</span>`) +
+    (qType == 5
+      ? ` <div class="question-sound play-sound">
                             <i class="fa-solid fa-volume-high"></i>
                             <audio
-                              src="${question.senAudio}"
+                              src="${sen.senAudio}"
                             ></audio>
-                          </div>
-                          <p class="result-content-example">
-                            <span>${enSentence[0]}</span><span>${enSentence[1]}</span><span>${enSentence[2]}</span>
-                          </p>
-                          <p class="result-content-example-translate">
-                            ${question.vnSentence}
-                          </p>
-                        </div>`) +
-      `</div>
+                            <span>______________?</span>
+                          </div>`
+      : "") +
+    (qType != 8
+      ? `<span class="content-right-answer hidden"
+                            >${sen.content.replaceAll("_", " ")}</span
+                          >`
+      : "") +
+    `
+                        </div>
+                      </div>
                     </div>
                   </div>` +
-      (type <= 7
-        ? `
-
-                  <div class="test-exercise-answer">
-                    <div class="answer-wrapper">
-                      <div class="answer-choice" value="1">
-                        <span>${
-                          type == 1 || type == 3 || type == 4 || type == 6
-                            ? question.vocabs[0]
-                            : type == 2 || type == 5
-                            ? question.vnMeanings[0]
-                            : question.enSentences[0].replaceAll("_", "")
-                        }</span>
-                      </div>
-                      <div class="answer-choice" value="2">
-                        <span>${
-                          type == 1 || type == 3 || type == 4 || type == 6
-                            ? question.vocabs[1]
-                            : type == 2 || type == 5
-                            ? question.vnMeanings[1]
-                            : question.enSentences[1].replaceAll("_", "")
-                        }</span>
-                      </div>
-                      <div class="answer-choice" value="3">
-                        <span>${
-                          type == 1 || type == 3 || type == 4 || type == 6
-                            ? question.vocabs[2]
-                            : type == 2 || type == 5
-                            ? question.vnMeanings[2]
-                            : question.enSentences[2].replaceAll("_", "")
-                        }</span>
-                      </div>
-                      <div class="answer-choice" value="4">
-                        <span>${
-                          type == 1 || type == 3 || type == 4 || type == 6
-                            ? question.vocabs[3]
-                            : type == 2 || type == 5
-                            ? question.vnMeanings[3]
-                            : question.enSentences[3].replaceAll("_", "")
-                        }</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>`
-        : `<div class="test-exercise-answer answer-write">
+    (aType === "write"
+      ? ` <div class="test-exercise-answer answer-write">
                     <div class="answer-cover">
                       <input
                         class="answer-writing"
@@ -279,10 +242,158 @@ function renderQuestions2(arr) {
                       />
                       <div class="answer-check">Kiểm tra</div>
                     </div>
-                  </div>
-                </div>`);
+                  </div>`
+      : aType === "choose"
+      ? ` <div class="test-exercise-answer">
+                    <div class="answer-wrapper" answer-index="${answerIndex}">
+                      <div class="answer-choice" value="1">
+                        <span>${
+                          qType == 2 ||
+                          qType == 5 ||
+                          qType == 6 ||
+                          qType == 7 ||
+                          qType == 8
+                            ? answerChoices[0].replaceAll("_", " ")
+                            : ""
+                        }</span>
+                      </div>
+                      <div class="answer-choice" value="2">
+                        <span>${
+                          qType == 2 ||
+                          qType == 5 ||
+                          qType == 6 ||
+                          qType == 7 ||
+                          qType == 8
+                            ? answerChoices[1].replaceAll("_", " ")
+                            : ""
+                        }</span>
+                      </div>
+                      <div class="answer-choice" value="3">
+                        <span>${
+                          qType == 2 ||
+                          qType == 5 ||
+                          qType == 6 ||
+                          qType == 7 ||
+                          qType == 8
+                            ? answerChoices[2].replaceAll("_", " ")
+                            : ""
+                        }</span>
+                      </div>
+                      <div class="answer-choice" value="4">
+                        <span>${
+                          qType == 2 ||
+                          qType == 5 ||
+                          qType == 6 ||
+                          qType == 7 ||
+                          qType == 8
+                            ? answerChoices[3].replaceAll("_", " ")
+                            : ""
+                        }</span>
+                      </div>
+                    </div></div>`
+      : `<div class="test-exercise-answer answer-shuffle">
+                    <div class="answer-cover">
+                      <ul class="shuffle-content">${htmlShuffle}
+                       
+                      </ul>
+                      <div class="answer-submit">Kiểm tra</div>
+                    </div>
+                  </div>`) +
+    ` </div>`;
+
+  return html;
+}
+
+function renderContextQuestion() {
+  const $questionHasContexts = $(".test-exercise[typequestion=8]");
+  $questionHasContexts.each(function (index, question) {
+    let senId = $(question).attr("id-sen");
+    getContextContent(senId);
   });
-  $testContent.append(html);
+}
+
+async function getContextContent(senId) {
+  try {
+    let res = await axios.get(
+      `${URL_API}/topic/learning/sentence/${senId}/context`
+    );
+    console.log(res.data);
+
+    let html = renderContextHtmlQuestion(res.data);
+
+    $(`.test-exercise[typequestion=8][id-sen=${senId}] .context-list`).append(
+      html
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function renderContextHtmlQuestion(arr) {
+  let html = "";
+  arr.forEach((element) => {
+    let separatedContent = [];
+    if (element.containKey) {
+      separatedContent = element.enSentence.split("_");
+    }
+    html +=
+      ` <div class="context-item">
+                            <div class="context-left">
+                              <img
+                                src="${element.img}.jpg"
+                                alt=""
+                              />
+                            </div>
+                            <div class="context-right">
+                              <p>
+                                <strong>Sara</strong>:
+                                <span>
+                                  ` +
+      (element.containKey
+        ? `${separatedContent[0]} <span class="sp-blank"></span
+                                > ${separatedContent[2]}`
+        : element.enSentence) +
+      `</span
+                                >
+                              </p>
+                            </div>
+                          </div>`;
+  });
+  return html;
+}
+
+function createAnswerChoice(answerIndex, sen, senFeature) {
+  let count = 0;
+  let wrongAnswers = sens.filter((sentence) => {
+    if (count < 3 && sentence.id != sen.id) {
+      count++;
+      return true;
+    }
+    return false;
+  });
+
+  let wrongchoices = wrongAnswers.map((answer) => {
+    return answer[senFeature];
+  });
+
+  let answerChoices = [];
+  for (let i = 1; i <= 4; i++) {
+    if (i == answerIndex) {
+      answerChoices.push(sen[senFeature]);
+    } else {
+      let rd = Math.floor(Math.random() * wrongchoices.length);
+      answerChoices.push(wrongchoices[rd]);
+      wrongchoices.splice(rd, 1);
+    }
+  }
+
+  return answerChoices;
+}
+
+function allowShuffle() {
+  $(".shuffle-content").each(function (index, content) {
+    $(content).sortable();
+  });
 }
 
 // Countdown Timer-------------------------------------------------------------------------------------------------
@@ -312,6 +423,8 @@ function countdown(time) {
 async function timeOut() {
   await stopCountDown();
   await disableChoosing();
+  await disableChecking();
+  await disableSubmitting();
   await showAnswer();
   await nextQuestion();
 }
@@ -323,14 +436,20 @@ function stopCountDown() {
 // Run test ---------------------------------------------------------------------------------------------------------------------------
 
 function updateTestProgress() {
-  const $exercise = $(".test-exercise");
-  const n = $exercise.length;
+  const $exercises = $(".test-exercise");
+  const n = $exercises.length;
   $(".progress-title span").text(n);
-  const $cur = $(".test-exercise.exercise-current");
-  let index = parseInt($cur.attr("index"));
-  $(".progress-title strong").text(index);
+  // const $cur = $(".test-exercise.exercise-current");
+  let indexCur = 0;
+  $exercises.each(function (index, exercise) {
+    if ($(exercise).hasClass("exercise-current")) {
+      indexCur = index + 1;
+    }
+  });
+
+  $(".progress-title strong").text(indexCur);
   $(".test-progress-bar").css({
-    width: (index / n) * 100 + "%",
+    width: (indexCur / n) * 100 + "%",
   });
 }
 
@@ -354,6 +473,14 @@ function runTest() {
   checkAnswerGuessing();
   activeSubmit();
   checkAnswerWriting();
+  checkAnswerShuffling();
+
+  //  getReadyToRun();
+  $(".shuffle-content").each(function (index, content) {
+    $(content).sortable({
+      cursor: "move",
+    });
+  });
 }
 
 function nextQuestion() {
@@ -392,7 +519,9 @@ function getReadyToRun($currentExercise) {
 
 function checkAnswerGuessing() {
   const $cur = $(".test-exercise.exercise-current");
-  const answerIndex = parseInt($cur.attr("answer-index"));
+  const answerIndex = parseInt(
+    $cur.find(".answer-wrapper").attr("answer-index")
+  );
   const $allChoice = $cur.find(".answer-choice");
   const $rightChoice = $cur.find(`.answer-choice[value=${answerIndex}]`);
   const $wrongChoice = $cur.find(`.answer-choice:not([value=${answerIndex}])`);
@@ -442,6 +571,24 @@ function disableChoosing() {
   });
 }
 
+function disableChecking() {
+  const $allChoice = $(".test-exercise.exercise-current .answer-check");
+  $allChoice.each(function (index, option) {
+    $(option).css({
+      "pointer-events": "none",
+    });
+  });
+}
+
+function disableSubmitting() {
+  const $allChoice = $(".test-exercise.exercise-current .answer-submit");
+  $allChoice.each(function (index, option) {
+    $(option).css({
+      "pointer-events": "none",
+    });
+  });
+}
+
 function checkAnswerWriting() {
   const $cur = $(".test-exercise.exercise-current");
   const answer = $cur.find(".content-right-answer").text();
@@ -481,16 +628,16 @@ function checkAnswerShuffling() {
   const $btn = $cur.find(".answer-submit");
 
   $btn.on("click", function () {
-    const $words = $(
-      ".test-exercise-answer.answer-shuffle .answer-cover>ul>li"
-    ).toArray();
+    const $words = $cur
+      .find(".test-exercise-answer.answer-shuffle .answer-cover>ul>li")
+      .toArray();
 
     let words = $words.map(function (word, index) {
       return $(word).text();
     });
     let submitAnswer = words.join(" ").trim();
     console.log(submitAnswer);
-    if (answer == submitAnswer) {
+    if (answer === submitAnswer) {
       playSoundRight();
 
       $cur

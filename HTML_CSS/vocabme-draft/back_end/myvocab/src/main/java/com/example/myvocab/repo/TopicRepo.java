@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface TopicRepo extends JpaRepository<Topic, Integer> {
     List<Topic> findTopicsByCourse_Id(Long id);
 
-    Optional<Topic> findTopicById(Long id);
+    <T> Optional<T> findTopicById(Long id, Class<T> type);
 
 
 }

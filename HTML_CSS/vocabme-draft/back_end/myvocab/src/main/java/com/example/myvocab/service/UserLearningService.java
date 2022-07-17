@@ -1,30 +1,27 @@
 package com.example.myvocab.service;
 
-import com.example.myvocab.dto.UserTopicVocabDto;
-import com.example.myvocab.dto.VocabTest;
-import com.example.myvocab.dto.VocabsForChoosing;
+import com.example.myvocab.dto.*;
 import com.example.myvocab.exception.BadRequestException;
-import com.example.myvocab.mapper.UserTopicVocabMapper;
+import com.example.myvocab.exception.NotFoundException;
 import com.example.myvocab.mapper.VocabTestMapper;
 import com.example.myvocab.model.*;
+import com.example.myvocab.model.enummodel.Gender;
 import com.example.myvocab.model.enummodel.LearningStage;
 import com.example.myvocab.model.enummodel.TopicState;
 import com.example.myvocab.repo.*;
 import com.example.myvocab.request.FilterVocabRequest;
-import org.mapstruct.factory.Mappers;
+import com.example.myvocab.request.LearnVocabRequest;
+import com.example.myvocab.request.TestVocabResultRequest;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class UserLearningService {
-    @Autowired
-    UserTopicVocabMapper mapper;
+
     @Autowired
     private UserCourseRepo userCourseRepo;
     @Autowired
@@ -39,11 +36,22 @@ public class UserLearningService {
     private VocabRepo vocabRepo;
     @Autowired
     private UserTopicVocabRepo userTopicVocabRepo;
+    @Autowired
+    private UserTopicRecordRepo userTopicRecordRepo;
 
-    public Course findCourseByTopicId(Long topicId) {
-        Topic topic = isTopicExist(topicId);
-        return topic.getCourse();
+    @Autowired private ModelMapper modelMapper;
+    @Autowired private SentenceRepo sentenceRepo;
+    @Autowired private ContextRepo contextRepo;
+
+
+    public UserCourse getUserCourse(Long courseId, String userId){
+        Optional<UserCourse> o_userCourse=userCourseRepo.findByCourse_IdAndUser_Id(courseId, userId);
+        if (o_userCourse.isEmpty()){
+            throw new NotFoundException("Không tìm thấy UserCourse");
+        }
+        return o_userCourse.get();
     }
+
 
     public UserCourse createUserCourse(Long courseId, String userId) {
         Users user = isUserExist(userId);
@@ -62,19 +70,21 @@ public class UserLearningService {
         return userCourse;
     }
 
-    public UserTopic createUserTopicWithStatus(Long topicId, String userId, TopicState topicState) {
+    public UserTopic createPendingUserTopic(Long topicId, String userId) {
         Topic topic = isTopicExist(topicId);
-
-        Course course = findCourseByTopicId(topicId);
+        Course course = topic.getCourse();
         UserCourse userCourse = createUserCourse(course.getId(), userId);  //Kiểm tra UserCourse, nếu đã tồn tại không chạy đến phần tạo mới
 
 
-        Optional<UserTopic> o_userTopic = userTopicRepo.findByTopic_IdAndUserCourse_User_IdAndStatus(topicId, userId, topicState);  //Kiểm tra UserTopic đã tồn tại chưa
+        Optional<UserTopic> o_userTopic = userTopicRepo.findByTopic_IdAndUserCourse_User_Id(topicId, userId, UserTopic.class);  //Kiểm tra UserTopic đã tồn tại chưa
         if (o_userTopic.isPresent()) {
-            return o_userTopic.get();
+            UserTopic userTopic=o_userTopic.get();
+            userTopic.setStatus(TopicState.PENDING);
+            userTopicRepo.save(userTopic);
+            return userTopic;
         }
-        UserTopic userTopic = UserTopic.builder()
-                .status(topicState)
+        UserTopic userTopic = UserTopic.builder()  //Nếu UserTopic chưa tồn tại thì tạo mới ở trạng thái pending
+                .status(TopicState.PENDING)
                 .topic(topic)
                 .userCourse(userCourse)
                 .build();
@@ -84,17 +94,33 @@ public class UserLearningService {
     }
 
 
-    //Khởi tạo từ vựng ứng với topic cho User cụ thể ứng với giai đoạn  của topic đó
-    public void initUserTopicVocabs(Long topicId, String userId, LearningStage stage) {
+    public UserTopicRecord createUserTopicRecordByStage(Long topicId, String userId, LearningStage stage) {
         UserTopic userTopic = isUserTopicExist(topicId, userId);
-        List<Vocab> vocabs = vocabRepo.findByTopics_Id(userTopic.getTopic().getId());
+
+        Optional<UserTopicRecord> o_userTopicRecord = userTopicRecordRepo.findByStageAndUserTopic_Id(stage, userTopic.getId());
+        if (o_userTopicRecord.isPresent()) {
+            return o_userTopicRecord.get();
+        }
+        UserTopicRecord userTopicRecord = UserTopicRecord.builder()
+                .testTime(0)
+                .rightAnswers(0)
+                .stage(stage)
+                .userTopic(userTopic)
+                .build();
+        userTopicRecordRepo.save(userTopicRecord);
+        return userTopicRecord;
+    }
+
+
+    public void initUserTopicVocabs(Long topicId, String userId) {
+        UserTopic userTopic = isUserTopicExist(topicId, userId);
+        List<Vocab> vocabs = vocabRepo.findByTopics_Id(topicId);
+        System.out.println("Lỗi ở đây---------------------------------------------------");
         for (Vocab v : vocabs) {
-            boolean isUserTopicVocabExist = userTopicVocabRepo.existsByUserTopic_IdAndVocab_IdAndLearningStage(userTopic.getId(), v.getId(), stage);
-            if (isUserTopicVocabExist) {
-                return;
-            } else {
+            Optional<UserTopicVocab> o_userTopicVocab = userTopicVocabRepo.findByUserTopic_IdAndVocab_Id(userTopic.getId(), v.getId());
+            if (o_userTopicVocab.isEmpty()) {
+                System.out.println("Lỗi 1-------------------------------------------------------------");
                 UserTopicVocab userTopicVocab = UserTopicVocab.builder()
-                        .learningStage(stage)
                         .userTopic(userTopic)
                         .vocab(v)
                         .build();
@@ -103,84 +129,58 @@ public class UserLearningService {
         }
     }
 
-    public void handleUserTopicVocabsWithStage(Long topicId, String userId, TopicState topicState, LearningStage stage, List<FilterVocabRequest> vocabRequestList) {
-        Optional<UserTopic> o_userTopic = userTopicRepo.findByTopic_IdAndUserCourse_User_IdAndStatus(topicId, userId, topicState);
-        if (o_userTopic.isEmpty()) {
-            throw new BadRequestException("Chưa khởi tạo UserTopic");
-        }
-        UserTopic userTopic = o_userTopic.get();
+    public void handleSubmittedFilterVocabResult(Long topicId, String userId, List<FilterVocabRequest> requests) {
+        UserTopic userTopic = createPendingUserTopic(topicId, userId);                                        //Khởi tạo userTopic và UserCourse
+        UserTopicRecord userTopicRecord = createUserTopicRecordByStage(topicId, userId, LearningStage.FIRST);   // Khởi tạo userTopic Record ở giai đoạn First
+        initUserTopicVocabs(topicId, userId);                                                               //Khởi tạo List UserTopicVocab
 
-        for (FilterVocabRequest v : vocabRequestList) {
-            updateUserTopicVocab(userTopic, stage, v);
+        Long numberOfRightAnswers = requests.stream().filter(vocabRequest -> vocabRequest.isStatus()).count();
+        userTopicRecord.setRightAnswers(numberOfRightAnswers.intValue());                                   // Lưu số từ vựng đã biết cho record First
+
+        System.out.println(requests);
+
+
+        //Update trạng thái từ vựng từ request vào usertopicvocab tương ứng
+        for (FilterVocabRequest v : requests) {
             System.out.println(v);
-
-        }
-    }
-
-    // Cập nhật list từ vựng ứng với topic theo yêu cầu từ client
-    public UserTopicVocab updateUserTopicVocab(UserTopic userTopic, LearningStage stage, FilterVocabRequest vocabRequest) {
-        Optional<UserTopicVocab> o_topicVocab = userTopicVocabRepo.findByUserTopic_IdAndVocab_IdAndLearningStage(userTopic.getId(), vocabRequest.getVocabId(), stage);
-        if (!o_topicVocab.isPresent()) {
-            throw new BadRequestException("Không tồn tại từ vựng có id = " + vocabRequest.getVocabId() + " trong topic này");
-        }
-
-        UserTopicVocab vocab = o_topicVocab.get();
-        System.out.println(vocab);
-        vocab.setStatus(vocabRequest.isKnown());
-
-        userTopicVocabRepo.save(vocab);
-        System.out.println(vocab);
-        return vocab;
-    }
-
-    //Lấy list từ vựng của topic sau khi Filter lần đầu, để chọn từ muốn học
-//    public List<VocabsForChoosing> getListOfVocabsForChoosing(Long topicId,String userId,LearningStage stage){
-//        Optional<UserTopic> o_userTopic = userTopicRepo.findByTopic_IdAndUserCourse_User_Id(topicId,userId);
-//        if (o_userTopic.isEmpty()) {
-//            throw new BadRequestException("Không tìm thấy UserTopic");
-//        }
-//        UserTopic userTopic = o_userTopic.get();
-//        return userTopicVocabRepo.getVocabsForChoosing(userTopic.getId(),stage);
-//    }
-
-    //Lấy list từ vựng của topic sau khi Filter lần đầu, để chọn từ muốn học
-    public List<UserTopicVocabDto> getListOfUserTopicVocabDto(Long topicId, String userId, LearningStage stage) {
-        UserTopic userTopic = isUserTopicExist(topicId, userId);
-        return userTopicVocabRepo.getListOfUserTopicVocabDto(userTopic.getId(), stage);
-    }
-
-
-    //    Lưu list từ vựng muốn học của topicUser sau khi chọn xong
-    public void updateUserTopicVocabAfterChooseWordToLearn(Long topicId, String userId, LearningStage stage, List<UserTopicVocabDto> requests) {
-        UserTopic userTopic = isUserTopicExist(topicId, userId);
-
-        for (UserTopicVocabDto v : requests) {
-            Optional<UserTopicVocab> o_userTopicVocab = userTopicVocabRepo.findById(v.getId());
+            Optional<UserTopicVocab> o_userTopicVocab = userTopicVocabRepo.findByUserTopic_IdAndVocab_Id(userTopic.getId(), v.getVocabId());
             if (o_userTopicVocab.isEmpty()) {
-                throw new BadRequestException("Không tìm thấy Từ vựng-topic có id = " + v.getId() + " của user có id = " + userId);
+                throw new NotFoundException("Không tìm thấy từ vựng có id = " + v.getVocabId() + " trong topic có id = " + topicId);
             }
             UserTopicVocab userTopicVocab = o_userTopicVocab.get();
+            System.out.println(userTopicVocab);
+            userTopicVocab.setStatus(v.isStatus());
+            userTopicVocabRepo.save(userTopicVocab);
+        }
 
-            System.out.println(v);
+    }
 
-            mapper.updateUserTopicVocabFromDto(v, userTopicVocab);
 
+    public List<ChooseVocabDto> getTopicVocabToChoose(Long topicId, String userId) {
+        UserTopic userTopic = isUserTopicExist(topicId, userId);
+        return userTopicVocabRepo.getTopicVocabsToChoose(userTopic.getId());
+    }
+
+    //    Lưu list từ vựng muốn học của topicUser sau khi chọn xong
+    public void saveLearnRequestToUserTopicVocab(Long topicId, String userId, List<LearnVocabRequest> requests) {
+        UserTopic userTopic = isUserTopicExist(topicId, userId);
+
+        for (LearnVocabRequest v : requests) {
+            Optional<UserTopicVocab> o_userTopicVocab = userTopicVocabRepo.findByUserTopic_IdAndVocab_Id(userTopic.getId(), v.getVocabId());
+            if (o_userTopicVocab.isEmpty()) {
+                throw new NotFoundException("Không tìm thấy từ vựng có id = " + v.getVocabId() + " trong topic có id = " + topicId);
+            }
+            UserTopicVocab userTopicVocab = o_userTopicVocab.get();
+            userTopicVocab.setLearn(v.isLearn());
             userTopicVocabRepo.save(userTopicVocab);
         }
     }
 
-
-//    Lấy danh sách từ vựng muốn học từ database để học
-
-    public List<Vocab> getListOfVocabByTopicToLearn(Long topicId, String userId) {
+    //    Lấy danh sách từ vựng muốn học từ database để học
+    public List<Vocab> getTopicVocabsToLearn(Long topicId, String userId) {
         UserTopic userTopic = isUserTopicExist(topicId, userId);
-        List<UserTopicVocab> listLearnNow = userTopicVocabRepo.findByUserTopic_IdAndLearningStage(userTopic.getId(), LearningStage.NOW);
-        if (listLearnNow.isEmpty()) {
-            List<UserTopicVocab> listLearnFirst = userTopicVocabRepo.findByUserTopic_IdAndLearningStage(userTopic.getId(), LearningStage.FIRST);
-            return listLearnFirst.stream().filter(vocab -> vocab.isLearn()).map(v -> v.getVocab()).collect(Collectors.toList());
-        } else {
-            return listLearnNow.stream().filter(vocab -> vocab.isLearn()).map(v -> v.getVocab()).collect(Collectors.toList());
-        }
+        List<Vocab> vocabs = userTopicVocabRepo.findByUserTopic_IdAndLearn(userTopic.getId(), true);
+        return vocabs;
     }
 
 
@@ -195,10 +195,10 @@ public class UserLearningService {
     }
 
 
-    public List<VocabTest> getTestVocabs(Long topicId) {
+    public List<VocabTestDto> getTestVocabs(Long topicId) {
         Topic topic = isTopicExist(topicId);
 
-        List<VocabTest> words = topic.getVocabs().stream().toList()
+        List<VocabTestDto> words = topic.getVocabs().stream().toList()
                 .stream()
                 .map(vocab -> VocabTestMapper.toVocabTest(vocab))
                 .map(vocabTest -> renderVocabAnswers(vocabTest, topic.getCourse().getId()))
@@ -206,13 +206,14 @@ public class UserLearningService {
                 .map(vocabTest -> renderEnSentenceAnswers(vocabTest, topic.getCourse().getId()))
                 .collect(Collectors.toList());
 
+        Collections.shuffle(words);
         return words;
     }
 
 
 //    Render answer list for VocabTest (Choosing 4 options)
 
-    public VocabTest renderVocabAnswers(VocabTest vocabTest, Long courseId) {
+    public VocabTestDto renderVocabAnswers(VocabTestDto vocabTest, Long courseId) {
         int answerIndex = vocabTest.getAnswerIndex();
         List<String> vocabs = getCourseVocabs(courseId);
 
@@ -240,7 +241,7 @@ public class UserLearningService {
     }
 
 
-    public VocabTest renderVnMeaningAnswers(VocabTest vocabTest, Long courseId) {
+    public VocabTestDto renderVnMeaningAnswers(VocabTestDto vocabTest, Long courseId) {
         int answerIndex = vocabTest.getAnswerIndex();
         List<String> vnMeanings = getCourseVnMeaning(courseId);
         List<String> vnLists = new ArrayList<>();
@@ -267,7 +268,7 @@ public class UserLearningService {
         return vocabTest;
     }
 
-    public VocabTest renderEnSentenceAnswers(VocabTest vocabTest, Long courseId) {
+    public VocabTestDto renderEnSentenceAnswers(VocabTestDto vocabTest, Long courseId) {
         int answerIndex = vocabTest.getAnswerIndex();
         List<String> enSentences = getCourseEnSentence(courseId);
         List<String> enLists = new ArrayList<>();
@@ -294,67 +295,6 @@ public class UserLearningService {
     }
 
 
-    //    Lấy kết quả Test client gửi về và xử lý, lưu vào database
-    public void handleVocabTestResult(Long topicId, String userId, List<UserTopicVocabDto> requests) {
-        UserTopic userTopic = isUserTopicExist(topicId, userId);
-
-        long totalNumber = userTopicVocabRepo.countDistinctByUserTopic_Id(userTopic.getId());
-        long passVocabs = requests.stream().filter(v -> v.isStatus()).count();
-
-        if (passVocabs / totalNumber > 0.9) {
-            userTopic.setStatus(TopicState.PASS);                //Sau khi làm bài test, nếu trả lời đúng trên 90% thì PASS không thì CONTINUE
-            openNextUserTopic(userTopic);
-        } else {
-            userTopic.setStatus(TopicState.CONTINUE);
-        }
-        userTopicRepo.save(userTopic);
-
-        //Kiểm tra có phải lần test đầu tiên không bằng cách check chiều dài List UsertopicVocab stage NOW
-        List<UserTopicVocab> checkList=userTopicVocabRepo.findByUserTopic_IdAndLearningStage(userTopic.getId(),LearningStage.NOW);
-        if (checkList.isEmpty()){                                                          //Không có, sẽ khởi tạo lần đầu
-            initUserTopicVocabs(topicId,userId, LearningStage.NOW);
-        }else {                                                                            // Nếu có rồi, cần cập nhật trạng thái Best và Previous trước khi lưu kết quả mới
-            initUserTopicVocabs(topicId,userId,LearningStage.BEST);
-            initUserTopicVocabs(topicId,userId,LearningStage.PREVIOUS);
-        }
-
-
-        for (UserTopicVocabDto v : requests) {
-            Optional<UserTopicVocab> o_vocab = userTopicVocabRepo.findByUserTopic_IdAndVocab_IdAndLearningStage(userTopic.getId(), v.getId(), LearningStage.NOW);
-            if (o_vocab.isEmpty()) {
-                throw new BadRequestException("Không tìm thấy từ vựng có Id = " + v.getId() + " trong danh sách Từ vựng của topic User giai đoạn NOW");
-            }
-            UserTopicVocab vocab = o_vocab.get();
-            vocab.setStatus(v.isStatus());
-            vocab.setTestTime(v.getTestTime());
-            userTopicVocabRepo.save(vocab);
-        }
-    }
-
-
-    // Set userTopic tiếp theo ở trạng thái NOW nếu pass topic trước
-    public void openNextUserTopic(UserTopic userTopic) {
-        UserCourse userCourse = userTopic.getUserCourse();
-        List<UserTopic> userTopicList = userTopicRepo.findByUserCourse_Id(userCourse.getId());
-        for (int i = userTopicList.size() - 2; i >= 0; i--) {
-            if (userTopicList.get(i).getStatus() == TopicState.PASS) {
-                UserTopic userTopicNext = userTopicList.get(i + 1);
-                userTopicNext.setStatus(TopicState.NOW);
-                userTopicRepo.save(userTopicNext);
-            }
-        }
-
-
-    }
-
-
-    // Lấy kết quả Test hiện tại từ database
-    public List<UserTopicVocab> getTestResultNowStage(Long topicId, String userId) {
-        UserTopic userTopic = isUserTopicExist(topicId, userId);
-        return userTopicVocabRepo.findByUserTopic_IdAndLearningStage(userTopic.getId(), LearningStage.NOW);
-    }
-
-
     //    Lấy list đặc tính của Vocab theo course để render ra đáp án bất kỳ
     public List<String> getCourseVocabs(Long courseId) {
         return vocabRepo.findByTopics_Course_Id(courseId).stream().map(Vocab::getWord).collect(Collectors.toList());
@@ -369,10 +309,192 @@ public class UserLearningService {
     }
 
 
+    //    Lấy kết quả Test client gửi về và xử lý, lưu vào database
+    public void handleVocabTestResult(Long topicId, String userId, List<TestVocabResultRequest> requests) {
+        UserTopic userTopic = isUserTopicExist(topicId, userId);
+
+        //Kiểm tra có phải lần test đầu tiên không bằng cách check UsertopicRecord stage NOW
+        Optional<UserTopicRecord> checkList = userTopicRecordRepo.findByStageAndUserTopic_Id(LearningStage.NOW, userTopic.getId());
+        if (checkList.isEmpty()) {                                                          //Không có, sẽ khởi tạo lần đầu
+            UserTopicRecord recordNow = createUserTopicRecordByStage(topicId, userId, LearningStage.NOW);
+
+            updateTestVocabResult(userTopic, recordNow, requests);
+        } else {                                                                            // Nếu có rồi, cần cập nhật trạng thái Best và Previous trước khi lưu kết quả mới vào NOW
+            UserTopicRecord recordBest = createUserTopicRecordByStage(topicId, userId, LearningStage.BEST);
+            UserTopicRecord recordPrev = createUserTopicRecordByStage(topicId, userId, LearningStage.PREVIOUS);
+            UserTopicRecord recordNow = checkList.get();
+
+            // Cập nhật trạng thái previous
+            recordPrev.setTestTime(recordNow.getTestTime());
+            recordPrev.setRightAnswers(recordNow.getRightAnswers());
+
+            // Cập nhật trạng thái best
+            if ((recordNow.getRightAnswers() == recordBest.getRightAnswers() && recordNow.getTestTime() < recordBest.getTestTime()) || recordNow.getRightAnswers() > recordBest.getRightAnswers()) {
+                recordBest.setRightAnswers(recordNow.getRightAnswers());
+                recordBest.setTestTime(recordNow.getTestTime());
+            }
+
+            updateTestVocabResult(userTopic, recordNow, requests);
+        }
+    }
+
+    public void updateTestVocabResult(UserTopic userTopic, UserTopicRecord recordNow, List<TestVocabResultRequest> requests) {
+
+        Long totalNumber = userTopicVocabRepo.countDistinctByUserTopic_Id(userTopic.getId());
+        Long passVocabs = requests.stream().filter(v -> v.isStatus()).count();
+        int testTime = requests.stream().mapToInt(v -> v.getTestTime()).sum();
+
+
+        if (passVocabs == totalNumber) {
+            if (userTopic.getStatus() != TopicState.PASS) {
+                userTopic.setStatus(TopicState.PASS);                //Sau khi làm bài test, nếu trả lời đúng 100% thì PASS và mở bài tiếp theo không thì CONTINUE
+                openNextUserTopic(userTopic);
+            }
+
+        } else {
+            if (userTopic.getStatus() != TopicState.PASS) {
+                userTopic.setStatus(TopicState.CONTINUE);
+            }
+        }
+        userTopicRepo.save(userTopic);
+
+        //Update test time và số câu trả lời đúng từ request
+        recordNow.setRightAnswers(passVocabs.intValue());
+        recordNow.setTestTime(testTime);
+
+
+        //Update UserTopicVocab
+        for (TestVocabResultRequest v : requests) {
+            Optional<UserTopicVocab> o_userTopicVocab = userTopicVocabRepo.findByUserTopic_IdAndVocab_Id(userTopic.getId(), v.getVocabId());
+            if (o_userTopicVocab.isEmpty()) {
+                throw new NotFoundException("Không tìm thấy từ vựng có id = " + v.getVocabId() + " trong userTopic có id = " + userTopic.getId());
+            }
+            UserTopicVocab userTopicVocab = o_userTopicVocab.get();
+            userTopicVocab.setStatus(v.isStatus());
+            userTopicVocabRepo.save(userTopicVocab);
+        }
+
+    }
+
+
+    // Set userTopic tiếp theo ở trạng thái NOW nếu pass topic trước
+    public void openNextUserTopic(UserTopic curUserTopic) {
+        Course course = curUserTopic.getUserCourse().getCourse();
+        List<Topic> topicList = topicRepo.findTopicsByCourse_Id(course.getId());
+        Topic curTopic = curUserTopic.getTopic();
+        Long idNext = 0L;
+        for (int i = 0; i < topicList.size(); i++) {
+            if (topicList.get(i).getId() == curTopic.getId()) {
+                idNext = topicList.get(i + 1).getId();
+                break;
+            }
+        }
+        Topic nextTopic = topicRepo.findTopicById(idNext, Topic.class).get();
+        UserTopic userTopic = createPendingUserTopic(nextTopic.getId(), curUserTopic.getUserCourse().getUser().getId());
+        userTopic.setStatus(TopicState.NOW);
+        userTopicRepo.save(userTopic);
+
+    }
+
+
+    //    Show kết quả test
+    public List<VocabTestResultDto> getVocabsTestResult(Long topicId, String userId) {
+        UserTopic userTopic = isUserTopicExist(topicId, userId);
+        return userTopicVocabRepo.findByUserTopic_Id(userTopic.getId());
+    }
+
+    public List<UserTopicRecord> getTopicRecords(Long topicId, String userId) {
+        UserTopic userTopic = isUserTopicExist(topicId, userId);
+        return userTopicRecordRepo.findByUserTopic_Id(userTopic.getId());
+    }
+
+    public TopicState getUserTopicState(Long topicId, String userId){
+        UserTopic userTopic=isUserTopicExist(topicId, userId);
+        return userTopic.getStatus();
+
+    }
+
+    public List<UserTopicRankDto> getTopTenRank(Long topicId) {
+        Topic topic = isTopicExist(topicId);
+        List<UserTopicRecord> recordList=userTopicRecordRepo.getTopTenOfUserTopic(topicId);
+        List<UserTopicRankDto> rankDtoList=new ArrayList<>();
+        for (int i=0;i<recordList.size();i++){
+            UserTopicRankDto rankDto=UserTopicRankDto.builder()
+                    .rank(i+1)
+                    .userName(recordList.get(i).getUserTopic().getUserCourse().getUser().getUserName())
+                    .userImg(recordList.get(i).getUserTopic().getUserCourse().getUser().getAvatar())
+                    .testTime(recordList.get(i).getTestTime())
+                    .rightAnswers(recordList.get(i).getRightAnswers())
+                    .build();
+            rankDtoList.add(rankDto);
+        }
+        return rankDtoList;
+    }
+
+    public UserTopicRankDto getUserTopicRank(Long topicId, String userId){
+
+        UserTopic userTopic=isUserTopicExist(topicId, userId);
+        Optional<UserTopicRecord> recordNow=userTopicRecordRepo.findByStageAndUserTopic_Id(LearningStage.NOW, userTopic.getId());
+        if (recordNow.isEmpty()){
+            throw new NotFoundException("Không tìm thấy kết quả test hiện tại");
+        }
+        Optional<Integer> o_userRank= userTopicRecordRepo.getUserTopicRank(topicId, userId);
+        if (o_userRank.isEmpty()){
+            throw new NotFoundException("Không tìm thấy kết quả rank");
+        }
+
+        UserTopicRankDto rank=UserTopicRankDto.builder()
+                .rank(o_userRank.get())
+                .userName(recordNow.get().getUserTopic().getUserCourse().getUser().getUserName())
+                .userImg(recordNow.get().getUserTopic().getUserCourse().getUser().getAvatar())
+                .testTime(recordNow.get().getTestTime())
+                .rightAnswers(recordNow.get().getRightAnswers())
+                .build();
+        return rank;
+
+    }
+
+//    Learning Sentence Category
+
+    public List<Sentence> getTopicSentenceToLearn(Long topicId){
+        return sentenceRepo.findByTopics_Id(topicId);
+    }
+
+    public List<ContextDto> getContextsBySentence(Long sentenceId){
+        Sentence sentence=isSentenceExist(sentenceId);
+        List<Context> contexts=contextRepo.findBySentence_Id(sentence.getId(), Context.class);
+        List<ContextDto> contextDtos=contexts.stream().map(context -> modelMapper.map(context,ContextDto.class)).collect(Collectors.toList());
+
+        return renderContextAvatar(contextDtos);
+    }
+    public List<ContextDto> renderContextAvatar(List<ContextDto> contextDtos){
+        Map<Integer,String> person=new HashMap<>();
+        int male=1,female=1;
+        for (ContextDto c:contextDtos){
+            if(person.containsKey(c.getPersonNumber())){
+                c.setImg(person.get(c.getPersonNumber()));
+            }else {
+                if (c.getGender()== Gender.MALE){
+                    c.setImg("asset/img/common/male-talk-"+male);
+                    male++;
+                }else {
+                    c.setImg("asset/img/common/female-talk-"+female);
+                    female++;
+                }
+                person.put(c.getPersonNumber(),c.getImg());
+            }
+        }
+        return contextDtos;
+    }
+
+
+
+
+
 //    Helper Class
 
     public Topic isTopicExist(Long topicId) {
-        Optional<Topic> o_topic = topicRepo.findTopicById(topicId);                     // Kiểm tra topicID tồn tại không
+        Optional<Topic> o_topic = topicRepo.findTopicById(topicId, Topic.class);                     // Kiểm tra topicID tồn tại không
         if (!o_topic.isPresent()) {
             throw new BadRequestException("Không tồn tại topic có Id = " + topicId);
         }
@@ -404,11 +526,21 @@ public class UserLearningService {
     }
 
     public UserTopic isUserTopicExist(Long topicId, String userId) {
-        Optional<UserTopic> o_userTopic = userTopicRepo.findByTopic_IdAndUserCourse_User_Id(topicId, userId);
+        Topic topic = isTopicExist(topicId);
+        Users user=isUserExist(userId);
+        Optional<UserTopic> o_userTopic = userTopicRepo.findByTopic_IdAndUserCourse_User_Id(topic.getId(), user.getId(), UserTopic.class);
         if (o_userTopic.isEmpty()) {
             throw new BadRequestException("Không tìm thấy UserTopic");
         }
         return o_userTopic.get();
+    }
+
+    public Sentence isSentenceExist(Long sentenceId){
+        Optional<Sentence> o_sentence=sentenceRepo.findById(sentenceId);
+        if(o_sentence.isEmpty()){
+            throw new NotFoundException("Không tìm thấy sentence có id = "+sentenceId);
+        }
+        return o_sentence.get();
     }
 
 

@@ -3,6 +3,7 @@ $(function () {
     
   async function init() {
     await getStudiedContent();
+    await getCourseIdFromTopic();
     learningCheckBtn1();
     learningViewportSlideBox();
     inputGuessWord();
@@ -26,12 +27,29 @@ let topicId = params.get("id");
 let userId = "1";
 
 
+//render back button
 
+async function getCourseIdFromTopic() {
+  try {
+    let res = await axios.get(`${URL_API}/topic/${topicId}/to-course`);
+    console.log(res.data);
+    $(".header-menu-item.menu-item-back a").attr(
+      "href",
+      `course.html?id=${res.data.course.id}`
+    );
+    $(".header-menu-item.menu-item-back a span").text(
+      res.data.title
+    );
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // Get Learning List Vocabs ------------------------------------------------------------------------------------------------
 async function getStudiedContent() {
   try {
-    let res = await axios.get(`${URL_API}/learning/vocabs/${topicId}`);
+    let res = await axios.get(`${URL_API}/topic/${topicId}/learning/vocabs`);
     console.log(res.data);
     studiedVocabs = res.data;
     renderStudiedVocabs();
@@ -50,7 +68,6 @@ function createVocabTemplate(vocab) {
     "words-id": vocab.id,
   });
   $template.find(".card-img img").attr("src", vocab.img);
-  $template.find(".card-img img").attr("src", vocab.img);
   $template.find(".card-content-text").text(vocab.enMeaning);
   $template.find(".card-content-type").text(vocab.type);
   $template.find(".card-content-text-main").text(vocab.word);
@@ -64,7 +81,7 @@ function createVocabTemplate(vocab) {
   $template.find(".example-en span").eq(0).text(enExample[0]);
   $template.find(".example-en span").eq(1).text(enExample[1]);
   $template.find(".example-en span").eq(2).text(enExample[2]);
-  console.log($template.find(".example-en"));
+
 
   return $template;
 }

@@ -2,8 +2,10 @@ $(function () {
   async function init() {
     await getCurCourse();
     await getTopicsByCourse();
+    await getUserCourse();
     await getUserTopics();
 
+    openChooseWordModalByTopic();
     courseTopicBtn();
     topicProgress();
   }
@@ -17,9 +19,9 @@ let courseId = params.get("id");
 let topics = [];
 let userTopics = [];
 let courseCategory;
-const URL = "http://localhost:8898/api/v1";
-
+const URL_API = "http://localhost:8898/api/v1";
 let userId = "1";
+let topicId = 0;
 
 // CSS page-------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ function courseInfoSlide() {
 
 async function getCurCourse() {
   try {
-    let res = await axios.get(`${URL}/course/${courseId}`);
+    let res = await axios.get(`${URL_API}/course/${courseId}`);
     renderCourseInfo(res.data);
     console.log(res.data);
     courseCategory = res.data.category.id;
@@ -114,7 +116,7 @@ function renderCourseInfoItem(arr, $container) {
 
 async function getTopicsByCourse() {
   try {
-    let res = await axios.get(`${URL}/course/${courseId}/topics`);
+    let res = await axios.get(`${URL_API}/course/${courseId}/topics`);
     console.log(res.data);
     renderTopicInfo(res.data);
   } catch (error) {
@@ -130,8 +132,8 @@ function renderTopicInfo(arr) {
 
   for (let i = 0; i < arr.length; i++) {
     html +=
-      ` <div class="col l-3">
-                  <div class="course-content-item" topic-id="${arr[i].id}">
+      ` <div class="col col-lg-3 d-flex justify-content-center">
+                  <div class="course-content-item " topic-id="${arr[i].id}">
                  
                     <div class="course-content-item-thumb">
                       <img
@@ -179,10 +181,6 @@ function renderTopicInfo(arr) {
                             
                           </div>
                        </div>
-
-               
-
-                     
                   </div>
                 </div>`;
   }
@@ -192,10 +190,36 @@ function renderTopicInfo(arr) {
 
 // Render topic by User
 
+async function getUserCourse() {
+  try {
+    let res = await axios.get(
+      `${URL_API}/course/user-course?courseId=${courseId}&userId=${userId}`
+    );
+    console.log(res.data);
+    $(
+      ".course__info-item-progress-item.lesson .course__info-item-progress-item-detail div"
+    )
+      .eq(0)
+      .text(res.data.finishedTopics);
+    $(
+      ".course__info-item-progress-item.learned .course__info-item-progress-item-detail div"
+    )
+      .eq(0)
+      .text(res.data.passedVocabs + res.data.passedSens);
+    $(
+      ".course__info-item-progress-item.not-learn .course__info-item-progress-item-detail div"
+    )
+      .eq(0)
+      .text(res.data.failedVocabs + res.data.failedSens);
+  } catch (error) {
+    console.log("Chưa khởi tạo User_course");
+  }
+}
+
 async function getUserTopics() {
   try {
     let res = await axios.get(
-      `${URL}/course/user-topic?courseId=${courseId}&userId=${userId}`
+      `${URL_API}/course/user-topic?courseId=${courseId}&userId=${userId}`
     );
     console.log(res.data);
     renderTopicStatus(res.data);
@@ -203,7 +227,6 @@ async function getUserTopics() {
     console.log(error);
   }
 }
-
 
 function renderTopicStatus(userTopicArr) {
   const $topics = $(".course-content-item");
@@ -214,29 +237,26 @@ function renderTopicStatus(userTopicArr) {
       const $topic = $(
         `.course-content-item[topic-id="${userTopic.topic.id}"]`
       );
-     
+
+      $topic
+        .find(".course-content-item-progress-range p span")
+        .eq(0)
+        .text(`${userTopic.passedElement}`);
+
       const title = $topic.find(".course-content-item-name").text();
       let html = "";
       switch (userTopic.status) {
         case "PENDING":
-          html = `<div class="course-content-item-btn btn-pending">
+          html = `<div class="course-content-item-btn btn-pending button-active">
                         <div class="course-content-item-btn-content">
                           <h5>${title}</h5>
                           <h6>
-                            Từ đã thuộc: <span>${
-                              userTopic.passedElement
-                            }</span> / <span>${userTopic.totalElement}</span>
+                            Từ đã thuộc: <span>${userTopic.passedElement}</span> / <span>${userTopic.totalElement}</span>
                           </h6>
-                          <a href="${
-                            courseCategory == 1
-                              ? "/learning.html"
-                              : "/sen_learn.html"
-                          }?id=${
-            userTopic.topic.id
-          }" class="course-btn-longer"> HỌC TIẾP</a>
-                          
+                          <div class="course-btn-longer choose-word" id-topic="${userTopic.topic.id}" data-bs-toggle="modal" data-bs-target="#choosewordmodel"> HỌC TIẾP</div>
                         </div>
                       </div>`;
+
           break;
         case "PASS":
           $topic.addClass("item-active");
@@ -244,24 +264,10 @@ function renderTopicStatus(userTopicArr) {
                         <div class="course-content-item-btn-content">
                           <h5>${title}</h5>
                           <h6>
-                            Từ đã thuộc: <span>${
-                              userTopic.passedElement
-                            }</span> / <span>${userTopic.totalElement}</span>
+                            Từ đã thuộc: <span>${userTopic.passedElement}</span> / <span>${userTopic.totalElement}</span>
                           </h6>
-                          <a href="${
-                            courseCategory == 1
-                              ? "/learning.html"
-                              : "/sen_learn.html"
-                          }?id=${
-            userTopic.topic.id
-          }" class="course-btn-longer"> ÔN TẬP LẠI</a>
-                          <a href="${
-                            courseCategory == 1
-                              ? "/test.html"
-                              : "/sen_test.html"
-                          }?id=${
-            userTopic.topic.id
-          }" class="course-btn-longer btn-result"
+                          <div class="course-btn-longer choose-word" id-topic="${userTopic.topic.id}" data-bs-toggle="modal" data-bs-target="#choosewordmodel"> ÔN TẬP LẠI</div>
+                          <a href="/test_result.html?id=${userTopic.topic.id}" class="course-btn-longer btn-result"
                             >XEM KẾT QUẢ</a
                           >
                           
@@ -271,28 +277,14 @@ function renderTopicStatus(userTopicArr) {
 
         case "CONTINUE":
           $topic.addClass("item-active");
-          html = `<div class="course-content-item-btn btn-review">
+          html = `<div class="course-content-item-btn btn-review button-active">
                         <div class="course-content-item-btn-content">
                           <h5>${title}</h5>
                           <h6>
-                            Từ đã thuộc: <span>${
-                              userTopic.passedElement
-                            }</span> / <span>${userTopic.totalElement}</span>
+                            Từ đã thuộc: <span>${userTopic.passedElement}</span> / <span>${userTopic.totalElement}</span>
                           </h6>
-                          <a href="${
-                            courseCategory == 1
-                              ? "/learning.html"
-                              : "/sen_learn.html"
-                          }?id=${
-            userTopic.topic.id
-          }" class="course-btn-longer"> ÔN TẬP LẠI</a>
-                          <a href="${
-                            courseCategory == 1
-                              ? "/test.html"
-                              : "/sen_test.html"
-                          }?id=${
-            userTopic.topic.id
-          }" class="course-btn-longer btn-result"
+                          <div class="course-btn-longer choose-word" id-topic="${userTopic.topic.id}" data-bs-toggle="modal" data-bs-target="#choosewordmodel"> ÔN TẬP LẠI</div>
+                          <a href="/test_result.html?id=${userTopic.topic.id}" class="course-btn-longer btn-result"
                             >XEM KẾT QUẢ</a
                           >
                           
@@ -302,7 +294,7 @@ function renderTopicStatus(userTopicArr) {
 
         case "NOW":
           $topic.addClass("item-current");
-          html = `<div class="course-content-item-btn">
+          html = `<div class="course-content-item-btn button-active">
                         <div class="course-content-item-btn-content">
                           <h5>${title}</h5>
                           <h6>
@@ -345,6 +337,16 @@ function renderTopicStatus(userTopicArr) {
       $topic.append(html);
     });
   }
+}
+
+function openChooseWordModalByTopic() {
+  const $btnOpens = $(".course-btn-longer.choose-word");
+  $btnOpens.each(function (index, btn) {
+    $(btn).on("click", function () {
+      topicId = $(btn).attr("id-topic");
+      initChooseWord();
+    });
+  });
 }
 
 // COURSE PAGE ACTION-------------------------------------------

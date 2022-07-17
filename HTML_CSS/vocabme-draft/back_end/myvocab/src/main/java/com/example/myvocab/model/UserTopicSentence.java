@@ -1,30 +1,31 @@
 package com.example.myvocab.model;
 
-import com.example.myvocab.model.enummodel.LearningStage;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "user_topic_sentence")
 public class UserTopicSentence {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LearningStage learningStage;
-    private int testTime;
+    private String questionTitle;
+    private String questionContent;
+    private String answer;
+    private String userAnswer;
+    private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user_topic", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_user_topic")
+    @JsonIgnore
     private UserTopic userTopic;
-
-
 
 }

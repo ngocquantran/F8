@@ -2,95 +2,206 @@ $(function () {
   init();
 
   async function init() {
-    // await getStudiedContent(1);
+    await getStudiedContent();
+    openContextModalWindow();
 
     learningViewportSlideBox();
+    playSentenceByWords();
 
     learningWords();
     updateLearningVocabProgress(
-      $(".learning-word-layer").length,
+      $(".learning-sen-layer").length,
       0,
-      $(".learning-word-progress-range span"),
-      $(".learning-word-progress-title strong")
+      $(".learning-sen-progress-range span"),
+      $(".learning-sen-progress-title strong")
     );
     playWordSound();
-    playEachContext();
   }
-  playSentenceByWords();
-
-  $(".context-content .context-title audio")[0].ontimeupdate = function () {
-    showContextPlaying(this);
-  };
 });
 
-let studiedVocabs = [];
-const URL_API = "http://localhost:8080/api/v1";
+let studiedSen = [];
+const URL_API = "http://localhost:8898/api/v1";
+let params = new URLSearchParams(window.location.search);
+let topicId = params.get("id");
+let contextsBySentence = [];
 
-// Get Learning List Vocabs ------------------------------------------------------------------------------------------------
-async function getStudiedContent(id) {
+// Get Learning List Sentences ------------------------------------------------------------------------------------------------
+async function getStudiedContent() {
   try {
-    let res = await axios.get(`${URL_API}/learning/${id}`);
-    studiedVocabs = res.data;
-    renderStudiedVocabs();
+    let res = await axios.get(`${URL_API}/topic/${topicId}/learning/sentence`);
+    studiedSen = res.data;
+    console.log(studiedSen);
+    renderStudiedSen();
   } catch (error) {
     console.log(error);
   }
 }
 
-function createVocabTemplate(vocab) {
+// Tạo template và render nội dung học
+
+function createSenTemplate(sen) {
   const $template = $(
-    document.querySelector(".vocab-template").content.firstElementChild
+    document.querySelector(".sen-template").content.firstElementChild
   ).clone();
 
   $template.attr({
-    words: vocab.word,
-    "words-id": vocab.id,
+    "sen-id": sen.id,
   });
-  $template.find(".card-img img").attr("src", vocab.img);
-  $template.find(".card-img img").attr("src", vocab.img);
-  $template.find(".card-content-text").text(vocab.enMeaning);
-  $template.find(".card-content-type").text(vocab.type);
-  $template.find(".card-content-text-main").text(vocab.word);
-  $template.find(".card-content-phonetic audio").attr("src", vocab.audio);
-  $template.find(".card-content-phonetic span:last-child").text(vocab.phonetic);
-  $template.find(".text-definition-vi").text(vocab.vnMeaning);
-  $template.find(".card-content-example audio").attr("src", vocab.senAudio);
-  $template.find(".example-vi").text(vocab.vnSentence);
-  // Tách câu ví dụ tiếng anh
-  let enExample = vocab.enSentence.split("_");
-  $template.find(".example-en span").eq(0).text(enExample[0]);
-  $template.find(".example-en span").eq(1).text(enExample[1]);
-  $template.find(".example-en span").eq(2).text(enExample[2]);
-  console.log($template.find(".example-en"));
+  $template.find(".card-img img").attr("src", sen.img);
+  $template.find(".sentence .content").text(sen.content.replaceAll("_", " "));
+  $template
+    .find(".sentence .pronounce")
+    .text(sen.phonetic.replaceAll("_", " "));
+  let renderWord = separateSentenceData(
+    sen.content,
+    sen.phonetic,
+    sen.wordsTimestamp
+  );
+  renderWord.forEach((data) => {
+    $template
+      .find(".word .content")
+      .append(
+        ` <span data-start="${data.data_start}" data-end="${data.data_end}" class="">${data.word}</span>`
+      );
+    $template
+      .find(".word .pronounce")
+      .append(
+        ` <span data-start="${data.data_start}" data-end="${data.data_end}" class="">${data.pronounce}</span>`
+      );
+  });
+
+  $template.find(".sound .sound-sentence audio").attr("src", sen.senAudio);
+  $template.find(".sound .sound-word audio").attr("src", sen.wordsAudio);
+  $template.find(".sentence-vi .content").text(sen.vnSentence);
+  $template.find(".usage .content p").text(sen.apply);
+  $template.find(".btn-context").attr("id-sentence", sen.id);
+  $template.find(".card-content-example audio").attr("src", sen.senAudio);
+  $template
+    .find(".example-group .example-en")
+    .text(sen.content.replaceAll("_", " "));
+  $template.find(".example-group .example-vi").text(sen.vnSentence);
 
   return $template;
 }
 
-function createVocabList() {
-  const list = studiedVocabs.map(function (vocab) {
-    return createVocabTemplate(vocab);
+function separateSentenceData(content, phonetic, timestamp) {
+  let contents = content.split("_");
+  let phonetics = phonetic.split("_");
+  let stamps = timestamp.split("_");
+  let start = 0;
+  let renderArr = [];
+  for (let i = 0; i < stamps.length; i++) {
+    renderArr.push({
+      data_start: start,
+      data_end: stamps[i],
+      word: contents[i],
+      pronounce: phonetics[i],
+    });
+    start = stamps[i];
+  }
+  return renderArr;
+}
+
+function createSenList() {
+  const list = studiedSen.map(function (sen) {
+    return createSenTemplate(sen);
   });
   return list;
 }
 
-function renderStudiedVocabs() {
-  const $studiedContent = $(".learning-word-content");
+function renderStudiedSen() {
+  const $studiedContent = $(".learning-sen-content");
   $studiedContent.html("");
-  const list = createVocabList();
+  const list = createSenList();
   $studiedContent.append(list);
 }
 
-// Learning page------------------------------------------------------------------------------------------------
+// Get Context content by sentence Id
+function openContextModalWindow() {
+  const $contextBtn = $(".btn-context");
+  $contextBtn.each(function (index, btn) {
+    $(btn).on("click", function () {
+      let senId = $(this).attr("id-sentence");
+      getContextContent(senId);
+    });
+  });
+}
+
+// API lấy nội dung context theo Sentence
+
+async function getContextContent(senId) {
+  try {
+    let res = await axios.get(
+      `${URL_API}/topic/learning/sentence/${senId}/context`
+    );
+    contextsBySentence = res.data;
+  
+    console.log(contextsBySentence);
+    renderContextModalWindow(senId);
+    $(".context-content .context-title audio")[0].ontimeupdate = function () {
+      showContextPlaying(this);
+    };
+    playEachContext();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+// Render nội dung cửa sổ xem context
+function renderContextModalWindow(senId) {
+  const $container = $("#context-modal");
+  let chosedSen = studiedSen.filter((sen) => {
+    return sen.id == senId;
+  });
+  console.log(chosedSen);
+  $container
+    .find(".context-title audio")
+    .attr("src", chosedSen[0].contextAudio);
+  $container.find(".context-title h5").text(chosedSen[0].enContextDesc);
+  $container.find(".context-title h6").text(chosedSen[0].vnContextDesc);
+
+  $container.find(".context-content-item").html("");
+  let html = "";
+  contextsBySentence.forEach((context) => {
+    html += ` <div
+                      class="context-item"
+                      data-start="${context.startTime}"
+                      data-end="${context.endTime}"
+                    >
+                      <div class="context-image">
+                        <h4>${context.name}</h4>
+                        <img
+                          class="speaker"
+                          src="${context.img}.jpg"
+                        />
+                        <img
+                          class="speaker-active hidden"
+                          src="${context.img}.gif"
+                        />
+                      </div>
+                      <div class="context-text">
+                        <h5>
+                         ${context.enSentence.replaceAll("_", "")}
+                        </h5>
+                        <h6>
+                          ${context.vnSentence}
+                        </h6>
+                        <i class="first"></i>
+                      </div>
+                    </div>`;
+  });
+  $container.find(".context-content-item").append(html);
+}
 
 // Xoay flashcard từ vựng để học------------------------------------------------------------------
 function learningViewportSlideBox() {
-  const $cards = $(".learning-word-viewport-container");
+  const $cards = $(".learning-sen-viewport-container");
   $cards.each(function (index, card) {
     const $btn = $(card).find(".card-turn");
-    const $word = $(card).find(".learning-word-viewport-slide.slide2 audio");
-    const $sentence = $(card).find(
-      ".learning-word-viewport-slide.slide3 audio"
-    );
+    const $word = $(card).find(".learning-sen-viewport-slide.slide2 audio");
+    const $sentence = $(card).find(".learning-sen-viewport-slide.slide3 audio");
     // let pos = 0;
     let pos = parseInt($(card).attr("rotate-data"));
     let cur = 1;
@@ -104,15 +215,15 @@ function learningViewportSlideBox() {
       $(card).css({
         transform: `rotateX(${pos}deg)`,
       });
-      $(card).find(".learning-word-viewport-slide").removeClass("on");
+      $(card).find(".learning-sen-viewport-slide").removeClass("on");
       if (cur == 2) {
         // playASound($word);
-        $(card).find(".learning-word-viewport-slide.slide2").addClass("on");
+        $(card).find(".learning-sen-viewport-slide.slide2").addClass("on");
       } else if (cur == 3) {
         // playASound($sentence);
-        $(card).find(".learning-word-viewport-slide.slide3").addClass("on");
+        $(card).find(".learning-sen-viewport-slide.slide3").addClass("on");
       } else {
-        $(card).find(".learning-word-viewport-slide.slide1").addClass("on");
+        $(card).find(".learning-sen-viewport-slide.slide1").addClass("on");
       }
     });
   });
@@ -121,21 +232,23 @@ function learningViewportSlideBox() {
 // Chuyển từ học tiếp/quay lại------------------------------------------------------------------
 
 function learningWords() {
-  const $cards = $(".learning-word-layer");
+  const $cards = $(".learning-sen-layer");
   const n = $cards.length;
-  $(".learning-word-progress-title span").text(`${n}`);
+  $(".learning-sen-progress-title span").text(`${n}`);
 
   let index = 0;
   setCurrentLearningCart($cards.eq(0));
 
-  const $btnNext = $(".learning-word-bottom-btn.btn-next");
+  const $btnNext = $(".learning-sen-bottom-btn.btn-next");
   $btnNext.on("click", function () {
+    disableLearningBtnForASecond();
+
     $cards.each(function (index, card) {
       $(card).removeClass("left");
       $(card).addClass("right");
     });
     if (index < n - 1) {
-      $(".learning-word-layer.hide").removeClass("hide");
+      $(".learning-sen-layer.hide").removeClass("hide");
 
       $cards.eq(index).addClass("hide");
       $cards.eq(index).removeClass("show");
@@ -144,22 +257,26 @@ function learningWords() {
       updateLearningVocabProgress(
         n,
         index,
-        $(".learning-word-progress-range span"),
-        $(".learning-word-progress-title strong")
+        $(".learning-sen-progress-range span"),
+        $(".learning-sen-progress-title strong")
       );
 
       setCurrentLearningCart($cards.eq(index));
+    } else {
+      window.location.href = `/sen_test.html?id=${topicId}`;
     }
   });
 
-  const $btnBack = $(".learning-word-bottom-btn.btn-back");
+  const $btnBack = $(".learning-sen-bottom-btn.btn-back");
   $btnBack.on("click", function () {
+    disableLearningBtnForASecond();
+    
     $cards.each(function (index, card) {
       $(card).removeClass("right");
       $(card).addClass("left");
     });
     if (index > 0) {
-      $(".learning-word-layer.hide").removeClass("hide");
+      $(".learning-sen-layer.hide").removeClass("hide");
       $cards.eq(index).removeClass("show");
       $cards.eq(index).removeClass("layer-current");
       $cards.eq(index).addClass("hide");
@@ -168,11 +285,19 @@ function learningWords() {
       updateLearningVocabProgress(
         n,
         index,
-        $(".learning-word-progress-range span"),
-        $(".learning-word-progress-title strong")
+        $(".learning-sen-progress-range span"),
+        $(".learning-sen-progress-title strong")
       );
     }
   });
+}
+
+function disableLearningBtnForASecond() {
+  const $btn = $(".learning-sen-bottom-btn");
+  $btn.css({ "pointer-events": "none" });
+  setTimeout(() => {
+    $btn.css({ "pointer-events": "all" });
+  }, 1500);
 }
 
 function setCurrentLearningCart($card) {
@@ -237,47 +362,49 @@ function playWordSound() {
 
 function playASoundInTime($sound, start, end) {
   // return new Promise(function (resolve, reject) {
-    $sound[0].load();
-    let duration = $sound[0].duration;
-    console.log(duration);
-    if (start > duration || end > duration || start > end) {
-      console.log("Kiểm tra lại timestamp");
-      return;
-    }
-    $sound[0].onloadeddata = function () {
-      $sound[0].currentTime = start / 1000;
-      pauseEverySound();
-      $sound[0].play();
-      setTimeout(() => {
-        $sound[0].pause();
-        $sound[0].currentTime=0;
-        // resolve();
-      }, end - start);
-    };
+  $sound[0].load();
+  let duration = $sound[0].duration;
+  console.log(duration);
+  if (start > duration || end > duration || start > end) {
+    console.log("Kiểm tra lại timestamp");
+    return;
+  }
+  $sound[0].onloadeddata = function () {
+    $sound[0].currentTime = start / 1000;
+    pauseEverySound();
+    $sound[0].play();
+    setTimeout(() => {
+      $sound[0].pause();
+      $sound[0].currentTime = 0;
+      // resolve();
+    }, end - start);
+  };
   // });
 }
 
-function playEachContext2() {
-  const $contextContent = $(".context-group-content");
-  const $sound = $contextContent.find(".context-title .play-sound audio");
-  const $contexts = $(".context-item");
+// function playEachContext2() {
+//   const $contextContent = $(".context-group-content");
+//   const $sound = $contextContent.find(".context-title .play-sound audio");
+//   const $contexts = $(".context-item");
 
-  $contexts.each(function (index, context) {
-    $(context).on("click", async function () {
-      $(context).toggleClass("context-active");
-      $(context).find(".speaker, .speaker-active").toggleClass("hidden");
+//   $contexts.each(function (index, context) {
+//     $(context).on("click", async function () {
+//       $(context).toggleClass("context-active");
+//       $(context).find(".speaker, .speaker-active").toggleClass("hidden");
 
-      playASoundInTime(
-        $sound,
-        $(context).attr("data-start"),
-        $(context).attr("data-end")
-      ).then(() => {
-        $(context).toggleClass("context-active");
-        $(context).find(".speaker, .speaker-active").toggleClass("hidden");
-      });
-    });
-  });
-}
+//       playASoundInTime(
+//         $sound,
+//         $(context).attr("data-start"),
+//         $(context).attr("data-end")
+//       ).then(() => {
+//         $(context).toggleClass("context-active");
+//         $(context).find(".speaker, .speaker-active").toggleClass("hidden");
+//       });
+//     });
+//   });
+// }
+
+// Play context và sentence theo timestamp
 
 function playEachContext() {
   const $contextContent = $(".context-group-content");
@@ -323,11 +450,11 @@ function showContextPlaying(sound) {
 }
 
 function playSentenceByWords() {
-  const $layer = $(".learning-word-layer.layer");
+  const $layer = $(".learning-sen-layer.layer");
   $layer.each(function (index, layer) {
     const sound = $(layer).find(".sound .sound-word audio")[0];
     const $words = $(layer).find(".word .content span");
-    console.log($words);
+
     const timestamp = [];
     $words.each(function (index, word) {
       timestamp.push({
@@ -335,7 +462,7 @@ function playSentenceByWords() {
         end: parseInt($(word).attr("data-end")),
       });
     });
-    console.log(timestamp);
+
     const $phonetics = $(layer).find(".word .pronounce span");
     sound.ontimeupdate = function () {
       timestamp.forEach(function (time, index) {

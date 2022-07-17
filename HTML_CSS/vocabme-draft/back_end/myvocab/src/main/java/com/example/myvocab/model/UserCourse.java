@@ -38,15 +38,29 @@ public class UserCourse {
             "FROM user_topic_vocab utv \n" +
             "INNER JOIN user_topic ut ON utv.id_user_topic =ut.id \n" +
             "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
-            "WHERE ut.status ='PASS' AND utv.status =1 AND utv.learningStage ='NOW' AND uc.id=id)")
-    private Integer passedElement;
+            "WHERE ut.status ='PASS' AND utv.status =1 AND uc.id=id)")
+    private Integer passedVocabs;
 
     @Formula("(SELECT COUNT(*) \n" +
             "FROM user_topic_vocab utv \n" +
             "INNER JOIN user_topic ut ON utv.id_user_topic =ut.id \n" +
             "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
-            "WHERE ut.status ='PASS' AND utv.status =0 AND utv.learningStage ='NOW' AND uc.id=id)")
-    private Integer failedElement;
+            "WHERE ut.status ='PASS' AND utv.status =0 AND uc.id=id)")
+    private Integer failedVocabs;
+
+    @Formula("(SELECT COUNT(*) \n" +
+            "FROM user_topic_sentence uts \n" +
+            "INNER JOIN user_topic ut ON uts.id_user_topic =ut.id \n" +
+            "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
+            "WHERE ut.status ='PASS' AND uts.status =1 AND uc.id=id)")
+    private Integer passedSens;
+
+    @Formula("(SELECT COUNT(*) \n" +
+            "FROM user_topic_sentence uts \n" +
+            "INNER JOIN user_topic ut ON uts.id_user_topic =ut.id \n" +
+            "INNER JOIN user_course uc ON ut.id_user_course =uc.id \n" +
+            "WHERE ut.status ='PASS' AND uts.status =0 AND uc.id=id)")
+    private Integer failedSens;
 
 
 

@@ -36,10 +36,14 @@
 
     <!-- Style css -->
     <link rel="stylesheet" href="asset/css/base.css" />
-    <link rel="stylesheet" href="asset/css/grid.css" />
     <link rel="stylesheet" href="asset/css/common.css" />
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+   
     <link rel="stylesheet" href="asset/css/course.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
+    
 
     <!-- Javascript -->
     <script
@@ -49,9 +53,17 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="asset/js/main.js"></script>
     <script src="asset/js/course.js"></script>
+    <script src="asset/js/choose_word.js"></script>
+    
   </head>
   <body>
     <div class="app">
@@ -193,262 +205,8 @@
           <div class="course-content">
             <h3 class="course-content-header">Bài học <span>29</span></h3>
             <div class="course-content-list">
-              <div class="row">
-                <div class="col l-3">
-                  <div class="course-content-item item-active">
-                    
-                      <div class="course-content-item-thumb">
-                        <img
-                          src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/WHY-MONKEY-HAS-NO-HOME/thumb/WHY-MONKEY-HAS-NO-HOME.jpg"
-                          alt=""
-                        />
-                      </div>
+              <div class="row" style="width:100%;">
 
-                      <h4 class="course-content-item-name">
-                        WHY MONKEY HAS NO HOME
-                      </h4>
-
-                      <div class="course-content-item-progress">
-                        <div class="course-content-item-progress-range">
-                          <div class="course-content-item-progress-value"></div>
-                          <p><span>18</span>/<span>18</span></p>
-                          <i class="fa-solid fa-star"></i>
-                        </div>
-                      </div>
-
-                      <div class="course-content-item-btn btn-review">
-                        <div class="course-content-item-btn-content">
-                          <h5>WHY MONKEY HAS NO HOME</h5>
-                          <h6>
-                            Từ đã thuộc: <span>19</span> / <span>19</span>
-                          </h6>
-                          <a href="" class="course-btn-longer"> ÔN TẬP LẠI</a>
-                          <a href="" class="course-btn-longer btn-result"
-                            >XEM KẾT QUẢ</a
-                          >
-                        </div>
-                      </div>
-                  
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item item-active">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/MATTHEW-LEARNS-A-LESSON/thumb/MATTHEW-LEARNS-A-LESSON.jpg"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">
-                      MATTHEW LEARNS A LESSON
-                    </h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>13</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn btn-review">
-                      <div class="course-content-item-btn-content">
-                        <h5>MATTHEW LEARNS A LESSON</h5>
-                        <h6>Từ đã thuộc: <span>13</span> / <span>19</span></h6>
-                        <a href="" class="course-btn-longer"> ÔN TẬP LẠI</a>
-                        <a href="" class="course-btn-longer btn-result"
-                          >XEM KẾT QUẢ</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item item-current">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-MAGIC-CUP/thumb/THE-MAGIC-CUP.png"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">THE MAGIC CUP</h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>0</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn">
-                      <div class="course-content-item-btn-content">
-                        <h5>THE MAGIC CUP</h5>
-                        <h6>Từ đã thuộc: <span>0</span> / <span>19</span></h6>
-                        <a href="" class="course-btn-longer">HỌC NGAY</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>0</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn btn-disabled">
-                      <div class="course-content-item-btn-content">
-                        <p>
-                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
-                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
-                          trình học bạn nhé!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>0</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn btn-disabled">
-                      <div class="course-content-item-btn-content">
-                        <p>
-                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
-                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
-                          trình học bạn nhé!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>0</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn btn-disabled">
-                      <div class="course-content-item-btn-content">
-                        <p>
-                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
-                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
-                          trình học bạn nhé!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>0</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn btn-disabled">
-                      <div class="course-content-item-btn-content">
-                        <p>
-                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
-                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
-                          trình học bạn nhé!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col l-3">
-                  <div class="course-content-item">
-                    <div class="course-content-item-thumb">
-                      <img
-                        src="asset/img/course/1000-ESSENTIAL-WORDS-in-STORIES-(Improver)/THE-KNIGHT’S-PLAN/thumb/THE-KNIGHT’S-PLAN.jpg"
-                        alt=""
-                      />
-                    </div>
-
-                    <h4 class="course-content-item-name">THE KNIGHT'S PLAN</h4>
-
-                    <div class="course-content-item-progress">
-                      <div class="course-content-item-progress-range">
-                        <div class="course-content-item-progress-value"></div>
-                        <p><span>0</span>/<span>19</span></p>
-                        <i class="fa-solid fa-star"></i>
-                      </div>
-                    </div>
-
-                    <div class="course-content-item-btn btn-disabled">
-                      <div class="course-content-item-btn-content">
-                        <p>
-                          Bài học mới sẽ được mở sau khi bạn hoàn thành bài học
-                          hiện tại. Hãy hoàn thành bài học hiện tại theo đúng lộ
-                          trình học bạn nhé!
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -477,7 +235,52 @@
         </div>
       </div>
 
-      <div class="modal hidden">
+       <div class="modal fade" id="choosewordmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+            <div class="modal-header" style="align-items: flex-start;">
+              <div class="choose-study-word-content-header">
+                <h3>Chọn từ bạn muốn học</h3>
+                <div class="choose-study-word-content-header-btn">
+                  <div class="choose-study-word-btn all-word">Học tất cả
+                  </div>
+                  <div class="choose-study-word-btn unknown-word">Học từ chưa thuộc
+                  </div>
+                </div>
+              </div>
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="choose-study-word">
+                <div class="choose-study-word-content">
+
+                  <form action=""></form>
+                  <div class="choose-study-word-content-body">
+                    <div class="row">
+                        
+
+                    </div>
+                  </div>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="choose-study-word-content-footer">
+                <button type="submit" class="choose-word-btn">
+                  Bắt đầu học
+                </button>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="modal hidden">
         <div class="modal-body">
           <div class="trial-alert hidden">
             <div class="trial-alert-content">
@@ -500,7 +303,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>

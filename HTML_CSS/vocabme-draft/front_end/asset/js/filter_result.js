@@ -13,16 +13,18 @@ let topicId = params.get("id");
 let userId = "1";
 let known = 0;
 let unknown = 0;
-let vocabsRequest = [];
+let learnRequest = [];
 
 // RENDER PAGE FILTER-----------------------------------------------
 
 async function getListOfVocabs() {
   try {
-    let res = await axios.get(`${URL_API}/filter-result/vocabs/${topicId}`);
+    let res = await axios.get(
+      `${URL_API}/topic/${topicId}/filter-result/vocabs-to-choose`
+    );
+    console.log(res.data);
     renderListVocab(res.data);
-    vocabsRequest = res.data;
-    console.log(vocabsRequest);
+    
     renderGraph();
   } catch (error) {
     console.log(error);
@@ -34,20 +36,28 @@ function renderListVocab(vocabArr) {
   $container.html("");
   let html = "";
   vocabArr.forEach((vocab) => {
+    //đếm known và unknown để render circle graph
     if (vocab.status) {
       known++;
     } else {
       unknown++;
     }
+    //Khởi tạo list từ chọn để học
+    learnRequest.push({
+      vocabId: vocab.vocabId,
+      learn:false
+    })
+
+    //Render danh sách từ
     html += `<div class="col col-lg-6">
                       <div class="choose-study-word-item ${
                         vocab.status == false ? "item-unknown" : ""
-                      }" id-vocab="${vocab.id}">
-                        <img src="${vocab.vocab.img}" alt="">
+                      }" id-vocab="${vocab.vocabId}">
+                        <img src="${vocab.img}" alt="">
                         <label>
                           <p class="choose-study-word-item-text">${
-                            vocab.vocab.word
-                          } <span>${vocab.vocab.type}</span></p>
+                            vocab.word
+                          } <span>${vocab.type}</span></p>
                           <input type="checkbox" name="" id="" value="abide-by">
                           <span class="custom-checkbox">
                             <span class="icon-all"></span>
@@ -95,32 +105,29 @@ function renderGraph() {
 
 function handleSubmitBtn() {
   getListVocabsRequest();
-  postListRequestAndGoToLearn(vocabsRequest);
+  postListRequestAndGoToLearn(learnRequest);
 }
 
 
 function getListVocabsRequest() {
-  vocabsRequest.forEach((vocab) => {
-    const $vocab = $(`.choose-study-word-item[id-vocab="${vocab.id}"]`);
+  learnRequest.forEach((vocab) => {
+    const $vocab = $(`.choose-study-word-item[id-vocab="${vocab.vocabId}"]`);
     let $checkItem = $vocab.find("input:checked");
     if ($checkItem.length > 0) {
       vocab.learn = true;
     } else {
       vocab.learn = false;
     }
-    vocab.learningStage = null;
-    vocab.testTime = null;
-    vocab.userTopic = null;
-    vocab.vocab = null;
   });
-
- 
 }
 
 async function postListRequestAndGoToLearn(obj) {
   try {
     console.log(obj);
-    let res = await axios.post(`${URL_API}/filter-result/vocabs/${topicId}`, obj);
+    let res = await axios.post(
+      `${URL_API}/topic/${topicId}/filter-result/vocabs-to-learn`,
+      obj
+    );
     window.location.href = `/learning.html?id=${topicId}`;
   } catch (error) {
     console.log(error);

@@ -1,7 +1,6 @@
 package com.example.myvocab;
 
 import com.example.myvocab.model.*;
-import com.example.myvocab.model.enummodel.OrderStatus;
 import com.example.myvocab.model.enummodel.TopicState;
 import com.example.myvocab.repo.CourseRepo;
 import com.example.myvocab.repo.TopicRepo;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +39,7 @@ public class UserTopicTest {
     @Test @Transactional
     void creatUserTopic(){
         Long topicId=9L;
-        Topic topic=topicRepo.findTopicById(9L).get();
+        Topic topic=topicRepo.findTopicById(9L, Topic.class).get();
 
         Optional<Users> user=usersRepo.findById("1");
         Assertions.assertThat(user).isPresent();

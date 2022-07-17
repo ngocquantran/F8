@@ -21,6 +21,7 @@ public class CourseCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String img;
 
     public CourseCategory(String title) {
         this.title = title;

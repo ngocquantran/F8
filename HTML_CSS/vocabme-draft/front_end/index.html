@@ -38,6 +38,14 @@
     <link rel="stylesheet" href="asset/css/base.css" />
     <link rel="stylesheet" href="asset/css/grid.css" />
     <link rel="stylesheet" href="asset/css/common.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
     <link rel="stylesheet" href="asset/css/home.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
 
@@ -49,6 +57,11 @@
       referrerpolicy="no-referrer"
     ></script>
     <!-- <script src="asset/library/lightslider-master/dist/js/lightslider.min.js"></script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="asset/js/index.js"></script>
   </head>
@@ -119,182 +132,10 @@
 
       <div class="container">
         <div class="grid-wide">
-          <div class="container__level-selection">
-            <div class="container__section-header">Cấp độ</div>
-            <div class="container__level-selection-wrapper">
-              <ul class="container__level-selection__list">
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                      checked
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_all.jpg"
-                      alt=""
-                      class="level-all"
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_A0.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_A1.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_A2.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_B1.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_B2.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_C1.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-                <li class="container__level-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__level-selection__item"
-                    />
-                    <img
-                      src="asset/img/home/container/level/level_C2.svg"
-                      alt=""
-                    />
-                  </label>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="container__course-selection">
-            <div class="container__section-header">Khóa học theo chủ đề</div>
-            <div class="container__course-selection-wrapper">
-              <ul class="container__course-selection__list">
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                      checked
-                    />
-                    <p>Tất cả khóa học</p>
-                  </label>
-                </li>
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                    />
-                    <p>Chuẩn CEFR</p>
-                  </label>
-                </li>
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                    />
-                    <p>Chứng chỉ Quốc tế</p>
-                  </label>
-                </li>
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                    />
-                    <p>Học sinh</p>
-                  </label>
-                </li>
-
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                    />
-                    <p>Giao tiếp</p>
-                  </label>
-                </li>
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                    />
-                    <p>Thương mại, Kinh tế</p>
-                  </label>
-                </li>
-                <li class="container__course-selection__item">
-                  <label>
-                    <input
-                      type="radio"
-                      name="container__course-selection__item"
-                    />
-                    <p>Chuyên ngành</p>
-                  </label>
-                </li>
-              </ul>
+          <div class="container__selection">
+            <div class="container__section-header">Kỹ năng</div>
+            <div class="container__selection-wrapper">
+              <ul class="container__selection__list"></ul>
             </div>
           </div>
 
@@ -391,8 +232,8 @@
               </div>
 
               <div class="container__courses-group-wrapper">
-                <div class="row">
-                  <div class="col l-2-4">
+                <div class="row row-cols-lg-5">
+                  <div class="col">
                     <div class="container__courses-group-item">
                       <a href="">
                         <img
@@ -427,7 +268,7 @@
           </template>
 
           <template class="course-template">
-            <div class="col l-2-4">
+            <div class="col">
               <div class="container__courses-group-item">
                 <a href="">
                   <img
@@ -458,8 +299,64 @@
           </template>
 
           <div class="container__courses">
-            <div class="container__section-header">
-              Hệ thống khóa học từ vựng
+            <div class="container__section-header-content">
+              <h2>Hệ thống khóa học</h2>
+              <div class="course-filter">
+                <div class="filter-search">
+                  <input type="text" placeholder="TÌM KIẾM" />
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="filter-group dropdown">
+                  <div
+                    class="dropdown-toggle filter-group-btn"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    NHÓM
+                  </div>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdownMenuButton1"
+                  ></ul>
+                </div>
+                <div class="filter-level dropdown">
+                  <div
+                    class="dropdown-toggle filter-group-btn"
+                    id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    CẤP ĐỘ
+                  </div>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="dropdownMenuButton2"
+                  >
+                    <li class="dropdown-item">
+                      <img
+                        src="/asset/img/home/container/level/filter-a0.svg"
+                        alt=""
+                      />
+                      <span>Khóa A0</span>
+                    </li>
+                    <li class="dropdown-item">
+                      <img
+                        src="/asset/img/home/container/level/filter-a0.svg"
+                        alt=""
+                      />
+                      <span>Khóa A0</span>
+                    </li>
+                    <li class="dropdown-item">
+                      <img
+                        src="/asset/img/home/container/level/filter-a0.svg"
+                        alt=""
+                      />
+                      <span>Khóa A0</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div class="container__courses-content">
@@ -472,43 +369,7 @@
                 </div>
 
                 <div class="container__courses-group-wrapper">
-                  <div class="row">
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <div class="container__courses-group-item-freetag">
-                            <img
-                              src="asset/img/home/container/course_thumb/free-tag.svg"
-                              alt=""
-                            />
-                          </div>
-                          <img
-                            src="asset/img/home/container/course_thumb/let's go.png"
-                            alt=""
-                          />
-                          <h4>LET'S GO!</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>8</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0 active">A0</span>
-                            <span class="a1 active">A1</span>
-                            <span class="a2 active">A2</span>
-                            <span class="b1">B1</span>
-                            <span class="b2">B2</span>
-                            <span class="c1">C1</span>
-                            <span class="c2">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            LET'S GO là sản phẩm đầu tay của hệ thống học từ
-                            vựng VOCA.VN, gồm 7 chủ đề từ vựng tiếng Anh thông
-                            dụng được thể hiện qua hình thức Flashcards thông
-                            minh hỗ trợ nhớ từ dễ dàng và sâu sắc.
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="row row-cols-lg-5"></div>
                 </div>
               </div>
 
@@ -521,191 +382,7 @@
                 </div>
 
                 <div class="container__courses-group-wrapper">
-                  <div class="row">
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <img
-                            src="asset/img/home/container/course_thumb/english-words-for-starter-1621594978.jpg"
-                            alt=""
-                          />
-                          <h4>English Words For Starter (A0)</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>29</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0 active">A0</span>
-                            <span class="a1">A1</span>
-                            <span class="a2">A2</span>
-                            <span class="b1">B1</span>
-                            <span class="b2">B2</span>
-                            <span class="c1">C1</span>
-                            <span class="c2">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            Khoá học English Words For Starters bao gồm 400 từ
-                            vựng tiếng Anh căn bản được sắp xếp theo chủ đề,
-                            khóa học phù hợp cho người mới bắt đầu học tiếng Anh
-                            hoặc trình độ A0.
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <img
-                            src="asset/img/home/container/course_thumb/english-words-for-elementary-1621595753.jpg"
-                            alt=""
-                          />
-                          <h4>English Words For Elementary (A1)</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>35</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0">A0</span>
-                            <span class="a1 active">A1</span>
-                            <span class="a2">A2</span>
-                            <span class="b1">B1</span>
-                            <span class="b2">B2</span>
-                            <span class="c1">C1</span>
-                            <span class="c2">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            Bộ từ Work On Your Vocabulary (CEF Level A1) bao gồm
-                            500 từ vựng tiếng Anh dành cho các bạn mới bắt đầu
-                            luyện thi chứng chỉ CEFR (Tiếng Anh theo chuẩn Châu
-                            Âu), phù hợp cho các bạn ở trình độ Elementary (Sơ
-                            cấp).
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <img
-                            src="asset/img/home/container/course_thumb/english-words-for-pre-intermediate-1621595904.jpg"
-                            alt=""
-                          />
-                          <h4>English Words For Pre Intermediate (A2)</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>35</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0">A0</span>
-                            <span class="a1">A1</span>
-                            <span class="a2 active">A2</span>
-                            <span class="b1">B1</span>
-                            <span class="b2">B2</span>
-                            <span class="c1">C1</span>
-                            <span class="c2">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            Bộ từ Work On Your Vocabulary (CEF Level A2) bao gồm
-                            520 từ vựng tiếng Anh dành cho các bạn mới bắt đầu
-                            luyện thi chứng chỉ CEFR (Tiếng Anh theo chuẩn Châu
-                            Âu), phù hợp cho các bạn ở trình độ Pre-intermediate
-                            (sơ trung cấp).
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <img
-                            src="asset/img/home/container/course_thumb/english-words-for-intermediate-1621595795.jpg"
-                            alt=""
-                          />
-                          <h4>English Words For Intermediate (B1)</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>35</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0">A0</span>
-                            <span class="a1">A1</span>
-                            <span class="a2">A2</span>
-                            <span class="b1 active">B1</span>
-                            <span class="b2">B2</span>
-                            <span class="c1">C1</span>
-                            <span class="c2">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            Bộ từ Work On Your Vocabulary (CEF B1 Intermediate)
-                            bao gồm 560 từ vựng tiếng Anh dành cho các bạn mới
-                            bắt đầu luyện thi chứng chỉ CEFR (Tiếng Anh theo
-                            chuẩn Châu Âu), phù hợp cho các bạn ở trình độ Trung
-                            cấp.
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <img
-                            src="asset/img/home/container/course_thumb/english-words-for-upper-intermediate-1621595887.jpg"
-                            alt=""
-                          />
-                          <h4>English Words For Upper Intermediate (B2)</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>35</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0">A0</span>
-                            <span class="a1">A1</span>
-                            <span class="a2">A2</span>
-                            <span class="b1">B1</span>
-                            <span class="b2 active">B2</span>
-                            <span class="c1">C1</span>
-                            <span class="c2">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            Bộ từ Work On Your Vocabulary (CEF B2
-                            Upper-Intermediate) bao gồm 560 từ vựng tiếng Anh
-                            dành cho các bạn mới bắt đầu luyện thi chứng chỉ
-                            CEFR (Tiếng Anh theo chuẩn Châu Âu), phù hợp cho các
-                            bạn ở trình độ cao trung cấp.
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-
-                    <div class="col l-2-4">
-                      <div class="container__courses-group-item">
-                        <a href="">
-                          <img
-                            src="asset/img/home/container/course_thumb/english-words-for-advanced-1621595875.jpg"
-                            alt=""
-                          />
-                          <h4>English Words For Advanced (C1+2)</h4>
-                          <div class="container__courses-group-item-lesson">
-                            <span>33</span> lessons
-                          </div>
-                          <div class="container__courses-group-item-level">
-                            <span class="a0">A0</span>
-                            <span class="a1">A1</span>
-                            <span class="a2">A2</span>
-                            <span class="b1">B1</span>
-                            <span class="b2">B2</span>
-                            <span class="c1 active">C1</span>
-                            <span class="c2 active">C2</span>
-                          </div>
-                          <div class="container__courses-group-item-desc">
-                            Bộ từ Work On Your Vocabulary (CEF C1 Advanced) bao
-                            gồm 540 từ vựng tiếng Anh dành cho các bạn mới bắt
-                            đầu luyện thi chứng chỉ CEFR (Tiếng Anh theo chuẩn
-                            Châu Âu), phù hợp cho các bạn ở trình độ Cao cấp.
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="row row-cols-lg-5"></div>
                 </div>
               </div>
             </div>

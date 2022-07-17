@@ -20,7 +20,7 @@ let filteredVocabs = [];
 
 const getTopicVocabs = async () => {
   try {
-    let res = await axios.get(`${URL_API}/topic/${topicId}/vocabs`);
+    let res = await axios.get(`${URL_API}/topic/${topicId}/filter-vocabs`);
     topicVocabs = res.data;
     renderTopicVocabs(topicVocabs);
     renderFilterList(topicVocabs);
@@ -29,15 +29,12 @@ const getTopicVocabs = async () => {
   }
 };
 
-
-
 function renderFilterList(arr) {
   filteredVocabs = [];
   arr.forEach((element) => {
     filteredVocabs.push({
       vocabId: element.id,
-      isKnown: false
-     
+      status: false,
     });
   });
 }
@@ -82,7 +79,7 @@ function filterVocab() {
   const $btn = $(".filter-word-bottom-btn");
   $btn.on("click", function () {
     if ($(this).hasClass("btn-yes")) {
-      filteredVocabs[index].isKnown = true;
+      filteredVocabs[index].status = true;
     }
     console.log(filteredVocabs);
 
@@ -115,7 +112,10 @@ function filterVocab() {
 // Gửi danh sách lọc từ vựng sau khi lọc
 async function postFilterResult(obj) {
   try {
-    let res = await axios.post(`${URL_API}/filter-result/${topicId}`, obj);
+    let res = await axios.post(
+      `${URL_API}/topic/${topicId}/filter-result`,
+      obj
+    );
     window.location.href = `/filter_result.html?id=${topicId}`;
   } catch (error) {
     console.log(error);

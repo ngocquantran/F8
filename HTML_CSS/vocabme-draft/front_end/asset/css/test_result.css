@@ -27,6 +27,7 @@
 
 .container {
   padding: 50px 0;
+  margin-top: 10px;
 }
 
 .container .wide {
@@ -77,8 +78,8 @@
   font-size: 15px;
   margin: 15px 0px 0px;
   color: var(--color-text);
+  font-weight: 400;
   max-width: 440px;
-  font-weight: 500;
   line-height: 1.1;
 }
 
@@ -89,9 +90,9 @@
 .result-message-button .btn-learning {
   width: 125px;
   height: 43px;
-  display: inline-block;
   line-height: 43px;
-  font-size: 15px;
+  display: inline-block;
+  font-size: 1.5rem;
   font-weight: 500;
   border-radius: 10px;
   margin-top: 10px;
@@ -99,7 +100,6 @@
   margin-right: 10px;
   color: var(--color-green);
   text-transform: uppercase;
-  font-weight: 700;
   background: var(--color-white);
   border: 1px solid var(--color-border-green);
   border-bottom: 3px solid var(--color-border-green);
@@ -108,15 +108,14 @@
 .result-message-button .btn-testing {
   width: 125px;
   height: 43px;
-  display: inline-block;
   line-height: 43px;
-  font-size: 15px;
+  display: inline-block;
+  font-size: 1.5rem;
   font-weight: 500;
   border-radius: 10px;
   border: 1px solid var(--color-border-green);
   border-bottom: 3px solid var(--color-border-green);
   text-transform: uppercase;
-  font-weight: 700;
   margin-top: 10px;
   text-align: center;
   margin-right: 10px;
@@ -303,7 +302,6 @@
   color: var(--color-blue);
   font-weight: 500;
   float: left;
-  margin-top: 10px;
 }
 
 .rank-content .user-rank-item img {
@@ -323,14 +321,13 @@
   -webkit-box-orient: vertical;
   display: -webkit-box;
   text-align: left;
-  margin-top: 10px;
 }
 
 .rank-content .user-rank-item .right {
   display: inline-block;
   font-size: 15px;
   float: left;
-  margin-top: 16px;
+
   color: var(--color-text-light);
   margin-left: 20px;
 }
@@ -339,7 +336,7 @@
   display: inline-block;
   font-size: 15px;
   float: left;
-  margin-top: 16px;
+
   color: var(--color-text-light);
   margin-left: 20px;
 }
@@ -622,7 +619,8 @@
 .vocab-item {
   perspective: 800px;
   perspective-origin: 50%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  width: 100%;
 }
 
 .vocab-item .vocab-item-viewport {

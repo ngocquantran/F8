@@ -321,14 +321,14 @@
 .learning-content {
   position: relative;
 }
-.learning-word-body {
+.learning-sen-body {
   position: relative;
   margin: auto;
   width: 965px;
   padding: 30px 15px;
 }
 
-.learning-word-progress {
+.learning-sen-progress {
   height: 40px;
   position: relative;
   width: 100%;
@@ -336,7 +336,7 @@
   z-index: 1;
 }
 
-.learning-word-progress-title {
+.learning-sen-progress-title {
   margin-bottom: 0px;
   float: left;
   display: inline-block;
@@ -345,18 +345,18 @@
   font-size: 18px;
 }
 
-.learning-word-progress-title strong {
+.learning-sen-progress-title strong {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-text-dark);
 }
 
-.learning-word-progress-title span {
+.learning-sen-progress-title span {
   font-weight: 500;
   color: var(--color-text-dark);
 }
 
-.learning-word-progress-range {
+.learning-sen-progress-range {
   display: block;
   width: calc(100% - 76px);
   height: 20px;
@@ -369,7 +369,7 @@
   overflow: hidden;
 }
 
-.learning-word-progress-range span {
+.learning-sen-progress-range span {
   width: 50%;
   display: inline-block;
   height: 20px;
@@ -384,7 +384,7 @@
   border: 5px solid #58a700;
 }
 
-.learning-word-content {
+.learning-sen-content {
   max-width: 810px;
   height: 260px;
   position: relative;
@@ -394,7 +394,7 @@
   transform-style: preserve-3d;
 }
 
-.learning-word-viewport {
+.learning-sen-viewport {
   /* border: 1px solid var(--color-border-gray-light);
   border-bottom: 3px solid var(--color-border-gray-light); */
   /* overflow: hidden; */
@@ -409,7 +409,7 @@
   perspective-origin: 50%;
 }
 
-.learning-word-viewport-container {
+.learning-sen-viewport-container {
   height: 100%;
   width: 100%;
   transform-style: preserve-3d;
@@ -417,7 +417,7 @@
   transition: all 1s;
 }
 
-.learning-word-viewport-slide {
+.learning-sen-viewport-slide {
   height: 100%;
   width: 100%;
   background: #fff;
@@ -428,25 +428,25 @@
   border-bottom: 5px solid #cfcfcf;
 }
 
-.learning-word-viewport-slide.slide1 {
+.learning-sen-viewport-slide.slide1 {
   background: #fffdf3;
   border-color: #fbe56d;
   transform: translateZ(75px);
 }
 
-.learning-word-viewport-slide.slide2 {
+.learning-sen-viewport-slide.slide2 {
   background: #ebfbff;
   border-color: #84d8ff;
   transform: rotateX(120deg) translateZ(75px);
 }
 
-.learning-word-viewport-slide.slide3 {
+.learning-sen-viewport-slide.slide3 {
   background: #fcfff9;
   border-color: #a5ed6e;
   transform: rotateX(240deg) translateZ(75px);
 }
 
-.learning-word-viewport .card-img {
+.learning-sen-viewport .card-img {
   display: inline-block;
   width: 192px;
   height: 192;
@@ -457,14 +457,14 @@
   float: left;
 }
 
-.learning-word-viewport .card-img img {
+.learning-sen-viewport .card-img img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
   border: 2px solid var(--color-blue);
 }
 
-.learning-word-viewport .card-content {
+.learning-sen-viewport .card-content {
   display: inline-block;
   width: calc(100% - 265px);
   float: left;
@@ -560,12 +560,12 @@
   cursor: pointer;
 }
 
-.learning-word-viewport .example-group {
+.learning-sen-viewport .example-group {
   float: left;
   width: 100%;
 }
 
-.learning-word-viewport .example-group i {
+.learning-sen-viewport .example-group i {
   background: none;
   width: 31.333px;
   height: 32px;
@@ -578,7 +578,7 @@
   color: rgb(7, 232, 232);
 }
 
-.learning-word-viewport .card-content-example {
+.learning-sen-viewport .card-content-example {
   font-weight: 500;
   margin-bottom: 0px;
   padding-left: 45px;
@@ -591,7 +591,7 @@
   width: 100%;
 }
 
-.learning-word-viewport .example-vi {
+.learning-sen-viewport .example-vi {
   float: none;
   display: block;
   width: 100%;
@@ -603,11 +603,11 @@
   margin-top: 10px;
 }
 
-.learning-word-viewport .example-vi:hover {
+.learning-sen-viewport .example-vi:hover {
   color: var(--color-blue);
 }
 
-.learning-word-viewport .card-turn {
+.learning-sen-viewport .card-turn {
   display: inline-block;
   position: absolute;
   right: 30px;
@@ -616,12 +616,12 @@
   text-align: right;
 }
 
-.learning-word-viewport .card-turn i {
+.learning-sen-viewport .card-turn i {
   font-size: 3rem;
   color: rgb(5, 210, 210);
 }
 
-.learning-word-viewport .card-turn .turn-icon span {
+.learning-sen-viewport .card-turn .turn-icon span {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -638,7 +638,7 @@
   position: absolute;
 }
 
-.learning-word-bottom {
+.learning-sen-bottom {
   position: fixed;
   width: 100%;
   height: 100px;
@@ -651,7 +651,7 @@
   border-top: 1px solid var(--color-border-gray-light);
 }
 
-.learning-word-bottom-cover {
+.learning-sen-bottom-cover {
   height: 100%;
   margin: 0 auto;
   max-width: 950px;
@@ -660,7 +660,7 @@
   justify-content: space-between;
 }
 
-.learning-word-bottom-btn {
+.learning-sen-bottom-btn {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 1.5rem;
@@ -678,7 +678,7 @@
   cursor: pointer;
 }
 
-.learning-word-bottom-btn.btn-next {
+.learning-sen-bottom-btn.btn-next {
   margin-right: 0px;
   color: var(--color-white);
   background: var(--color-green);
@@ -845,12 +845,12 @@
   font-weight: 400;
 }
 
-.context-1.context-active h5 {
+/* .context-1.context-active h5 {
   color: #1CB0F6;
 }
 .context-2.context-active h5 {
   color: #ff9600;
-}
-.context-3.context-active h5 {
+} */
+.context-active h5 {
   color: #58CC02;
 }

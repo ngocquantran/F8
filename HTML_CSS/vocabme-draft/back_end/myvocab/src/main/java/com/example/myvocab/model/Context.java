@@ -1,6 +1,7 @@
 package com.example.myvocab.model;
 
 import com.example.myvocab.model.enummodel.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,11 @@ public class Context {
     private boolean isContainKey;
     private int startTime;
     private int endTime;
+
+    @ManyToOne
+    @JoinColumn(name = "id_sentence")
+    @JsonIgnore
+    private Sentence sentence;
 
 
 }

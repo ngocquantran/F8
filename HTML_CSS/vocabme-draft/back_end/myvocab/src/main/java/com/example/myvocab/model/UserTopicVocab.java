@@ -24,19 +24,18 @@ public class UserTopicVocab {
     @Column(columnDefinition = "boolean default false")
     private boolean status;
 
-    private LearningStage learningStage;
-    private int testTime;
-
-    @ManyToOne
-    @JoinColumn(name = "id_user_topic", referencedColumnName = "id", nullable = false)
+    @OneToOne(optional = false, orphanRemoval = true)
+    @JoinColumn(name = "id_user_topic", nullable = false, referencedColumnName = "id")
     @JsonIgnore
     private UserTopic userTopic;
 
-    @OneToOne(orphanRemoval = true)
+    @ManyToOne
     @JoinColumn(name = "id_vocab")
     private Vocab vocab;
 
     @Column(columnDefinition = "boolean default false")
     private boolean learn;
+
+
 
 }

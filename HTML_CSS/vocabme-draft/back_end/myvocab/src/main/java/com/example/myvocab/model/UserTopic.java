@@ -33,7 +33,7 @@ public class UserTopic {
     @Formula("(SELECT COUNT(*) \n" +
             "FROM user_topic_vocab utv \n" +
             "INNER JOIN user_topic ut ON utv.id_user_topic =ut.id \n" +
-            "WHERE ut.status ='PASS' AND utv.status =1 AND utv.learningStage ='NOW' AND ut.id = id)")
+            "WHERE (ut.status ='PASS' OR ut.status ='CONTINUE') AND utv.status =1 AND ut.id = id)")
     private Integer passedElement;
 
 

@@ -22,6 +22,8 @@ public class Levels {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String description;
+    private String img;
 
 
     @ManyToMany(mappedBy = "levels",fetch = FetchType.LAZY, cascade = {

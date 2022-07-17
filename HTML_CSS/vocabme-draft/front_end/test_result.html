@@ -36,10 +36,10 @@
 
     <!-- Style css -->
     <link rel="stylesheet" href="asset/css/base.css" />
-    <link rel="stylesheet" href="asset/css/grid.css" />
     <link rel="stylesheet" href="asset/css/common.css" />
 
-    <link rel="stylesheet" href="asset/css/test.css" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="asset/css/test_result.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
 
@@ -58,8 +58,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="asset/js/main.js"></script>
+    <script src="asset/js/choose_word.js"></script>
     <script src="asset/js/test_result.js"></script>
   </head>
   <body>
@@ -93,21 +98,12 @@
                 <h3 class="result-message-notify pass">
                   Bạn đã vượt qua chủ đề từ vựng này.
                 </h3>
-                <h3 class="result-message-notify fail hidden">
-                  Bạn đã vượt qua chủ đề từ vựng này.
-                </h3>
+               
                 <h4 class="result-message-desc">
                   Thành tích lần này của bạn chưa vượt qua thành tích cao nhất
                   mà bạn đã từng đạt được. Hãy cải thiện để có kết quả cao hơn!
                 </h4>
-                <h4 class="result-message-desc hidden">
-                  Thành tích lần này của bạn chưa vượt qua thành tích cao nhất
-                  mà bạn đã từng đạt được. Hãy cải thiện để có kết quả cao hơn!
-                </h4>
-                <h4 class="result-message-desc hidden">
-                  Thành tích lần này của bạn chưa vượt qua thành tích cao nhất
-                  mà bạn đã từng đạt được. Hãy cải thiện để có kết quả cao hơn!
-                </h4>
+               
 
                 <div class="result-message-button">
                   <a
@@ -116,7 +112,7 @@
                     is_unknow="0"
                     is_finish="0"
                     parent="4362"
-                    class="btn-learning"
+                    class="btn-learning" data-bs-toggle="modal" data-bs-target="#choosewordmodel"
                     >Học lại</a
                   >
                   <a href="#" class="btn-testing">Kiểm tra lại</a>
@@ -185,40 +181,8 @@
                 <h2 class="result-evaluate-graph-title">Biểu đồ tiến độ</h2>
                 <div class="result-evaluate-graph-content">
                   <canvas id="result-evaluate-graph-chart"></canvas>
-                  <script>
-                    var ctx = document
-                      .getElementById("result-evaluate-graph-chart")
-                      .getContext("2d");
-                    var myChart = new Chart(ctx, {
-                      type: "line",
-                      data: {
-                        labels: [
-                          "Trước khi học",
-                          "Tốt nhất",
-                          "Gần đây nhất",
-                          "Hiện tại",
-                        ],
-                        datasets: [
-                          {
-                            label: "Số từ đã thuộc", // Name the series
-                            data: [6, 12, 8, 10], // Specify the data values array
-                            fill: false,
-                            borderColor: "#2196f3", // Add custom color border (Line)
-                            backgroundColor: "#2196f3", // Add custom color background (Points and Fill)
-                            borderWidth: 1, // Specify bar border width
-                          },
-                        ],
-                      },
-                      options: {
-                        responsive: true, // Instruct chart js to respond nicely.
-                        maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height'
-
-                        scales: {
-                          y: { beginAtZero: true, max: 12 },
-                        },
-                      },
-                    });
-                  </script>
+                  
+                  
                 </div>
               </div>
             </div>
@@ -231,15 +195,15 @@
                 <div class="user-rank-content">
                   <h5>Thứ hạng của bạn</h5>
                   <div class="user-rank-item">
-                    <span class="rank">2010</span>
+                    <span class="rank"></span>
                     <img
                       class="avatar"
                       src="https://home.voca.vn/assets/avatar/default.png"
-                      alt="Quân"
+                      
                     />
-                    <span class="name">Trần Ngọc Quân</span>
-                    <span class="right">17 từ đúng</span>
-                    <span class="time">Thời gian 63s</span>
+                    <span class="name"></span>
+                    <span class="right"></span>
+                    <span class="time"></span>
                   </div>
                 </div>
               </div>
@@ -397,37 +361,7 @@
               </div>
               <div class="vocab-list">
                 <div class="row">
-                  <div class="col l-2-4">
-                    <div class="vocab-item">
-                      <div class="vocab-item-viewport">
-                        <div class="item-front">
-                          <img
-                            class="item-image"
-                            src="https://www.voca.vn/assets/assets-v2/img/library/age%20%281%29.jpg"
-                            alt="age"
-                          />
-                          <p class="item-text">age</p>
-                          <p class="item-pronounce">/eɪdʒ/</p>
-
-                          <span class="rotate"
-                            ><i class="fa-solid fa-rotate"></i
-                          ></span>
-                        </div>
-                        <div class="item-back">
-                          <div class="item-back-cover">
-                            <audio
-                              src="asset/mp3/word_pronunciation/age.mp3"
-                            ></audio>
-                            <p class="item-type">(n)</p>
-                            <p class="item-text-vi">tuổi</p>
-                            <span class="rotate"
-                              ><i class="fa-solid fa-rotate"></i
-                            ></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                
                 </div>
               </div>
             </div>
@@ -517,25 +451,68 @@
         </div>
       </div>
 
-      <div class="modal hidden">
-        <div class="modal-body">
-          <div class="trial-alert hidden">
-            <div class="trial-alert-content">
-              <div class="trial-left">
-                <img src="asset/img/common/trial-expired.svg" alt="" />
-              </div>
-
-              <div class="trial-middle">
-                <div class="trial-middle-title">Bài học hiện tạm khoá</div>
-                <div class="trial-middle-content">
-                  Đây là khoá học có tính phí. Hãy nâng cấp lên Premium để học
-                  tiếp bạn nhé!
+      <div class="modal fade" id="choosewordmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+          <div class="modal-content">
+            <div class="modal-header" style="align-items: flex-start;">
+              <div class="choose-study-word-content-header">
+                <h3>Chọn từ bạn muốn học</h3>
+                <div class="choose-study-word-content-header-btn">
+                  <div class="choose-study-word-btn all-word">Học tất cả
+                  </div>
+                  <div class="choose-study-word-btn unknown-word">Học từ chưa thuộc
+                  </div>
                 </div>
               </div>
+              <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="choose-study-word">
+                <div class="choose-study-word-content">
 
-              <div class="trial-right">
-                <a href="" class="btn-trial-remain">KHÔNG CẢM ƠN</a>
-                <a href="" class="btn-trial-upgrade">NÂNG CẤP PREMIUM</a>
+                  <form action=""></form>
+                  <div class="choose-study-word-content-body">
+                    <div class="row row-cols-lg-5">
+                      <div class="col ">
+                        <div class="choose-study-word-item">
+                          <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                          <label>
+                            <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                            <input type="checkbox" name="" id="" value="abide-by">
+                            <span class="custom-checkbox">
+                              <span class="icon-all"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="col ">
+                        <div class="choose-study-word-item  item-unknown">
+                          <img src="/asset/img/word_thumb/abide-by.jpg" alt="">
+                          <label>
+                            <p class="choose-study-word-item-text">abide by <span>(phrasal verb)</span></p>
+                            <input type="checkbox" name="" id="" value="abide-by">
+                            <span class="custom-checkbox">
+                              <span class="icon-all"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="choose-study-word-content-footer">
+                <button type="submit" class="choose-word-btn">
+                  Bắt đầu học
+                </button>
+              
               </div>
             </div>
           </div>

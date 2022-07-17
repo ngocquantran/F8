@@ -78,21 +78,23 @@
 
       <div class="container">
         <div class="learning-content">
-          <div class="learning-word-body">
-            <div class="learning-word-progress">
-              <div class="learning-word-progress-title">
+          <div class="learning-sen-body">
+            <div class="learning-sen-progress">
+              <div class="learning-sen-progress-title">
                 <strong>01</strong>/<span>10</span>
               </div>
-              <div class="learning-word-progress-range">
+              <div class="learning-sen-progress-range">
                 <span></span>
               </div>
             </div>
 
-            <div class="learning-word-content">
-              <div class="learning-word-layer layer" words="establish">
-                <div class="learning-word-viewport">
-                  <div class="learning-word-viewport-container" rotate-data="0">
-                    <div class="learning-word-viewport-slide slide1 on">
+            <div class="learning-sen-content"></div>
+
+            <template class="sen-template">
+              <div class="learning-sen-layer layer" words="establish">
+                <div class="learning-sen-viewport">
+                  <div class="learning-sen-viewport-container" rotate-data="0">
+                    <div class="learning-sen-viewport-slide slide1 on">
                       <div class="card-img">
                         <img src="asset/img/word_thumb/establish.jpg" alt="" />
                       </div>
@@ -108,7 +110,7 @@
 
                         <div class="word">
                           <div class="content">
-                            <span
+                            <!-- <span
                               data-start="0"
                               data-end="762"
                               class=""
@@ -128,10 +130,10 @@
                             >
                             <span data-start="4200" data-end="5335" class=""
                               >friend.</span
-                            >
+                            > -->
                           </div>
                           <div class="pronounce">
-                            <span
+                            <!-- <span
                               data-start="0"
                               data-end="762"
                               class=""
@@ -151,7 +153,7 @@
                             >
                             <span data-start="4200" data-end="5335" class=""
                               >frend</span
-                            >
+                            > -->
                           </div>
                         </div>
 
@@ -188,7 +190,7 @@
                       </div>
                     </div>
 
-                    <div class="learning-word-viewport-slide slide2">
+                    <div class="learning-sen-viewport-slide slide2">
                       <div class="card-img">
                         <img src="asset/img/word_thumb/establish.jpg" alt="" />
                       </div>
@@ -213,6 +215,7 @@
 
                           <div
                             class="btn-context"
+                            id-sentence=""
                             data-bs-target="#context-modal"
                             data-bs-toggle="modal"
                           >
@@ -229,7 +232,7 @@
                       </div>
                     </div>
 
-                    <div class="learning-word-viewport-slide slide3">
+                    <div class="learning-sen-viewport-slide slide3">
                       <div class="card-img">
                         <img src="asset/img/word_thumb/establish.jpg" alt="" />
                       </div>
@@ -263,306 +266,17 @@
                   </div>
                 </div>
 
-                <div class="dimmer"></div>
-              </div>
-               <div class="learning-word-layer layer" words="establish">
-                <div class="learning-word-viewport">
-                  <div class="learning-word-viewport-container" rotate-data="0">
-                    <div class="learning-word-viewport-slide slide1 on">
-                      <div class="card-img">
-                        <img src="asset/img/word_thumb/establish.jpg" alt="" />
-                      </div>
-                      <div class="card-content">
-                        <div class="sentence hidden">
-                          <div class="content">
-                            I'd like you to meet my friend.
-                          </div>
-                          <div class="pronounce">
-                            aɪd laɪk juː tuː miːt maɪ frend
-                          </div>
-                        </div>
-
-                        <div class="word">
-                          <div class="content">
-                            <span
-                              data-start="0"
-                              data-end="762"
-                              class=""
-                              >I'd</span
-                            >
-                            <span data-start="762" data-end="1581" class=""
-                              >like</span
-                            >
-                            <span data-start="1581" data-end="2276" class=""
-                              >you</span
-                            >
-                            <span data-start="2276" data-end="3115" class=""
-                              >to meet</span
-                            >
-                            <span data-start="3115" data-end="4200" class=""
-                              >my</span
-                            >
-                            <span data-start="4200" data-end="5335" class=""
-                              >friend.</span
-                            >
-                          </div>
-                          <div class="pronounce">
-                            <span
-                              data-start="0"
-                              data-end="762"
-                              class=""
-                              >aɪd</span
-                            >
-                            <span data-start="762" data-end="1581" class=""
-                              >laɪk</span
-                            >
-                            <span data-start="1581" data-end="2276" class=""
-                              >juː</span
-                            >
-                            <span data-start="2276" data-end="3115" class=""
-                              >tuː miːt</span
-                            >
-                            <span data-start="3115" data-end="4200" class=""
-                              >maɪ</span
-                            >
-                            <span data-start="4200" data-end="5335" class=""
-                              >frend</span
-                            >
-                          </div>
-                        </div>
-
-                        <div class="sound">
-                          <div class="choose-sound">
-                            Chọn âm thanh theo cách đọc bạn muốn nghe:
-                          </div>
-                          <div class="sound-group">
-                            <div class="sound-sentence play-sound">
-                              <i class="fa-solid fa-volume-high"></i>
-                              <audio
-                                src="https://home.voca.vn/assets/sound/sentence/sentence/9f1f7d6e985079c057cee2645c441fff.mp3"
-                              ></audio>
-
-                              <span>Câu</span>
-                            </div>
-
-                            <div class="sound-word play-sound">
-                              <i class="fa-solid fa-volume-high"></i>
-                              <audio
-                                src="https://home.voca.vn/assets/sound/sentence/word/f71b3de05a78feec6fab94aab1ec6fd6.mp3"
-                              ></audio>
-
-                              <span>Từ</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-turn">
-                        <span class="turn-icon">
-                          <span>1</span>
-                          <i class="fa-solid fa-rotate"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="learning-word-viewport-slide slide2">
-                      <div class="card-img">
-                        <img src="asset/img/word_thumb/establish.jpg" alt="" />
-                      </div>
-
-                      <div class="card-content">
-                        <div class="sentence-vi">
-                          <div class="content">
-                            Tôi muốn bạn gặp bạn của tôi.
-                          </div>
-                        </div>
-
-                        <div class="usage">
-                          <div class="text">Cách dùng:</div>
-                          <div class="content">
-                            <p>
-                              Ta dùng
-                              <strong>I'd like you to meet + [N]</strong> để
-                              giới thiệu ai đó với người nghe nhằm giúp hai
-                              người kết thân.
-                            </p>
-                          </div>
-
-                          <div
-                            class="btn-context"
-                            data-bs-target="#context-modal"
-                            data-bs-toggle="modal"
-                          >
-                            Ngữ cảnh
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="card-turn">
-                        <span class="turn-icon">
-                          <span>2</span>
-                          <i class="fa-solid fa-rotate"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="learning-word-viewport-slide slide3">
-                      <div class="card-img">
-                        <img src="asset/img/word_thumb/establish.jpg" alt="" />
-                      </div>
-
-                      <div class="card-content">
-                        <div class="example-group">
-                          <p class="card-content-example">
-                            <span class="play-sound">
-                              <i class="fa-solid fa-volume-high"></i>
-                              <audio
-                                src="https://home.voca.vn/assets/sound/sentence/sentence/9f1f7d6e985079c057cee2645c441fff.mp3"
-                              ></audio>
-                            </span>
-                            <span class="example-en">
-                              I'd like you to meet my friend.
-                            </span>
-                          </p>
-                          <p class="example-vi">
-                            Tôi muốn bạn gặp bạn của tôi.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="card-turn">
-                        <span class="turn-icon">
-                          <span>3</span>
-                          <i class="fa-solid fa-rotate"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="dimmer"></div>
-              </div>
-             
-            </div>
-
-            <template class="vocab-template">
-              <div class="learning-word-layer layer" words="establish">
-                <div class="learning-word-viewport">
-                  <div class="learning-word-viewport-container" rotate-data="0">
-                    <div class="learning-word-viewport-slide slide1 on">
-                      <div class="card-img">
-                        <img src="asset/img/word_thumb/establish.jpg" alt="" />
-                      </div>
-                      <div class="card-content">
-                        <p class="card-content-title">Definition:</p>
-                        <p class="card-content-text">
-                          <span class="card-content-type">(v)</span> to start an
-                          organization or company
-                        </p>
-                      </div>
-                      <div class="card-turn">
-                        <span class="turn-icon">
-                          <span>1</span>
-                          <i class="fa-solid fa-rotate"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="learning-word-viewport-slide slide2">
-                      <div class="card-img">
-                        <img src="asset/img/word_thumb/establish.jpg" alt="" />
-                      </div>
-
-                      <div class="card-content">
-                        <p class="card-content-text-main">
-                          establish <span class="card-content-type">(n)</span>
-                        </p>
-
-                        <p class="card-content-phonetic">
-                          <span class="play-sound">
-                            <i class="fa-solid fa-volume-high"></i>
-                            <audio
-                              src="asset/mp3/word_pronunciation/establish.mp3"
-                            ></audio>
-                          </span>
-                          <span>/ɪˈstæblɪʃ/</span>
-                        </p>
-
-                        <div class="text-definition-vi">Thành lập</div>
-                      </div>
-
-                      <div class="card-turn">
-                        <span class="turn-icon">
-                          <span>2</span>
-                          <i class="fa-solid fa-rotate"></i>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div class="learning-word-viewport-slide slide3">
-                      <div class="card-img">
-                        <img src="asset/img/word_thumb/establish.jpg" alt="" />
-                      </div>
-
-                      <div class="card-content">
-                        <div class="example-group">
-                          <p class="card-content-example">
-                            <span class="play-sound">
-                              <i class="fa-solid fa-volume-high"></i>
-                              <audio
-                                src="asset/mp3/word_sentence/establish.mp3"
-                              ></audio>
-                            </span>
-                            <span class="example-en">
-                              <span></span>
-                              <span></span>
-                              <span></span>
-                            </span>
-                          </p>
-                          <p class="example-vi">
-                            Công ty của tôi thành lập vào tháng 10 năm 2014.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="card-turn">
-                        <span class="turn-icon">
-                          <span>3</span>
-                          <i class="fa-solid fa-rotate"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="learning-word-fill">
-                  <input
-                    type="text"
-                    class="form-control learning-fill-word"
-                    placeholder="Gõ từ vựng đoán được vào đây"
-                  />
-                  <button class="">Kiểm tra</button>
-                </div>
                 <div class="dimmer"></div>
               </div>
             </template>
 
-            <div class="learning-word-bottom">
-              <div class="learning-word-bottom-cover">
-                <div class="learning-word-bottom-btn btn-back">QUAY LẠI</div>
-                <div class="learning-word-bottom-btn btn-next">TIẾP TỤC</div>
+            <div class="learning-sen-bottom">
+              <div class="learning-sen-bottom-cover">
+                <div class="learning-sen-bottom-btn btn-back">QUAY LẠI</div>
+                <div class="learning-sen-bottom-btn btn-next">TIẾP TỤC</div>
               </div>
             </div>
           </div>
-
-          <!-- <div class="filter-word-bottom">
-            <p class="filter-word-bottom-heading">
-              Bạn biết từ vựng này hay không?
-            </p>
-            <div class="filter-word-bottom-option">
-              <div class="filter-word-bottom-btn btn-no">Không biết</div>
-              <div class="filter-word-bottom-btn btn-yes">Biết</div>
-            </div>
-          </div> -->
         </div>
       </div>
 
@@ -606,7 +320,7 @@
                   </div>
 
                   <div class="context-content-item">
-                    <div
+                    <!-- <div
                       class="context-item context-1"
                       data-start="0"
                       data-end="4019"
@@ -677,7 +391,7 @@
                         <h6>Tôi cũng hân hạnh được biết anh.</h6>
                         <i></i>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
